@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { FaChevronUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import CostEstimator from '../components/ui/CostEstimator';
+import FaqAccordion from '../components/ui/FaqAccordion';
 
 const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
   const containerRef = useRef(null);
@@ -17,7 +18,7 @@ const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) =>
   return (
     <div ref={containerRef} className={`${heightClass} w-full relative overflow-hidden`}>
       <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
-        <img src={imageSrc} alt="Background" className="w-full h-full object-cover grayscale opacity-60 scale-110" />
+        <img src={imageSrc} alt="Background" className="w-full h-full object-cover opacity-60 scale-110" />
       </motion.div>
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-black/40">
         {children}
@@ -89,7 +90,7 @@ const Services = () => {
                 <img 
                   src={service.img} 
                   alt={service.title} 
-                  className="absolute inset-0 w-full h-full object-cover grayscale opacity-80 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700"
+                  className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-opacity duration-300"></div>
                 
@@ -106,6 +107,11 @@ const Services = () => {
             ))}
           </div>
         </div>
+      </div>
+
+      {/* FAQ Section */}
+      <div className="bg-gray-50 border-t border-gray-200">
+        <FaqAccordion />
       </div>
 
       {/* Cost Estimator Section */}

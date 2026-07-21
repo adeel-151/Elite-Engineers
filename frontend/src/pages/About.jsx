@@ -16,7 +16,7 @@ const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) =>
   return (
     <div ref={containerRef} className={`${heightClass} w-full relative overflow-hidden`}>
       <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
-        <img src={imageSrc} alt="Background" className="w-full h-full object-cover grayscale opacity-60 scale-110" />
+        <img src={imageSrc} alt="Background" className="w-full h-full object-cover opacity-60 scale-110" />
       </motion.div>
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-black/30">
         {children}
@@ -149,7 +149,7 @@ const About = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group cursor-pointer"
               >
-                <div className="w-full h-80 bg-gray-200 overflow-hidden mb-4 grayscale group-hover:grayscale-0 transition-all duration-500">
+                <div className="w-full h-80 bg-gray-200 overflow-hidden mb-4 transition-all duration-500">
                   <img src={person.img} alt={person.name} className="w-full h-full object-cover" />
                 </div>
                 <h4 className="font-semibold uppercase tracking-wider">{person.name}</h4>

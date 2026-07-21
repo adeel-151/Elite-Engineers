@@ -17,7 +17,7 @@ const StickyImageSection = ({ imageSrc, children }) => {
   return (
     <div ref={containerRef} className="h-screen w-full relative overflow-hidden">
       <motion.div style={{ y, opacity }} className="absolute inset-0 w-full h-full">
-        <img src={imageSrc} alt="Background" className="w-full h-full object-cover grayscale opacity-70" />
+        <img src={imageSrc} alt="Background" className="w-full h-full object-cover opacity-70" />
       </motion.div>
       <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-black/40">
         {children}
@@ -143,7 +143,7 @@ const Home = () => {
           <motion.div 
             animate={{ x: ["0%", "-50%"] }}
             transition={{ repeat: Infinity, ease: "linear", duration: 20 }}
-            className="flex gap-16 md:gap-32 px-8 items-center opacity-50 grayscale"
+            className="flex gap-16 md:gap-32 px-8 items-center opacity-50"
           >
             {/* Duplicated for seamless scrolling */}
             {Array(8).fill(['ISO 9001', 'PEC REGISTERED', 'DHA APPROVED', 'LEED CERTIFIED']).flat().map((badge, i) => (
@@ -183,7 +183,7 @@ const Home = () => {
                 className="group cursor-pointer"
               >
                 <div className="w-full h-[400px] bg-gray-100 overflow-hidden mb-6 relative">
-                  <img src={p.img} alt={p.title} className="w-full h-full object-cover grayscale opacity-90 group-hover:scale-110 group-hover:grayscale-0 transition-all duration-700" />
+                  <img src={p.img} alt={p.title} className="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-all duration-700" />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
                 </div>
                 <h4 className="text-xl font-display uppercase tracking-wider mb-2">{p.title}</h4>

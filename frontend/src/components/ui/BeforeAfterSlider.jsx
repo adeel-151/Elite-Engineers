@@ -27,7 +27,7 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }) => {
         <img 
           src={beforeImage} 
           alt="Before Construction" 
-          className="absolute inset-0 w-full h-full object-cover grayscale opacity-90"
+          className="absolute inset-0 w-full h-full object-cover opacity-90"
         />
         <div className="absolute top-4 left-4 bg-black/70 text-white px-3 py-1 text-xs tracking-widest uppercase z-10">Before</div>
       </div>

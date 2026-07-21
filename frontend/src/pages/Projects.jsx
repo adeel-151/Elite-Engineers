@@ -53,7 +53,7 @@ const Projects = () => {
         <img 
           src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
           alt="Architecture Grid" 
-          className="w-full h-full object-cover grayscale opacity-80"
+          className="w-full h-full object-cover opacity-80"
         />
         {/* Floating Divider Icon over the image */}
         <div className="absolute -bottom-6 right-8 md:right-24 w-12 h-12 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-400 z-10">

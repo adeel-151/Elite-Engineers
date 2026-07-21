@@ -49,7 +49,7 @@ const ProjectDetails = () => {
 
       {/* Hero Image */}
       <div className="h-[60vh] w-full relative">
-        <img src={project.images[0]} alt={project.title} className="w-full h-full object-cover grayscale opacity-90" />
+        <img src={project.images[0]} alt={project.title} className="w-full h-full object-cover opacity-90" />
         <div className="absolute inset-0 bg-black/40"></div>
         
         <Link to="/projects" className="absolute top-8 left-4 md:left-12 flex items-center gap-2 text-white text-xs uppercase tracking-widest hover:text-accent transition-colors z-10">
@@ -128,7 +128,7 @@ const ProjectDetails = () => {
               transition={{ duration: 0.5, delay: i * 0.2 }}
               className={`h-[400px] w-full overflow-hidden ${i === 2 ? 'md:col-span-2 h-[500px]' : ''}`} // Make 3rd image full width
             >
-              <img src={img} alt={`${project.title} Gallery ${i}`} className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" />
+              <img src={img} alt={`${project.title} Gallery ${i}`} className="w-full h-full object-cover transition-all duration-700" />
             </motion.div>
           ))}
         </div>
