@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 import ProjectForm from '../components/admin/ProjectForm';
 import ProjectGrid from '../components/admin/ProjectGrid';
+import API_BASE_URL from '../config/api';
 
 const Admin = () => {
   const [token, setToken] = useState(localStorage.getItem('token') || '');
@@ -17,7 +18,7 @@ const Admin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+      const res = await axios.post(`${API_BASE_URL}/api/auth/login`, { email, password });
       const receivedToken = res.data.token;
       setToken(receivedToken);
       localStorage.setItem('token', receivedToken);

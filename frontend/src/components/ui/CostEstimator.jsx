@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import axios from 'axios';
+import API_BASE_URL from '../../config/api';
 
 const CostEstimator = () => {
   const [projectType, setProjectType] = useState('residential');
@@ -44,7 +45,7 @@ const CostEstimator = () => {
     setIsSubmitting(true);
     setSubmitStatus(null);
     try {
-      await axios.post('http://localhost:5000/api/inquiries', {
+      await axios.post(`${API_BASE_URL}/api/inquiries`, {
         name: 'Estimator Tool Lead',
         email,
         message: `Requested detailed cost breakdown for a ${area} sq ft ${quality} ${projectType} project. Estimated Range: ${formatCurrency(estimatedCost.min)} - ${formatCurrency(estimatedCost.max)}`,

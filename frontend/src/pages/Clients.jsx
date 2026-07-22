@@ -3,6 +3,7 @@ import SEO from '../components/ui/SEO';
 import axios from 'axios';
 import SectionHeading from '../components/ui/SectionHeading';
 import SkeletonLoader from '../components/ui/SkeletonLoader';
+import API_BASE_URL from '../config/api';
 
 const Clients = () => {
   const [clients, setClients] = useState([]);
@@ -12,7 +13,7 @@ const Clients = () => {
   useEffect(() => {
     const fetchClients = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/clients');
+        const res = await axios.get(`${API_BASE_URL}/api/clients`);
         setClients(res.data.data.clients);
         setLoading(false);
       } catch (err) {

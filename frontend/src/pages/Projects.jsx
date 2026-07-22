@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { FaChevronUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import BeforeAfterSlider from '../components/ui/BeforeAfterSlider';
+import API_BASE_URL from '../config/api';
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -15,7 +16,7 @@ const Projects = () => {
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/projects');
+        const res = await axios.get(`${API_BASE_URL}/api/projects`);
         // If there are less than 6 projects, we might want to duplicate them for display purposes to match the dense grid in the image
         const fetched = res.data.data.projects;
         // Mock categories for the sake of UI if none exist

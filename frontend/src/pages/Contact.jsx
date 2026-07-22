@@ -6,6 +6,7 @@ import * as z from 'zod';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
+import API_BASE_URL from '../config/api';
 
 // Validation Schemas
 const contactSchema = z.object({
@@ -31,7 +32,7 @@ const Contact = () => {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      await axios.post('http://localhost:5000/api/inquiries', { ...data, type: 'contact' });
+      await axios.post(`${API_BASE_URL}/api/inquiries`, { ...data, type: 'contact' });
       toast.success('Thank you! Your message has been sent.');
       reset();
     } catch (error) {

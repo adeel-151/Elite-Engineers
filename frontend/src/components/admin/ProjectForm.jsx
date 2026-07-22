@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
+import API_BASE_URL from '../../config/api';
 
 const projectSchema = z.object({
   title: z.string().min(3, 'Title must be at least 3 characters'),
@@ -61,7 +62,7 @@ const ProjectForm = ({ token, initialData = null, onSuccess, onCancel }) => {
 
     try {
       if (isEditing) {
-        await axios.put(`http://localhost:5000/api/projects/${initialData._id}`, formData, {
+        await axios.put(`${API_BASE_URL}/api/projects/${initialData._id}`, formData, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'
@@ -69,7 +70,7 @@ const ProjectForm = ({ token, initialData = null, onSuccess, onCancel }) => {
         });
         toast.success('Project updated successfully!', { id: toastId });
       } else {
-        await axios.post('http://localhost:5000/api/projects', formData, {
+        await axios.post(`${API_BASE_URL}/api/projects`, formData, {
           headers: {
             'Authorization': `Bearer ${token}`,
             'Content-Type': 'multipart/form-data'

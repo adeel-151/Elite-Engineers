@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { FaChevronUp } from 'react-icons/fa';
 import axios from 'axios';
+import API_BASE_URL from '../config/api';
 
 // Reusable Sticky Section Component
 const StickyImageSection = ({ imageSrc, children }) => {
@@ -34,13 +35,13 @@ const Home = () => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop';
     if (imagePath.startsWith('http')) return imagePath;
-    return `http://localhost:5000/${imagePath.replace(/\\/g, '/')}`;
+    return `${API_BASE_URL}/${imagePath.replace(/\\/g, '/')}`;
   };
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/projects');
+        const res = await axios.get(`${API_BASE_URL}/api/projects`);
         const allProjects = res.data.data.projects;
         setFeaturedProjects(allProjects.slice(0, 3));
       } catch (error) {

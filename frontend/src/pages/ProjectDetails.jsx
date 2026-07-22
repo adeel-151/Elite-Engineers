@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { FaChevronLeft, FaMapMarkerAlt, FaRulerCombined, FaCalendarAlt, FaUserTie } from 'react-icons/fa';
 import axios from 'axios';
 import SkeletonLoader from '../components/ui/SkeletonLoader';
+import API_BASE_URL from '../config/api';
 
 const ProjectDetails = () => {
   const { id } = useParams();
@@ -14,7 +15,7 @@ const ProjectDetails = () => {
   useEffect(() => {
     const fetchProject = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/projects/${id}`);
+        const res = await axios.get(`${API_BASE_URL}/api/projects/${id}`);
         setProject(res.data.data.project);
         setLoading(false);
       } catch (err) {

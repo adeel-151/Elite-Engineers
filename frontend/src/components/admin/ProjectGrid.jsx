@@ -3,6 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { FiEdit2, FiTrash2 } from 'react-icons/fi';
 import SkeletonLoader from '../ui/SkeletonLoader';
+import API_BASE_URL from '../../config/api';
 
 const ProjectGrid = ({ token, onEdit }) => {
   const [projects, setProjects] = useState([]);
@@ -12,13 +13,13 @@ const ProjectGrid = ({ token, onEdit }) => {
   const getImageUrl = (imagePath) => {
     if (!imagePath) return '';
     if (imagePath.startsWith('http')) return imagePath;
-    return `http://localhost:5000/${imagePath.replace(/\\/g, '/')}`;
+    return `${API_BASE_URL}/${imagePath.replace(/\\/g, '/')}`;
   };
 
   const fetchProjects = async () => {
     try {
       setLoading(true);
-      const res = await axios.get('http://localhost:5000/api/projects');
+      const res = await axios.get(`${API_BASE_URL}/api/projects`);
       setProjects(res.data.data.projects);
     } catch (error) {
       toast.error('Failed to load projects');
@@ -36,7 +37,7 @@ const ProjectGrid = ({ token, onEdit }) => {
       try {
         setDeletingId(id);
         const toastId = toast.loading('Deleting project...');
-        await axios.delete(`http://localhost:5000/api/projects/${id}`, {
+        await axios.delete(`${API_BASE_URL}/api/projects/${id}`, {
           headers: { 'Authorization': `Bearer ${token}` }
         });
         toast.success('Project deleted successfully', { id: toastId });
