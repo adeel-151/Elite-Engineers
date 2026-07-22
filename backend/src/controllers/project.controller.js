@@ -26,6 +26,10 @@ exports.getProject = catchAsync(async (req, res, next) => {
 });
 
 exports.createProject = catchAsync(async (req, res, next) => {
+  if (req.files && req.files.length > 0) {
+    req.body.images = req.files.map(file => file.path);
+  }
+
   const newProject = await Project.create(req.body);
 
   res.status(201).json({
@@ -35,6 +39,11 @@ exports.createProject = catchAsync(async (req, res, next) => {
 });
 
 exports.updateProject = catchAsync(async (req, res, next) => {
+  if (req.files && req.files.length > 0) {
+    // We are replacing old images here, but you can append to them if needed
+    req.body.images = req.files.map(file => file.path);
+  }
+
   const project = await Project.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true

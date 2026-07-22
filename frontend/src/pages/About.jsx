@@ -1,7 +1,7 @@
-import { Helmet } from 'react-helmet-async';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { FaChevronUp } from 'react-icons/fa';
+import SEO from '../components/ui/SEO';
 
 // Reusable Sticky Section Component
 const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
@@ -28,9 +28,10 @@ const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) =>
 const About = () => {
   return (
     <>
-      <Helmet>
-        <title>About Us | Elite Engineers</title>
-      </Helmet>
+      <SEO 
+        title="About Us" 
+        description="Learn about Elite Engineers, our mission, vision, and the expert team behind our world-class structural and architectural projects."
+      />
 
       {/* Hero Sticky Image */}
       <StickyImageSection imageSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" heightClass="h-[70vh]">

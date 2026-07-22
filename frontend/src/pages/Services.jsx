@@ -1,5 +1,5 @@
-import { Helmet } from 'react-helmet-async';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import SEO from '../components/ui/SEO';
 import { useRef } from 'react';
 import { FaChevronUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
@@ -53,9 +53,10 @@ const Services = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Services | Elite Engineers</title>
-      </Helmet>
+      <SEO 
+        title="Our Services" 
+        description="Explore the comprehensive engineering, design, and construction services offered by Elite Engineers."
+      />
 
       {/* Hero Sticky Image */}
       <StickyImageSection imageSrc="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=2070&auto=format&fit=crop" heightClass="h-[60vh]">

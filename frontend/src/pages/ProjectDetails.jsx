@@ -1,55 +1,55 @@
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/ui/SEO';
 import { motion } from 'framer-motion';
 import { FaChevronLeft, FaMapMarkerAlt, FaRulerCombined, FaCalendarAlt, FaUserTie } from 'react-icons/fa';
-
-// Mock data (since backend might be off). In reality, you'd fetch based on ID.
-const mockProjects = {
-  '1': { 
-    title: 'The Skyline Tower', category: 'Commercial', 
-    client: 'Apex Holdings', location: 'Gulberg III, Lahore', area: '150,000 Sq Ft', year: '2025',
-    desc: 'The Skyline Tower is a modern architectural marvel designed to be the new hub for tech enterprises. The project involved deep foundational engineering to support 40 stories of pure glass and steel. Our team implemented sustainable cooling systems and a highly resilient core structure.',
-    images: [
-      'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1504307651254-35680f356f58?q=80&w=2070&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop'
-    ]
-  },
-  '2': { 
-    title: 'Aura Residences', category: 'Residential', 
-    client: 'DHA Phase 8', location: 'DHA, Lahore', area: '10,000 Sq Ft', year: '2024',
-    desc: 'Aura Residences redefines luxury living. We handled the complete turnkey construction from structural design to premium interior fit-outs. The villa features smart home integration, an infinity pool, and a minimalist monochrome aesthetic requested by the client.',
-    images: [
-      'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop'
-    ]
-  }
-};
+import axios from 'axios';
+import SkeletonLoader from '../components/ui/SkeletonLoader';
 
 const ProjectDetails = () => {
   const { id } = useParams();
+  const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(true);
   
-  // If backend was running, we'd do a useEffect fetch here.
-  // Using mock data for UI testing. Fallback to a default if ID not found in mock.
-  const project = mockProjects[id] || {
-    title: 'Tech Hub Interior', category: 'Interior',
-    client: 'InnovateX', location: 'Johar Town, Lahore', area: '5,000 Sq Ft', year: '2023',
-    desc: 'A modern, open-plan workspace designed to foster creativity and collaboration. The project required extensive HVAC remodeling and custom acoustic treatments.',
-    images: [
-      'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop',
-      'https://images.unsplash.com/photo-1497215842964-222b430dc094?q=80&w=2069&auto=format&fit=crop'
-    ]
-  };
+  useEffect(() => {
+    const fetchProject = async () => {
+      try {
+        const res = await axios.get(`http://localhost:5000/api/projects/${id}`);
+        setProject(res.data.data.project);
+        setLoading(false);
+      } catch (err) {
+        // Fallback dummy data
+        setProject({
+          title: 'Tech Hub Interior', category: 'Interior',
+          client: { name: 'InnovateX' }, location: 'Johar Town, Lahore', area: '5,000 Sq Ft', completedDate: '2023-01-01',
+          description: 'A modern, open-plan workspace designed to foster creativity and collaboration.',
+          images: [
+            'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop',
+            'https://images.unsplash.com/photo-1497215842964-222b430dc094?q=80&w=2069&auto=format&fit=crop'
+          ]
+        });
+        setLoading(false);
+      }
+    };
+    fetchProject();
+  }, [id]);
+
+  if (loading) return <SkeletonLoader type="detail" />;
+  if (!project) return <div className="min-h-screen flex items-center justify-center">Project not found</div>;
+
+  const images = project.images && project.images.length > 0 ? project.images : ['https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop'];
 
   return (
     <div className="bg-white min-h-screen">
-      <Helmet>
-        <title>{project.title} | Elite Engineers</title>
-      </Helmet>
+      <SEO 
+        title={project.title} 
+        description={project.description}
+        image={images[0]}
+      />
 
       {/* Hero Image */}
       <div className="h-[60vh] w-full relative">
-        <img src={project.images[0]} alt={project.title} className="w-full h-full object-cover opacity-90" />
+        <img src={images[0]} alt={project.title} className="w-full h-full object-cover opacity-90" />
         <div className="absolute inset-0 bg-black/40"></div>
         
         <Link to="/projects" className="absolute top-8 left-4 md:left-12 flex items-center gap-2 text-white text-xs uppercase tracking-widest hover:text-accent transition-colors z-10">
@@ -69,7 +69,7 @@ const ProjectDetails = () => {
           {/* Main Description */}
           <div className="lg:col-span-2">
             <h2 className="text-2xl font-display uppercase tracking-widest mb-6">Project Overview</h2>
-            <p className="text-gray-600 font-light leading-relaxed mb-8">{project.desc}</p>
+            <p className="text-gray-600 font-light leading-relaxed mb-8">{project.description || project.desc}</p>
             
             <h2 className="text-2xl font-display uppercase tracking-widest mb-6">The Challenge</h2>
             <p className="text-gray-600 font-light leading-relaxed">
@@ -86,7 +86,7 @@ const ProjectDetails = () => {
                 <FaUserTie className="text-accent mt-1 text-lg" />
                 <div>
                   <p className="text-xs text-gray-500 uppercase tracking-widest">Client</p>
-                  <p className="font-semibold text-sm">{project.client}</p>
+                  <p className="font-semibold text-sm">{project.client?.name || project.client || 'N/A'}</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">
@@ -100,14 +100,14 @@ const ProjectDetails = () => {
                 <FaRulerCombined className="text-accent mt-1 text-lg" />
                 <div>
                   <p className="text-xs text-gray-500 uppercase tracking-widest">Area</p>
-                  <p className="font-semibold text-sm">{project.area}</p>
+                  <p className="font-semibold text-sm">{project.area || 'N/A'}</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">
                 <FaCalendarAlt className="text-accent mt-1 text-lg" />
                 <div>
                   <p className="text-xs text-gray-500 uppercase tracking-widest">Completed</p>
-                  <p className="font-semibold text-sm">{project.year}</p>
+                  <p className="font-semibold text-sm">{project.completedDate ? new Date(project.completedDate).getFullYear() : (project.year || 'N/A')}</p>
                 </div>
               </li>
             </ul>
@@ -119,7 +119,7 @@ const ProjectDetails = () => {
       {/* Image Gallery */}
       <div className="pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {project.images.slice(1).map((img, i) => (
+          {images.slice(1).map((img, i) => (
             <motion.div 
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}

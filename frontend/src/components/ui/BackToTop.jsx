@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaArrowUp } from 'react-icons/fa';
+import { FaLongArrowAltUp } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const BackToTop = () => {
@@ -34,10 +34,10 @@ const BackToTop = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.5 }}
           onClick={scrollToTop}
-          className="fixed bottom-24 right-6 md:bottom-8 md:right-8 z-50 p-3 bg-accent text-white rounded-full shadow-lg hover:bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
+          className="fixed bottom-8 right-24 md:bottom-8 md:right-28 z-50 w-12 h-12 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-600 cursor-pointer hover:bg-gray-100 transition-colors shadow-md"
           aria-label="Back to top"
         >
-          <FaArrowUp className="text-xl" />
+          <FaLongArrowAltUp className="text-xl" />
         </motion.button>
       )}
     </AnimatePresence>

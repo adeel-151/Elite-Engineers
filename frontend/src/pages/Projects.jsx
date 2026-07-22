@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/ui/SEO';
 import axios from 'axios';
 import { motion } from 'framer-motion';
 import { FaChevronUp } from 'react-icons/fa';
@@ -44,9 +44,10 @@ const Projects = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Our Projects | Elite Engineers</title>
-      </Helmet>
+      <SEO 
+        title="Our Projects" 
+        description="View the diverse portfolio of residential, commercial, and interior projects completed by Elite Engineers."
+      />
       
       {/* Gritty Top Image */}
       <div className="h-[40vh] w-full bg-black relative">

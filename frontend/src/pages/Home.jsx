@@ -1,7 +1,9 @@
-import { Helmet } from 'react-helmet-async';
+import { Link } from 'react-router-dom';
+import SEO from '../components/ui/SEO';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { FaChevronUp } from 'react-icons/fa';
+import axios from 'axios';
 
 // Reusable Sticky Section Component
 const StickyImageSection = ({ imageSrc, children }) => {
@@ -27,11 +29,32 @@ const StickyImageSection = ({ imageSrc, children }) => {
 };
 
 const Home = () => {
+  const [featuredProjects, setFeaturedProjects] = useState([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const res = await axios.get('http://localhost:5000/api/projects');
+        const allProjects = res.data.data.projects;
+        setFeaturedProjects(allProjects.slice(0, 3));
+      } catch (error) {
+        // Fallback dummy data if backend is down
+        setFeaturedProjects([
+          { _id: '1', title: 'The Skyline Tower', category: 'Commercial', images: ['https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop'] },
+          { _id: '2', title: 'Aura Residences', category: 'Residential', images: ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop'] },
+          { _id: '3', title: 'Tech Hub Interior', category: 'Interior Fit-out', images: ['https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop'] }
+        ]);
+      }
+    };
+    fetchProjects();
+  }, []);
+
   return (
-    <>
-      <Helmet>
-        <title>Elite Engineers | Excellence in Construction</title>
-      </Helmet>
+    <div className="bg-white">
+      <SEO 
+        title="Home" 
+        description="Elite Engineers is a premier engineering firm delivering cutting-edge architectural, structural, and construction solutions."
+      />
 
       {/* Main Hero Sticky Image */}
       <StickyImageSection imageSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop">
@@ -46,15 +69,6 @@ const Home = () => {
             <br /> THE FUTURE
           </motion.h1>
         </div>
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.5 }}
-          className="absolute bottom-12 right-8 md:right-24 w-12 h-12 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-400 z-10 cursor-pointer hover:bg-gray-50 transition-colors"
-          onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-        >
-           <FaChevronUp className="transform rotate-180" />
-        </motion.div>
       </StickyImageSection>
       
       {/* Scrollable Content Block 1 */}
@@ -169,25 +183,24 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              { title: 'The Skyline Tower', cat: 'Commercial', img: 'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop' },
-              { title: 'Aura Residences', cat: 'Residential', img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop' },
-              { title: 'Tech Hub Interior', cat: 'Interior Fit-out', img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop' }
-            ].map((p, i) => (
+            {featuredProjects.map((p, i) => (
               <motion.div 
-                key={i}
+                key={p._id || i}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: i * 0.2 }}
                 className="group cursor-pointer"
+                onClick={() => {
+                  if (p._id) window.location.href = `/projects/${p._id}`;
+                }}
               >
                 <div className="w-full h-[400px] bg-gray-100 overflow-hidden mb-6 relative">
-                  <img src={p.img} alt={p.title} className="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-all duration-700" />
+                  <img src={p.images?.[0] || 'https://via.placeholder.com/800x600'} alt={p.title} className="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-all duration-700" />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
                 </div>
                 <h4 className="text-xl font-display uppercase tracking-wider mb-2">{p.title}</h4>
-                <p className="text-xs text-accent uppercase tracking-widest font-semibold">{p.cat}</p>
+                <p className="text-xs text-accent uppercase tracking-widest font-semibold">{p.category}</p>
               </motion.div>
             ))}
           </div>
@@ -199,7 +212,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

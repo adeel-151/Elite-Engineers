@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/ui/SEO';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import { FaChevronUp } from 'react-icons/fa';
+import { toast } from 'react-hot-toast';
 
 // Validation Schemas
 const contactSchema = z.object({
@@ -30,13 +30,12 @@ const Contact = () => {
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
-    setSubmitStatus(null);
     try {
       await axios.post('http://localhost:5000/api/inquiries', { ...data, type: 'contact' });
-      setSubmitStatus('success');
+      toast.success('Thank you! Your message has been sent.');
       reset();
     } catch (error) {
-      setSubmitStatus('error');
+      toast.error('Failed to send message. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
@@ -46,10 +45,20 @@ const Contact = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Contact Us | Elite Engineers</title>
-      </Helmet>
+      <SEO 
+        title="Contact Us" 
+        description="Get in touch with Elite Engineers. We are ready to bring your architectural and structural visions to life."
+      />
       
+      {/* Gritty Full Width B&W Image */}
+      <div className="h-64 w-full bg-black relative">
+        <img 
+          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
+          alt="Building Texture" 
+          className="w-full h-full object-cover opacity-60"
+        />
+      </div>
+
       <div className="py-24 bg-white relative">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -70,18 +79,6 @@ const Contact = () => {
             viewport={{ once: true }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            {submitStatus === 'success' && (
-              <div className="mb-8 p-4 text-sm text-green-700 bg-green-50 border border-green-200">
-                Thank you! Your message has been sent.
-              </div>
-            )}
-            
-            {submitStatus === 'error' && (
-              <div className="mb-8 p-4 text-sm text-red-700 bg-red-50 border border-red-200">
-                Failed to send message. Please try again.
-              </div>
-            )}
-
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
@@ -115,24 +112,6 @@ const Contact = () => {
             </form>
           </motion.div>
 
-        </div>
-
-        {/* Floating Divider Icon */}
-        <div className="absolute -top-6 right-8 md:right-24 w-12 h-12 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-400">
-           <FaChevronUp />
-        </div>
-      </div>
-
-      {/* Gritty Full Width B&W Image */}
-      <div className="h-64 w-full bg-black relative">
-        <img 
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
-          alt="Building Texture" 
-          className="w-full h-full object-cover opacity-60"
-        />
-        {/* Bottom divider pointing to footer */}
-        <div className="absolute -bottom-6 right-8 md:right-24 w-12 h-12 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-400 z-10">
-           <FaChevronUp />
         </div>
       </div>
     </>
