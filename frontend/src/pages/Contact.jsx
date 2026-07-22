@@ -51,12 +51,15 @@ const Contact = () => {
       />
       
       {/* Gritty Full Width B&W Image */}
-      <div className="h-64 w-full bg-black relative">
+      <div className="h-72 w-full bg-black relative pt-24">
         <img 
           src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
           alt="Building Texture" 
           className="w-full h-full object-cover opacity-60"
         />
+        <div className="absolute inset-0 flex items-end pb-8 px-6 md:px-12">
+          <p className="text-white/50 text-xs tracking-[0.3em] uppercase">Elite Engineers / Contact</p>
+        </div>
       </div>
 
       <div className="py-24 bg-white relative">

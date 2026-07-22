@@ -31,6 +31,12 @@ const StickyImageSection = ({ imageSrc, children }) => {
 const Home = () => {
   const [featuredProjects, setFeaturedProjects] = useState([]);
 
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) return 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop';
+    if (imagePath.startsWith('http')) return imagePath;
+    return `http://localhost:5000/${imagePath.replace(/\\/g, '/')}`;
+  };
+
   useEffect(() => {
     const fetchProjects = async () => {
       try {
@@ -196,7 +202,7 @@ const Home = () => {
                 }}
               >
                 <div className="w-full h-[400px] bg-gray-100 overflow-hidden mb-6 relative">
-                  <img src={p.images?.[0] || 'https://via.placeholder.com/800x600'} alt={p.title} className="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-all duration-700" />
+                  <img src={getImageUrl(p.images?.[0])} alt={p.title} className="w-full h-full object-cover opacity-90 group-hover:scale-110 transition-all duration-700" />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500"></div>
                 </div>
                 <h4 className="text-xl font-display uppercase tracking-wider mb-2">{p.title}</h4>

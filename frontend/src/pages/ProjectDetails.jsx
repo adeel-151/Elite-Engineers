@@ -52,7 +52,7 @@ const ProjectDetails = () => {
         <img src={images[0]} alt={project.title} className="w-full h-full object-cover opacity-90" />
         <div className="absolute inset-0 bg-black/40"></div>
         
-        <Link to="/projects" className="absolute top-8 left-4 md:left-12 flex items-center gap-2 text-white text-xs uppercase tracking-widest hover:text-accent transition-colors z-10">
+        <Link to="/projects" className="absolute top-24 left-4 md:left-12 flex items-center gap-2 text-white text-xs uppercase tracking-widest hover:text-accent transition-colors z-10 bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full">
           <FaChevronLeft /> Back to Projects
         </Link>
 
