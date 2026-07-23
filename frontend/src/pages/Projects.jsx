@@ -57,10 +57,6 @@ const Projects = () => {
           alt="Architecture Grid" 
           className="w-full h-full object-cover opacity-80"
         />
-        {/* Floating Divider Icon over the image */}
-        <div className="absolute -bottom-6 right-8 md:right-24 w-12 h-12 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-400 z-10">
-           <FaChevronUp />
-        </div>
       </div>
 
       <div className="py-24 bg-white relative">

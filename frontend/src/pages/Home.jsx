@@ -1,10 +1,197 @@
 import { Link } from 'react-router-dom';
 import SEO from '../components/ui/SEO';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import { FaChevronUp } from 'react-icons/fa';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { useRef, useState, useEffect, useCallback } from 'react';
+import { FaChevronUp, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import axios from 'axios';
 import API_BASE_URL from '../config/api';
+
+// Hero Slideshow Data
+const heroSlides = [
+  {
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
+    headline: 'BUILDING\nTHE FUTURE',
+    subtext: 'Engineering landmarks that define the modern skyline.',
+    tag: 'Excellence in Construction',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2062&auto=format&fit=crop',
+    headline: 'PRECISION\nCRAFTED',
+    subtext: 'Every structure built with uncompromising attention to detail.',
+    tag: 'Structural Mastery',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop',
+    headline: 'INNOVATIVE\nDESIGN',
+    subtext: 'Where architectural elegance meets engineering resilience.',
+    tag: 'Architecture & Innovation',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=2073&auto=format&fit=crop',
+    headline: 'TRUSTED\nPARTNERS',
+    subtext: 'Over 15 years delivering world-class engineering solutions.',
+    tag: 'Legacy of Trust',
+  },
+];
+
+// Hero Slideshow Component
+const HeroSlideshow = () => {
+  const [current, setCurrent] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const intervalRef = useRef(null);
+
+  const goTo = useCallback((index) => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setCurrent(index);
+    setTimeout(() => setIsAnimating(false), 900);
+  }, [isAnimating]);
+
+  const goNext = useCallback(() => {
+    goTo((current + 1) % heroSlides.length);
+  }, [current, goTo]);
+
+  const goPrev = useCallback(() => {
+    goTo((current - 1 + heroSlides.length) % heroSlides.length);
+  }, [current, goTo]);
+
+  // Auto-advance every 5 seconds
+  useEffect(() => {
+    intervalRef.current = setInterval(() => {
+      setCurrent(prev => (prev + 1) % heroSlides.length);
+    }, 5000);
+    return () => clearInterval(intervalRef.current);
+  }, []);
+
+  const slide = heroSlides[current];
+
+  return (
+    <div className="h-screen w-full relative overflow-hidden bg-black">
+      {/* Background Images */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={current}
+          initial={{ opacity: 0, scale: 1.08 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.96 }}
+          transition={{ duration: 0.9, ease: 'easeInOut' }}
+          className="absolute inset-0 w-full h-full"
+        >
+          <img
+            src={slide.image}
+            alt={slide.headline}
+            className="w-full h-full object-cover opacity-65"
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70 z-10" />
+
+      {/* Content */}
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center">
+
+        {/* Tag Badge */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={`tag-${current}`}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="mb-6"
+          >
+            <span className="text-xs tracking-[0.35em] uppercase text-white/70 border border-white/30 px-5 py-2 backdrop-blur-sm">
+              {slide.tag}
+            </span>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Main Headline */}
+        <AnimatePresence mode="wait">
+          <motion.h1
+            key={`headline-${current}`}
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -30 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
+            className="text-white text-5xl md:text-7xl lg:text-8xl tracking-[0.1em] font-bold mb-6 leading-tight whitespace-pre-line"
+          >
+            {slide.headline}
+          </motion.h1>
+        </AnimatePresence>
+
+        {/* Subtext */}
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={`sub-${current}`}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.7, delay: 0.4 }}
+            className="text-white/80 text-base md:text-lg tracking-widest max-w-xl font-light mb-10"
+          >
+            {slide.subtext}
+          </motion.p>
+        </AnimatePresence>
+
+        {/* CTA Button */}
+        <motion.a
+          href="/projects"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7, duration: 0.6 }}
+          className="px-10 py-3 border border-white/60 text-white text-xs tracking-[0.3em] uppercase hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-sm"
+        >
+          EXPLORE PROJECTS
+        </motion.a>
+      </div>
+
+      {/* Prev / Next Arrows */}
+      <button
+        onClick={goPrev}
+        className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-sm"
+        aria-label="Previous slide"
+      >
+        <FaChevronLeft size={14} />
+      </button>
+      <button
+        onClick={goNext}
+        className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-sm"
+        aria-label="Next slide"
+      >
+        <FaChevronRight size={14} />
+      </button>
+
+      {/* Slide Indicators */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3">
+        {heroSlides.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => goTo(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className="relative overflow-hidden h-[2px] bg-white/30 transition-all duration-500"
+            style={{ width: i === current ? '48px' : '20px' }}
+          >
+            {i === current && (
+              <motion.div
+                className="absolute inset-0 bg-white"
+                initial={{ scaleX: 0, originX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 5, ease: 'linear' }}
+              />
+            )}
+          </button>
+        ))}
+      </div>
+
+      {/* Slide Counter */}
+      <div className="absolute bottom-10 right-8 z-30 text-white/50 text-xs tracking-widest">
+        {String(current + 1).padStart(2, '0')} / {String(heroSlides.length).padStart(2, '0')}
+      </div>
+    </div>
+  );
+};
 
 // Reusable Sticky Section Component
 const StickyImageSection = ({ imageSrc, children }) => {
@@ -63,21 +250,11 @@ const Home = () => {
         description="Elite Engineers is a premier engineering firm delivering cutting-edge architectural, structural, and construction solutions."
       />
 
-      {/* Main Hero Sticky Image */}
-      <StickyImageSection imageSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop">
-        <div className="text-center px-4">
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="text-white text-5xl md:text-7xl lg:text-8xl tracking-[0.1em]"
-          >
-            BUILDING
-            <br /> THE FUTURE
-          </motion.h1>
-        </div>
-      </StickyImageSection>
+
+      {/* Main Hero Slideshow */}
+      <HeroSlideshow />
       
+
       {/* Scrollable Content Block 1 */}
       <div className="py-32 bg-white relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         <div className="max-w-4xl mx-auto px-4 text-center">
