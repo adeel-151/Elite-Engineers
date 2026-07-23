@@ -89,7 +89,7 @@ const HeroSlideshow = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/70 z-10" />
 
       {/* Content */}
-      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center">
+      <div className="absolute inset-0 z-20 flex flex-col items-center justify-center px-6 text-center pt-24">
 
         {/* Tag Badge */}
         <AnimatePresence mode="wait">
@@ -115,7 +115,7 @@ const HeroSlideshow = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            className="text-white text-5xl md:text-7xl lg:text-8xl tracking-[0.1em] font-bold mb-6 leading-tight whitespace-pre-line"
+            className="text-white text-4xl md:text-5xl lg:text-6xl tracking-[0.1em] font-bold mb-6 leading-tight whitespace-pre-line"
           >
             {slide.headline}
           </motion.h1>
@@ -163,27 +163,7 @@ const HeroSlideshow = () => {
         <FaChevronRight size={14} />
       </button>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex items-center gap-3">
-        {heroSlides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => goTo(i)}
-            aria-label={`Go to slide ${i + 1}`}
-            className="relative overflow-hidden h-[2px] bg-white/30 transition-all duration-500"
-            style={{ width: i === current ? '48px' : '20px' }}
-          >
-            {i === current && (
-              <motion.div
-                className="absolute inset-0 bg-white"
-                initial={{ scaleX: 0, originX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 5, ease: 'linear' }}
-              />
-            )}
-          </button>
-        ))}
-      </div>
+
 
       {/* Slide Counter */}
       <div className="absolute bottom-10 right-8 z-30 text-white/50 text-xs tracking-widest">
