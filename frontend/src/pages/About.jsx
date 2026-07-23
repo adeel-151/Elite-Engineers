@@ -39,7 +39,7 @@ const About = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="text-white text-5xl md:text-6xl tracking-widest uppercase"
+          className="text-white text-3xl md:text-5xl lg:text-6xl tracking-widest uppercase"
         >
           ABOUT US
         </motion.h1>

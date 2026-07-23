@@ -101,7 +101,7 @@ const HeroSlideshow = () => {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="mb-6"
           >
-            <span className="text-xs tracking-[0.35em] uppercase text-white/70 border border-white/30 px-5 py-2 backdrop-blur-sm">
+            <span className="text-xs tracking-[0.2em] md:tracking-[0.35em] uppercase text-white/70 border border-white/30 px-3 md:px-5 py-2 backdrop-blur-sm">
               {slide.tag}
             </span>
           </motion.div>
@@ -115,7 +115,7 @@ const HeroSlideshow = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.8, delay: 0.2, ease: 'easeOut' }}
-            className="text-white text-4xl md:text-5xl lg:text-6xl tracking-[0.1em] font-bold mb-6 leading-tight whitespace-pre-line"
+            className="text-white text-3xl md:text-5xl lg:text-6xl tracking-[0.08em] md:tracking-[0.1em] font-bold mb-4 md:mb-6 leading-tight whitespace-pre-line"
           >
             {slide.headline}
           </motion.h1>
@@ -129,7 +129,7 @@ const HeroSlideshow = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="text-white/80 text-base md:text-lg tracking-widest max-w-xl font-light mb-10"
+            className="text-white/80 text-sm md:text-lg tracking-wide md:tracking-widest max-w-xs md:max-w-xl font-light mb-8 md:mb-10"
           >
             {slide.subtext}
           </motion.p>
@@ -147,17 +147,17 @@ const HeroSlideshow = () => {
         </motion.a>
       </div>
 
-      {/* Prev / Next Arrows */}
+      {/* Prev / Next Arrows — hidden on mobile */}
       <button
         onClick={goPrev}
-        className="absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-sm"
+        className="hidden md:flex absolute left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-sm"
         aria-label="Previous slide"
       >
         <FaChevronLeft size={14} />
       </button>
       <button
         onClick={goNext}
-        className="absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 flex items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-sm"
+        className="hidden md:flex absolute right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 items-center justify-center border border-white/30 text-white hover:bg-white hover:text-black transition-all duration-300 backdrop-blur-sm"
         aria-label="Next slide"
       >
         <FaChevronRight size={14} />
