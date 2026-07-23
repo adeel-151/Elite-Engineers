@@ -1,103 +1,294 @@
 import { Link } from 'react-router-dom';
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube, FaMapMarkerAlt, FaPhoneAlt, FaEnvelope } from 'react-icons/fa';
+import { motion } from 'framer-motion';
+import {
+  FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube, FaTwitter,
+  FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock,
+  FaArrowRight, FaCheckCircle, FaChevronUp,
+} from 'react-icons/fa';
+import { useState } from 'react';
 
+// ─── Footer Data ─────────────────────────────────────────────────────────────
+const services = [
+  'Architectural Design',
+  'Structural Engineering',
+  'Project Management',
+  'Interior Fit-Out',
+  'Renovation & Retrofit',
+  'Site Supervision',
+];
+
+const quickLinks = [
+  { label: 'Home', path: '/' },
+  { label: 'About Us', path: '/about' },
+  { label: 'Our Portfolio', path: '/projects' },
+  { label: 'Services', path: '/services' },
+  { label: 'Our Clients', path: '/clients' },
+  { label: 'Contact Us', path: '/contact' },
+];
+
+const certifications = [
+  'ISO 9001 Certified',
+  'PEC Registered',
+  'DHA Approved',
+  'LEED Certified',
+  'NESPAK Partner',
+  'LDA Approved',
+];
+
+const socials = [
+  { icon: FaFacebookF, href: 'https://facebook.com', label: 'Facebook' },
+  { icon: FaInstagram, href: 'https://instagram.com', label: 'Instagram' },
+  { icon: FaLinkedinIn, href: 'https://linkedin.com', label: 'LinkedIn' },
+  { icon: FaYoutube, href: 'https://youtube.com', label: 'YouTube' },
+  { icon: FaTwitter, href: 'https://twitter.com', label: 'Twitter' },
+];
+
+// ─── Footer Component ─────────────────────────────────────────────────────────
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
+
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email.includes('@')) {
+      setSubscribed(true);
+      setEmail('');
+      setTimeout(() => setSubscribed(false), 4000);
+    }
+  };
+
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
   return (
-    <footer className="bg-[#111111] text-white pt-20 pb-10 px-4 md:px-12 mt-auto border-t-[8px] border-accent">
-      <div className="max-w-7xl mx-auto">
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          
-          {/* Column 1: Brand & Bio */}
-          <div>
-            <div className="mb-6 flex flex-col items-start">
-              <div className="w-8 h-8 border-[1.5px] border-accent flex items-center justify-center mb-2 transform rotate-45">
-                <div className="w-3 h-3 bg-accent transform -rotate-45"></div>
+    <footer className="bg-[#080d1a] text-white relative overflow-hidden">
+
+      {/* ── Blueprint Background Pattern ─────────────────────────────────── */}
+      <div
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(245,158,11,0.6) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(245,158,11,0.6) 1px, transparent 1px)
+          `,
+          backgroundSize: '80px 80px',
+        }}
+      />
+
+      {/* ── Top Start-Project CTA Band ─────────────────────────────────────── */}
+      <div className="relative border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <p className="text-amber-400 text-xs tracking-[0.3em] uppercase mb-2">Ready to Begin?</p>
+              <h3 className="text-white text-2xl md:text-3xl font-display tracking-widest uppercase font-light">
+                Let's Build Something <span className="text-amber-400 font-bold">Iconic</span> Together
+              </h3>
+            </div>
+            <Link
+              to="/contact"
+              className="flex-shrink-0 flex items-center gap-3 px-8 py-4 bg-amber-400 text-black text-xs tracking-widest uppercase font-bold hover:bg-white transition-colors duration-300"
+            >
+              Start Your Project <FaArrowRight className="text-[10px]" />
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Main Footer Grid ───────────────────────────────────────────────── */}
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8">
+
+          {/* Column 1 — Brand & Bio */}
+          <div className="lg:col-span-2">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-3 mb-6 group w-fit">
+              <div className="w-9 h-9 border-[1.5px] border-amber-400 flex items-center justify-center transform rotate-45 transition-transform duration-300 group-hover:rotate-[225deg]">
+                <div className="w-3.5 h-3.5 bg-amber-400 transform -rotate-45" />
               </div>
-              <span className="font-display text-xl tracking-[0.2em] font-light text-white">ELITE ENGINEERS</span>
-            </div>
-            <p className="text-gray-400 font-light text-sm leading-relaxed mb-6">
-              Transforming visions into reality through cutting-edge architectural design and robust structural engineering. Building tomorrow's landmarks, today.
+              <span className="font-display text-xl tracking-[0.2em] font-bold text-white">ELITE ENGINEERS</span>
+            </Link>
+
+            <p className="text-gray-400 font-light text-sm leading-relaxed mb-6 max-w-sm">
+              Pakistan's premier engineering consultancy — transforming ambitious visions into architectural masterpieces. 15 years of structural precision, design excellence, and unwavering client trust.
             </p>
-            <div className="flex gap-4">
-              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:bg-accent hover:border-accent hover:text-white transition-all duration-300">
-                <FaFacebookF />
-              </a>
-              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:bg-accent hover:border-accent hover:text-white transition-all duration-300">
-                <FaInstagram />
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="w-10 h-10 border border-gray-700 rounded-full flex items-center justify-center text-gray-400 hover:bg-accent hover:border-accent hover:text-white transition-all duration-300">
-                <FaLinkedinIn />
-              </a>
-            </div>
-          </div>
 
-          {/* Column 2: Quick Links */}
-          <div>
-            <h4 className="text-white font-display tracking-widest uppercase mb-6">Explore</h4>
-            <ul className="space-y-3 text-sm text-gray-400 font-light">
-              <li><Link to="/" className="hover:text-accent transition-colors">Home</Link></li>
-              <li><Link to="/about" className="hover:text-accent transition-colors">About Us</Link></li>
-              <li><Link to="/projects" className="hover:text-accent transition-colors">Our Portfolio</Link></li>
-              <li><Link to="/services" className="hover:text-accent transition-colors">Services & Pricing</Link></li>
-              <li><Link to="/contact" className="hover:text-accent transition-colors">Contact Us</Link></li>
-            </ul>
-          </div>
-
-          {/* Column 3: Contact Info */}
-          <div>
-            <h4 className="text-white font-display tracking-widest uppercase mb-6">Contact</h4>
-            <ul className="space-y-4 text-sm text-gray-400 font-light">
-              <li className="flex items-start gap-3">
-                <FaMapMarkerAlt className="text-accent mt-1 flex-shrink-0" />
-                <span>Phase 5, DHA<br/>Lahore, Pakistan</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <FaPhoneAlt className="text-accent flex-shrink-0" />
+            {/* Contact quick info */}
+            <div className="space-y-3 mb-8 text-sm text-gray-400">
+              <a href="tel:+923722349343" className="flex items-center gap-3 hover:text-amber-400 transition-colors">
+                <FaPhoneAlt className="text-amber-400 flex-shrink-0" />
                 <span>+92 372-234-9343</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <FaEnvelope className="text-accent flex-shrink-0" />
+              </a>
+              <a href="mailto:info@elite-eng.com" className="flex items-center gap-3 hover:text-amber-400 transition-colors">
+                <FaEnvelope className="text-amber-400 flex-shrink-0" />
                 <span>info@elite-eng.com</span>
-              </li>
+              </a>
+            </div>
+
+            {/* Social Icons */}
+            <div className="flex gap-3">
+              {socials.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="w-9 h-9 border border-white/15 flex items-center justify-center text-gray-400 hover:bg-amber-400 hover:border-amber-400 hover:text-black transition-all duration-300 text-xs"
+                >
+                  <Icon />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Column 2 — Our Services */}
+          <div>
+            <h4 className="text-white font-display text-xs tracking-[0.25em] uppercase mb-7 pb-3 border-b border-white/10">Our Services</h4>
+            <ul className="space-y-3">
+              {services.map((svc) => (
+                <li key={svc}>
+                  <Link
+                    to="/services"
+                    className="text-gray-400 font-light text-sm hover:text-amber-400 transition-colors flex items-center gap-2 group"
+                  >
+                    <span className="w-1.5 h-1.5 bg-amber-400/0 group-hover:bg-amber-400 rounded-full transition-colors duration-300 flex-shrink-0" />
+                    {svc}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Column 4: Newsletter */}
+          {/* Column 3 — Quick Links */}
           <div>
-            <h4 className="text-white font-display tracking-widest uppercase mb-6">Newsletter</h4>
-            <p className="text-gray-400 font-light text-sm leading-relaxed mb-4">
-              Subscribe to get the latest updates on our mega projects and engineering insights.
+            <h4 className="text-white font-display text-xs tracking-[0.25em] uppercase mb-7 pb-3 border-b border-white/10">Quick Links</h4>
+            <ul className="space-y-3">
+              {quickLinks.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    to={link.path}
+                    className="text-gray-400 font-light text-sm hover:text-amber-400 transition-colors flex items-center gap-2 group"
+                  >
+                    <span className="w-1.5 h-1.5 bg-amber-400/0 group-hover:bg-amber-400 rounded-full transition-colors duration-300 flex-shrink-0" />
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {/* Office Hours */}
+            <div className="mt-8 p-4 bg-white/5 border border-white/10">
+              <div className="flex items-center gap-2 text-amber-400 text-xs tracking-widest uppercase mb-2">
+                <FaClock className="text-[10px]" />
+                <span>Office Hours</span>
+              </div>
+              <p className="text-gray-400 text-xs font-light">Mon – Sat: 9:00 AM – 7:00 PM</p>
+              <p className="text-gray-500 text-xs font-light">Sunday: By Appointment</p>
+            </div>
+          </div>
+
+          {/* Column 4 — Contact & Newsletter */}
+          <div>
+            <h4 className="text-white font-display text-xs tracking-[0.25em] uppercase mb-7 pb-3 border-b border-white/10">Stay Updated</h4>
+
+            {/* Address */}
+            <div className="flex items-start gap-3 text-gray-400 text-sm mb-6">
+              <FaMapMarkerAlt className="text-amber-400 mt-1 flex-shrink-0" />
+              <div>
+                <p className="font-light">Phase 5, DHA Lahore</p>
+                <p className="font-light">Punjab, Pakistan</p>
+                <a
+                  href="https://maps.google.com/?q=DHA+Phase+5+Lahore"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[10px] tracking-widest uppercase text-amber-400/70 hover:text-amber-400 transition-colors mt-1 block"
+                >
+                  View on Map →
+                </a>
+              </div>
+            </div>
+
+            {/* Newsletter */}
+            <p className="text-gray-400 font-light text-xs leading-relaxed mb-4">
+              Subscribe for construction insights, project showcases, and engineering news from Pakistan's top firm.
             </p>
-            <form className="flex flex-col gap-2">
-              <input 
-                type="email" 
-                placeholder="Email Address" 
-                className="w-full bg-gray-800 border-none text-white px-4 py-3 text-sm focus:outline-none focus:ring-1 focus:ring-accent"
+
+            <form onSubmit={handleSubscribe} className="space-y-2">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Your email address"
+                className="w-full bg-white/5 border border-white/15 text-white placeholder-gray-600 px-4 py-3 text-xs focus:outline-none focus:border-amber-400 transition-colors"
               />
-              <button 
-                type="button" 
-                className="w-full bg-accent text-white px-4 py-3 text-xs tracking-widest uppercase hover:bg-white hover:text-black transition-colors duration-300"
+              <button
+                type="submit"
+                className="w-full bg-amber-400 text-black text-xs tracking-widest uppercase py-3 font-bold hover:bg-white transition-colors duration-300 flex items-center justify-center gap-2"
               >
-                Subscribe
+                {subscribed ? (
+                  <>
+                    <FaCheckCircle /> Subscribed!
+                  </>
+                ) : (
+                  <>Subscribe <FaArrowRight className="text-[10px]" /></>
+                )}
               </button>
             </form>
           </div>
 
         </div>
+      </div>
 
-        {/* Sub Footer */}
-        <div className="pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-gray-500 tracking-wider">
-            © {new Date().getFullYear()} ELITE ENGINEERS. ALL RIGHTS RESERVED.
-          </p>
-          <div className="flex gap-6 text-xs text-gray-500 tracking-wider">
-            <a href="#" className="hover:text-white transition-colors">PRIVACY POLICY</a>
-            <a href="#" className="hover:text-white transition-colors">TERMS OF SERVICE</a>
+      {/* ── Awards & Certifications Row ────────────────────────────────────── */}
+      <div className="relative border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-wrap items-center justify-center gap-3">
+            <span className="text-gray-600 text-[10px] tracking-widest uppercase mr-2">Certified & Approved:</span>
+            {certifications.map((cert) => (
+              <span
+                key={cert}
+                className="border border-amber-400/30 text-amber-400/70 text-[10px] tracking-widest uppercase px-3 py-1.5 hover:border-amber-400 hover:text-amber-400 transition-colors cursor-default"
+              >
+                {cert}
+              </span>
+            ))}
           </div>
         </div>
-
       </div>
+
+      {/* ── Bottom Bar ─────────────────────────────────────────────────────── */}
+      <div className="relative border-t border-white/10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-gray-600 tracking-wider">
+
+            <p>© {new Date().getFullYear()} ELITE ENGINEERS. ALL RIGHTS RESERVED.</p>
+
+            <div className="flex items-center gap-1 text-gray-600">
+              <span>Made in</span>
+              <span className="text-base leading-none">🇵🇰</span>
+              <span>Pakistan with</span>
+              <span className="text-red-500 text-base leading-none">♥</span>
+            </div>
+
+            <div className="flex gap-6 text-gray-600">
+              <a href="#" className="hover:text-amber-400 transition-colors uppercase">Privacy Policy</a>
+              <a href="#" className="hover:text-amber-400 transition-colors uppercase">Terms of Service</a>
+              <a href="#" className="hover:text-amber-400 transition-colors uppercase">Sitemap</a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* ── Back to Top Button ─────────────────────────────────────────────── */}
+      <button
+        onClick={scrollToTop}
+        aria-label="Back to top"
+        className="absolute bottom-20 right-6 w-10 h-10 bg-amber-400 text-black flex items-center justify-center hover:bg-white transition-colors duration-300 shadow-lg z-10"
+      >
+        <FaChevronUp className="text-sm" />
+      </button>
+
     </footer>
   );
 };
