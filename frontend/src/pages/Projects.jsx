@@ -1,11 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import SEO from '../components/ui/SEO';
 import axios from 'axios';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { FaChevronUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import BeforeAfterSlider from '../components/ui/BeforeAfterSlider';
 import API_BASE_URL from '../config/api';
+
+// Reusable Sticky Section Component
+const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
+  return (
+    <div ref={containerRef} className={`${heightClass} w-full relative overflow-hidden`}>
+      <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
+        <img src={imageSrc} alt="Background" className="w-full h-full object-cover opacity-60 scale-110" />
+      </motion.div>
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-black/40">
+        {children}
+      </div>
+    </div>
+  );
+};
+
 
 const Projects = () => {
   const [projects, setProjects] = useState([]);
@@ -50,14 +72,19 @@ const Projects = () => {
         description="View the diverse portfolio of residential, commercial, and interior projects completed by Elite Engineers."
       />
       
-      {/* Gritty Top Image */}
-      <div className="h-[40vh] w-full bg-black relative">
-        <img 
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
-          alt="Architecture Grid" 
-          className="w-full h-full object-cover opacity-80"
-        />
-      </div>
+
+      {/* Hero Sticky Image */}
+      <StickyImageSection imageSrc="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2062&auto=format&fit=crop" heightClass="h-[70vh]">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-white text-5xl md:text-6xl tracking-widest uppercase"
+        >
+          OUR PORTFOLIO
+        </motion.h1>
+      </StickyImageSection>
+
 
       <div className="py-24 bg-white relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

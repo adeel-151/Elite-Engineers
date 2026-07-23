@@ -1,12 +1,34 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import SEO from '../components/ui/SEO';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import axios from 'axios';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 import API_BASE_URL from '../config/api';
+
+// Reusable Sticky Section Component
+const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
+  return (
+    <div ref={containerRef} className={`${heightClass} w-full relative overflow-hidden`}>
+      <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
+        <img src={imageSrc} alt="Background" className="w-full h-full object-cover opacity-60 scale-110" />
+      </motion.div>
+      <div className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-black/40">
+        {children}
+      </div>
+    </div>
+  );
+};
+
 
 // Validation Schemas
 const contactSchema = z.object({
@@ -51,32 +73,35 @@ const Contact = () => {
         description="Get in touch with Elite Engineers. We are ready to bring your architectural and structural visions to life."
       />
       
-      {/* Gritty Full Width B&W Image */}
-      <div className="h-72 w-full bg-black relative pt-24">
-        <img 
-          src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
-          alt="Building Texture" 
-          className="w-full h-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 flex items-end pb-8 px-6 md:px-12">
-          <p className="text-white/50 text-xs tracking-[0.3em] uppercase">Elite Engineers / Contact</p>
-        </div>
-      </div>
 
-      <div className="py-24 bg-white relative">
+      {/* Hero Sticky Image */}
+      <StickyImageSection imageSrc="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" heightClass="h-[70vh]">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          className="text-white text-5xl md:text-6xl tracking-widest uppercase"
+        >
+          CONTACT US
+        </motion.h1>
+      </StickyImageSection>
+
+
+
+
+      <div className="py-24 bg-white relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl mb-6">CONTACT US</h2>
             <p className="text-xs tracking-widest text-gray-500 uppercase">Say hello or drop us a line about your idea.</p>
           </motion.div>
-          
+
           <motion.div 
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
