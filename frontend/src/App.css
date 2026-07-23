@@ -3,6 +3,7 @@
 /* Smooth scroll for anchor links */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 /* Remove outline on non-keyboard focus */
