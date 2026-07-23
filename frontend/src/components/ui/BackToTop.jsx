@@ -26,11 +26,11 @@ const BackToTop = () => {
       <AnimatePresence>
         {isVisible && (
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 30 }}
+            exit={{ opacity: 0, x: -30 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
-            className="fixed bottom-8 right-8 z-50 flex flex-col items-center gap-3 cursor-pointer group"
+            className="fixed bottom-8 left-8 z-50 flex flex-col items-center gap-3 cursor-pointer group"
             onClick={scrollToTop}
             aria-label="Back to top"
           >
