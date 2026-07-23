@@ -7,15 +7,16 @@ const Navbar = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  
+
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setIsScrolled(window.scrollY > 60);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
+  // Close mobile menu on route change
+  useEffect(() => { setIsOpen(false); }, [location.pathname]);
+
   const navLinks = [
     { name: 'PORTFOLIO', path: '/projects' },
     { name: 'ABOUT US', path: '/about' },
@@ -25,68 +26,177 @@ const Navbar = () => {
 
   const isActive = (path) => location.pathname === path;
 
-  // Determine if the navbar needs to be solid (scrolled, menu open, or on specific pages without hero image)
   const needsSolidBg = ['/admin', '/clients'].includes(location.pathname);
   const isSolid = isScrolled || isOpen || needsSolidBg;
-  
-  const textColorClass = isSolid ? 'text-primary' : 'text-white';
-  const bgClass = isScrolled || needsSolidBg
-    ? 'bg-white/90 backdrop-blur-lg border-b border-gray-200/50 shadow-sm' 
-    : 'bg-transparent border-transparent';
 
   return (
     <>
-      <nav className={`w-full ${bgClass} ${textColorClass} py-4 px-6 md:px-12 flex justify-between md:flex-col md:items-center z-50 fixed top-0 transition-all duration-300`}>
-        
-        {/* Logo */}
-        <Link to="/" onClick={() => setIsOpen(false)} className="flex flex-row md:flex-col items-center gap-3 md:gap-0 md:mb-5 z-50">
-          <div className={`w-8 h-8 md:w-10 md:h-10 border-[1.5px] ${isSolid ? 'border-accent' : 'border-white'} flex items-center justify-center md:mb-2 transform rotate-45 transition-colors duration-300`}>
-            <div className={`w-3 h-3 md:w-4 md:h-4 ${isSolid ? 'bg-accent' : 'bg-white'} transform -rotate-45 transition-colors duration-300`}></div>
+      {/* ── Main Navbar ─────────────────────────────────────────────────── */}
+      <nav
+        className={`
+          w-full fixed top-0 left-0 right-0 z-50
+          flex items-center justify-between
+          px-6 md:px-12
+          transition-all duration-300 ease-in-out
+          ${isSolid
+            ? 'bg-white/95 backdrop-blur-lg border-b border-gray-200/60 shadow-sm py-3 md:py-4'
+            : 'bg-transparent border-transparent py-5 md:py-6'
+          }
+        `}
+      >
+        {/* ── Logo (always left) ───────────────────────────────────────── */}
+        <Link
+          to="/"
+          className="flex items-center gap-2.5 md:gap-3 group flex-shrink-0 z-50"
+          onClick={() => setIsOpen(false)}
+        >
+          {/* Diamond icon — shrinks slightly on scroll */}
+          <div
+            className={`
+              flex items-center justify-center transform rotate-45 transition-all duration-300
+              ${isSolid ? 'w-7 h-7 md:w-8 md:h-8 border-[1.5px] border-amber-500' : 'w-8 h-8 md:w-9 md:h-9 border-[1.5px] border-white'}
+            `}
+          >
+            <div
+              className={`
+                transform -rotate-45 transition-all duration-300
+                ${isSolid ? 'w-2.5 h-2.5 md:w-3 md:h-3 bg-amber-500' : 'w-3 h-3 md:w-3.5 md:h-3.5 bg-white'}
+              `}
+            />
           </div>
-          <span className="font-display text-lg md:text-3xl tracking-[0.2em] font-bold mt-1 md:mt-0 transition-colors duration-300">ELITE ENGINEERS</span>
+
+          {/* Brand text — shrinks on scroll */}
+          <span
+            className={`
+              font-display font-bold tracking-[0.18em] transition-all duration-300
+              ${isSolid
+                ? 'text-sm md:text-base text-gray-900'
+                : 'text-base md:text-lg text-white'
+              }
+            `}
+          >
+            ELITE ENGINEERS
+          </span>
         </Link>
 
-        {/* Hamburger Icon (Mobile) */}
-        <button 
-          className="md:hidden text-2xl focus:outline-none z-50 transition-colors duration-300"
-          onClick={() => setIsOpen(!isOpen)}
+        {/* ── Desktop Nav Links (right side) ──────────────────────────── */}
+        <div
+          className={`
+            hidden md:flex items-center gap-8 lg:gap-10
+            text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300
+            ${isSolid ? 'text-gray-700' : 'text-white/90'}
+          `}
         >
-          {isOpen ? <FaTimes /> : <FaBars />}
-        </button>
-
-        {/* Desktop Links */}
-        <div className={`hidden md:flex flex-wrap justify-center gap-12 text-sm md:text-base font-semibold tracking-[0.15em] uppercase transition-colors duration-300 ${isSolid ? 'text-gray-700' : 'text-white/90'}`}>
           {navLinks.map((link) => (
-            <Link 
-              key={link.path} 
+            <Link
+              key={link.path}
               to={link.path}
-              className={`hover:text-accent transition-colors duration-300 ${isActive(link.path) ? 'text-accent border-b-2 border-accent pb-1' : 'pb-1'}`}
+              className={`
+                relative pb-0.5 hover:text-amber-500 transition-colors duration-300
+                after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:bg-amber-500
+                after:transition-all after:duration-300
+                ${isActive(link.path)
+                  ? 'text-amber-500 after:w-full'
+                  : 'after:w-0 hover:after:w-full'
+                }
+              `}
             >
               {link.name}
             </Link>
           ))}
+
+          {/* Get a Quote CTA button */}
+          <Link
+            to="/contact"
+            className={`
+              ml-2 px-5 py-2 text-[10px] tracking-[0.2em] uppercase font-bold transition-all duration-300
+              ${isSolid
+                ? 'bg-amber-500 text-black hover:bg-gray-900 hover:text-white'
+                : 'border border-white/60 text-white hover:bg-white hover:text-black backdrop-blur-sm'
+              }
+            `}
+          >
+            Get a Quote
+          </Link>
         </div>
+
+        {/* ── Mobile Hamburger ────────────────────────────────────────── */}
+        <button
+          className={`md:hidden text-xl z-50 focus:outline-none transition-colors duration-300 ${isSolid ? 'text-gray-900' : 'text-white'}`}
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        >
+          <AnimatePresence mode="wait">
+            {isOpen
+              ? <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}><FaTimes /></motion.span>
+              : <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}><FaBars /></motion.span>
+            }
+          </AnimatePresence>
+        </button>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* ── Mobile Full-Screen Menu ──────────────────────────────────────── */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 bg-white/95 backdrop-blur-2xl z-40 flex flex-col items-center justify-center gap-10 md:hidden"
+          <motion.div
+            initial={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+            animate={{ opacity: 1, clipPath: 'inset(0 0 0% 0)' }}
+            exit={{ opacity: 0, clipPath: 'inset(0 0 100% 0)' }}
+            transition={{ duration: 0.4, ease: 'easeInOut' }}
+            className="fixed inset-0 bg-[#080d1a] z-40 flex flex-col items-center justify-center gap-1 md:hidden"
           >
-            {navLinks.map((link) => (
-               <Link 
-                 key={link.path} 
-                 to={link.path}
-                 onClick={() => setIsOpen(false)}
-                 className={`text-xl font-display tracking-[0.2em] uppercase transition-colors duration-300 ${isActive(link.path) ? 'text-accent' : 'text-primary'}`}
-               >
-                 {link.name}
-               </Link>
+            {/* Logo in mobile overlay */}
+            <div className="absolute top-5 left-6 flex items-center gap-2.5">
+              <div className="w-7 h-7 border-[1.5px] border-amber-500 flex items-center justify-center transform rotate-45">
+                <div className="w-2.5 h-2.5 bg-amber-500 transform -rotate-45" />
+              </div>
+              <span className="font-display font-bold tracking-[0.18em] text-sm text-white">ELITE ENGINEERS</span>
+            </div>
+
+            {navLinks.map((link, i) => (
+              <motion.div
+                key={link.path}
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.15 + i * 0.08, duration: 0.4 }}
+              >
+                <Link
+                  to={link.path}
+                  onClick={() => setIsOpen(false)}
+                  className={`block text-3xl font-display tracking-[0.15em] uppercase py-4 px-8 text-center transition-colors duration-300
+                    ${isActive(link.path) ? 'text-amber-400' : 'text-white/80 hover:text-amber-400'}
+                  `}
+                >
+                  {link.name}
+                </Link>
+              </motion.div>
             ))}
+
+            {/* Mobile CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.4 }}
+              className="mt-8"
+            >
+              <Link
+                to="/contact"
+                onClick={() => setIsOpen(false)}
+                className="px-10 py-4 bg-amber-400 text-black text-sm tracking-widest uppercase font-bold hover:bg-white transition-colors duration-300"
+              >
+                GET A QUOTE
+              </Link>
+            </motion.div>
+
+            {/* Bottom contact hint */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="absolute bottom-10 text-gray-600 text-xs tracking-widest"
+            >
+              +92 372-234-9343 · info@elite-eng.com
+            </motion.p>
           </motion.div>
         )}
       </AnimatePresence>
