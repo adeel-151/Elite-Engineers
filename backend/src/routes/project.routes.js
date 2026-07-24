@@ -26,12 +26,12 @@ const router = express.Router();
 router
   .route('/')
   .get(projectController.getAllProjects)
-  .post(authMiddleware.protect, upload.array('images', 5), projectController.createProject);
+  .post(authMiddleware.protect, upload.array('images', 10), projectController.createProject);
 
 router
   .route('/:id')
   .get(projectController.getProject)
-  .put(authMiddleware.protect, upload.array('images', 5), projectController.updateProject)
+  .put(authMiddleware.protect, upload.array('images', 10), projectController.updateProject)
   .delete(authMiddleware.protect, projectController.deleteProject);
 
 module.exports = router;

@@ -26,7 +26,7 @@ const ProjectForm = ({ token, initialData = null, onSuccess, onCancel }) => {
   } = useForm({
     resolver: zodResolver(projectSchema),
     defaultValues: initialData || {
-      category: 'Residential'
+      category: 'Architectural & Structural Design'
     }
   });
 
@@ -34,7 +34,7 @@ const ProjectForm = ({ token, initialData = null, onSuccess, onCancel }) => {
     if (initialData) {
       reset(initialData);
     } else {
-      reset({ category: 'Residential', title: '', description: '', location: '' });
+      reset({ category: 'Architectural & Structural Design', title: '', description: '', location: '' });
     }
   }, [initialData, reset]);
 
@@ -101,9 +101,12 @@ const ProjectForm = ({ token, initialData = null, onSuccess, onCancel }) => {
         
         <div>
           <select className={inputClasses} {...register('category')}>
-            <option value="Residential">Residential</option>
-            <option value="Commercial">Commercial</option>
-            <option value="Interior">Interior</option>
+            <option value="Architectural & Structural Design">Architectural & Structural Design</option>
+            <option value="Construction">Construction</option>
+            <option value="Project Management & Supervision">Project Management & Supervision</option>
+            <option value="Renovation & Interior Fit-Out">Renovation & Interior Fit-Out</option>
+            <option value="Quantity Surveying/Estimation/BOQs">Quantity Surveying/Estimation/BOQs</option>
+            <option value="Engineering Consultancy">Engineering Consultancy</option>
           </select>
           {errors.category && <p className="text-red-500 text-xs">{errors.category.message}</p>}
         </div>
@@ -121,7 +124,7 @@ const ProjectForm = ({ token, initialData = null, onSuccess, onCancel }) => {
 
       <div className="mb-8">
         <label className="block text-xs text-gray-500 uppercase tracking-widest mb-2">
-          {isEditing ? 'Upload New Images (Optional - will replace old ones)' : 'Upload Images (Max 5)'}
+          {isEditing ? 'Upload New Images (Optional - will replace old ones)' : 'Upload Images (Max 10)'}
         </label>
         <input 
           type="file" multiple accept="image/*" onChange={e => setImages(e.target.files)}
