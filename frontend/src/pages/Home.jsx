@@ -615,8 +615,8 @@ const Home = () => {
               <Link to="/contact" className="px-10 py-4 bg-black text-white text-xs tracking-widest uppercase hover:bg-gray-900 transition-colors font-semibold">
                 DISCUSS YOUR PROJECT
               </Link>
-              <a href="tel:+923722349343" className="flex items-center justify-center gap-2 px-10 py-4 border-2 border-black text-black text-xs tracking-widest uppercase hover:bg-black hover:text-white transition-colors font-semibold">
-                <FaPhoneAlt className="text-[10px]" /> +92 372-234-9343
+              <a href="tel:+923025719521" className="flex items-center justify-center gap-2 px-10 py-4 border-2 border-black text-black text-xs tracking-widest uppercase hover:bg-black hover:text-white transition-colors font-semibold">
+                <FaPhoneAlt className="text-[10px]" /> +92 302-571-9521
               </a>
             </div>
           </motion.div>

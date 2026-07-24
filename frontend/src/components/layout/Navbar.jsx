@@ -179,7 +179,7 @@ const Navbar = () => {
               transition={{ delay: 0.6 }}
               className="absolute bottom-10 text-gray-600 text-xs tracking-widest"
             >
-              +92 372-234-9343 · info@elite-eng.com
+              +92 302-571-9521 · elite.pk@outlook.com
             </motion.p>
           </motion.div>
         )}

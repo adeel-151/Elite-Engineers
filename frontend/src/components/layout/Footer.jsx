@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import {
   FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube, FaTwitter,
   FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaClock,
-  FaArrowRight, FaCheckCircle, FaChevronUp,
+  FaArrowRight, FaCheckCircle, FaChevronUp, FaWhatsapp,
 } from 'react-icons/fa';
 import { useState } from 'react';
 import logoImg from '../../assets/logo.png';
@@ -116,13 +116,17 @@ const Footer = () => {
 
             {/* Contact quick info */}
             <div className="space-y-3 mb-8 text-sm text-gray-400">
-              <a href="tel:+923722349343" className="flex items-center gap-3 hover:text-amber-400 transition-colors">
+              <a href="tel:+923025719521" className="flex items-center gap-3 hover:text-amber-400 transition-colors">
                 <FaPhoneAlt className="text-amber-400 flex-shrink-0" />
-                <span>+92 372-234-9343</span>
+                <span>+92 302-571-9521</span>
               </a>
-              <a href="mailto:info@elite-eng.com" className="flex items-center gap-3 hover:text-amber-400 transition-colors">
+              <a href="https://wa.me/923030002300" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 hover:text-amber-400 transition-colors">
+                <FaWhatsapp className="text-amber-400 flex-shrink-0" />
+                <span>+92 303-000-2300</span>
+              </a>
+              <a href="mailto:elite.pk@outlook.com" className="flex items-center gap-3 hover:text-amber-400 transition-colors">
                 <FaEnvelope className="text-amber-400 flex-shrink-0" />
-                <span>info@elite-eng.com</span>
+                <span>elite.pk@outlook.com</span>
               </a>
             </div>
 
@@ -197,10 +201,11 @@ const Footer = () => {
             <div className="flex items-start gap-3 text-gray-400 text-sm mb-6">
               <FaMapMarkerAlt className="text-amber-400 mt-1 flex-shrink-0" />
               <div>
-                <p className="font-light">Phase 5, DHA Lahore</p>
-                <p className="font-light">Punjab, Pakistan</p>
+                <p className="font-light">Office# A-09, Block A, Islamabad Comfort</p>
+                <p className="font-light">Main road H-13, Opp. NUST University</p>
+                <p className="font-light">Islamabad, Pakistan — 45200</p>
                 <a
-                  href="https://maps.google.com/?q=DHA+Phase+5+Lahore"
+                  href="https://maps.google.com/?q=H-13+Islamabad+Comfort+NUST+University+Islamabad"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[10px] tracking-widest uppercase text-amber-400/70 hover:text-amber-400 transition-colors mt-1 block"
