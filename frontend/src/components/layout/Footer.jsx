@@ -40,7 +40,7 @@ const certifications = [
 ];
 
 const socials = [
-  { icon: FaFacebookF, href: 'https://facebook.com', label: 'Facebook' },
+  { icon: FaFacebookF, href: 'https://www.facebook.com/Eliteengineers.pk', label: 'Facebook' },
   { icon: FaInstagram, href: 'https://instagram.com', label: 'Instagram' },
   { icon: FaLinkedinIn, href: 'https://linkedin.com', label: 'LinkedIn' },
   { icon: FaYoutube, href: 'https://youtube.com', label: 'YouTube' },
