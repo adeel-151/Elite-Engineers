@@ -7,10 +7,15 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#0f172a', // Deep Navy Blue
-        secondary: '#1e293b', // Lighter Navy
-        accent: '#f59e0b', // Vibrant Golden Orange
-        surface: '#f8fafc', // Light gray/white background
+        primary: '#000000',
+        secondary: '#111111',
+        accent: '#C3986B',
+        surface: '#ffffff',
+        amber: {
+          300: '#d5b28a',
+          400: '#C3986B',
+          500: '#b1875c',
+        }
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

@@ -11,17 +11,23 @@ const Clients = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchClients = async () => {
-      try {
-        const res = await axios.get(`${API_BASE_URL}/api/clients`);
-        setClients(res.data.data.clients);
-        setLoading(false);
-      } catch (err) {
-        setError('Failed to fetch clients. Please try again later.');
-        setLoading(false);
-      }
-    };
-    fetchClients();
+    const staticClients = [
+      { _id: '1', name: 'Qurtaba City (Madina-Tul-Ilm)' },
+      { _id: '2', name: 'Samara Builders and Developers' },
+      { _id: '3', name: 'Naval Anchorage Islamabad' },
+      { _id: '4', name: 'Builtech Developers' },
+      { _id: '5', name: 'Huan Yu Trading' },
+      { _id: '6', name: 'Pine City pvt. Limited' },
+      { _id: '7', name: 'Pine Valley Residentia' },
+      { _id: '8', name: 'Ishaq Builders' },
+      { _id: '9', name: 'Octogon Builders' },
+      { _id: '10', name: 'Serene Heights, Kalam' },
+      { _id: '11', name: 'Pine View Cottages, Kalam' },
+      { _id: '12', name: 'Samara Contracting' },
+      { _id: '13', name: 'Confit Associates' },
+    ];
+    setClients(staticClients);
+    setLoading(false);
   }, []);
 
   return (
