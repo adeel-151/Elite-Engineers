@@ -57,14 +57,8 @@ const Projects = () => {
     const fetchProjects = async () => {
       try {
         const res = await axios.get(`${API_BASE_URL}/api/projects`);
-        // If there are less than 6 projects, we might want to duplicate them for display purposes to match the dense grid in the image
         const fetched = res.data.data.projects;
-        // Mock categories for the sake of UI if none exist
-        const enriched = fetched.map((p, i) => ({
-           ...p,
-           category: p.category || (i % 2 === 0 ? 'Residential' : 'Commercial')
-        }));
-        setProjects(enriched.length > 0 ? [...enriched, ...enriched, ...enriched].slice(0, 6) : []);
+        setProjects(fetched);
         setLoading(false);
       } catch (err) {
         // Fallback dummy data so the UI doesn't break if backend is not running
