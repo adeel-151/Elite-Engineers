@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 const BeforeAfterSlider = ({ beforeImage, afterImage }) => {
   const [sliderPosition, setSliderPosition] = useState(50);
 
+  const handleChange = (e) => setSliderPosition(Number(e.target.value));
+
   return (
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -38,7 +40,7 @@ const BeforeAfterSlider = ({ beforeImage, afterImage }) => {
         min="0"
         max="100"
         value={sliderPosition}
-        onChange={(e) => setSliderPosition(e.target.value)}
+        onChange={handleChange}
         className="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30 m-0"
       />
 
