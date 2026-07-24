@@ -141,7 +141,7 @@ const Projects = () => {
             <>
               {/* Category Filters */}
               <div className="flex flex-wrap justify-center gap-4 mb-12">
-                {['All', 'Residential', 'Commercial', 'Interior'].map(cat => (
+                {['All', 'Architectural & Structural Design', 'Construction', 'Project Management & Supervision', 'Renovation & Interior Fit-Out', 'Quantity Surveying/Estimation/BOQs', 'Engineering Consultancy'].map(cat => (
                   <button 
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
