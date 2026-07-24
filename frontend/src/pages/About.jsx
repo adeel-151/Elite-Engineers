@@ -2,6 +2,10 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { FaChevronUp } from 'react-icons/fa';
 import SEO from '../components/ui/SEO';
+import img1 from '../assets/img1.jpg';
+import img3 from '../assets/img3.jpg';
+import img9 from '../assets/img9.jpg';
+import img11 from '../assets/img11.jpg';
 
 // Reusable Sticky Section Component
 const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
@@ -34,7 +38,7 @@ const About = () => {
       />
 
       {/* Hero Sticky Image */}
-      <StickyImageSection imageSrc="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" heightClass="h-[70vh]">
+      <StickyImageSection imageSrc={img1} heightClass="h-[70vh]">
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -68,7 +72,7 @@ const About = () => {
       </div>
 
       {/* Sticky Blueprint/Office Background */}
-      <StickyImageSection imageSrc="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" heightClass="h-[50vh]">
+      <StickyImageSection imageSrc={img3} heightClass="h-[50vh]">
         <motion.h2 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -137,10 +141,10 @@ const About = () => {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { name: 'Adeel Khan', role: 'Chief Executive Officer', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=1974&auto=format&fit=crop' },
-              { name: 'Sarah Ahmed', role: 'Head of Architecture', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1976&auto=format&fit=crop' },
-              { name: 'Usman Ali', role: 'Lead Structural Engineer', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=1974&auto=format&fit=crop' },
-              { name: 'Fatima Zafar', role: 'Project Manager', img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1961&auto=format&fit=crop' }
+              { name: 'Adeel Khan', role: 'Chief Executive Officer', img: img9 },
+              { name: 'Sarah Ahmed', role: 'Head of Architecture', img: img3 },
+              { name: 'Usman Ali', role: 'Lead Structural Engineer', img: img11 },
+              { name: 'Fatima Zafar', role: 'Project Manager', img: img9 }
             ].map((person, index) => (
               <motion.div 
                 key={index}

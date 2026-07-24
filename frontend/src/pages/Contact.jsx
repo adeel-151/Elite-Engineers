@@ -7,6 +7,7 @@ import axios from 'axios';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 import API_BASE_URL from '../config/api';
+import img6 from '../assets/img6.jpg';
 
 // Reusable Sticky Section Component
 const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
@@ -75,7 +76,7 @@ const Contact = () => {
       
 
       {/* Hero Sticky Image */}
-      <StickyImageSection imageSrc="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" heightClass="h-[70vh]">
+      <StickyImageSection imageSrc={img6} heightClass="h-[70vh]">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}

@@ -6,6 +6,14 @@ import { FaChevronUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import BeforeAfterSlider from '../components/ui/BeforeAfterSlider';
 import API_BASE_URL from '../config/api';
+import img1 from '../assets/img1.jpg';
+import img2 from '../assets/img2.jpg';
+import img3 from '../assets/img3.jpg';
+import img4 from '../assets/img4.jpg';
+import img6 from '../assets/img6.jpg';
+import img7 from '../assets/img7.jpg';
+import img8 from '../assets/img8.jpg';
+import img10 from '../assets/img10.jpg';
 
 // Reusable Sticky Section Component
 const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
@@ -51,12 +59,12 @@ const Projects = () => {
       } catch (err) {
         // Fallback dummy data so the UI doesn't break if backend is not running
         const dummyProjects = [
-          { _id: '1', title: 'The Skyline Tower', category: 'Commercial', images: ['https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop'] },
-          { _id: '2', title: 'Aura Residences', category: 'Residential', images: ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop'] },
-          { _id: '3', title: 'Tech Hub Interior', category: 'Interior', images: ['https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop'] },
-          { _id: '4', title: 'Urban Plaza', category: 'Commercial', images: ['https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop'] },
-          { _id: '5', title: 'Serenity Villa', category: 'Residential', images: ['https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070&auto=format&fit=crop'] },
-          { _id: '6', title: 'Modern Office', category: 'Interior', images: ['https://images.unsplash.com/photo-1497215842964-222b430dc094?q=80&w=2069&auto=format&fit=crop'] }
+          { _id: '1', title: 'The Skyline Tower', category: 'Commercial', images: [img1] },
+          { _id: '2', title: 'Aura Residences', category: 'Residential', images: [img2] },
+          { _id: '3', title: 'Tech Hub Interior', category: 'Interior', images: [img8] },
+          { _id: '4', title: 'Urban Plaza', category: 'Commercial', images: [img7] },
+          { _id: '5', title: 'Serenity Villa', category: 'Residential', images: [img4] },
+          { _id: '6', title: 'Modern Office', category: 'Interior', images: [img3] }
         ];
         setProjects(dummyProjects);
         setLoading(false);
@@ -74,7 +82,7 @@ const Projects = () => {
       
 
       {/* Hero Sticky Image */}
-      <StickyImageSection imageSrc="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2062&auto=format&fit=crop" heightClass="h-[70vh]">
+      <StickyImageSection imageSrc={img6} heightClass="h-[70vh]">
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -172,8 +180,8 @@ const Projects = () => {
             <h3 className="text-3xl font-display uppercase tracking-widest text-black">From Blueprint to Reality</h3>
           </div>
           <BeforeAfterSlider 
-            beforeImage="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop" // Placeholder for raw structure
-            afterImage="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop" // Placeholder for finished luxury house
+            beforeImage={img10}
+            afterImage={img2}
           />
         </div>
       </div>

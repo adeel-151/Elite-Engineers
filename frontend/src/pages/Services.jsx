@@ -5,6 +5,16 @@ import { FaChevronUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import CostEstimator from '../components/ui/CostEstimator';
 import FaqAccordion from '../components/ui/FaqAccordion';
+import img1 from '../assets/img1.jpg';
+import img2 from '../assets/img2.jpg';
+import img3 from '../assets/img3.jpg';
+import img4 from '../assets/img4.jpg';
+import img5 from '../assets/img5.jpg';
+import img6 from '../assets/img6.jpg';
+import img7 from '../assets/img7.jpg';
+import img8 from '../assets/img8.jpg';
+import img10 from '../assets/img10.jpg';
+import img11 from '../assets/img11.jpg';
 
 const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
   const containerRef = useRef(null);
@@ -32,47 +42,47 @@ const Services = () => {
     {
       title: "Engineering & Construction Services",
       desc: "Full-spectrum engineering and construction solutions — from structural planning to on-site execution — delivered with precision and professionalism.",
-      img: "https://images.unsplash.com/photo-1504307651254-35680f356f58?q=80&w=2070&auto=format&fit=crop"
+      img: img6
     },
     {
       title: "Turnkey Construction Solutions",
       desc: "Complete project delivery from first blueprint to final handover — one team, zero coordination headaches, total accountability.",
-      img: "https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
+      img: img10
     },
     {
       title: "Grey Structure Execution",
       desc: "Robust and precise grey structure construction — foundations, columns, beams, slabs — built to last and built to code.",
-      img: "https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?q=80&w=2070&auto=format&fit=crop"
+      img: img7
     },
     {
       title: "Architectural Consultancy",
       desc: "Expert architectural guidance from concept to completion — space planning, façade design, and regulatory compliance handled expertly.",
-      img: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop"
+      img: img4
     },
     {
       title: "Structural Design & Analysis",
       desc: "Advanced structural engineering using modern software to ensure safety, durability, and compliance with international standards.",
-      img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2070&auto=format&fit=crop"
+      img: img5
     },
     {
       title: "3D Interior & Exterior Design",
       desc: "Photorealistic 3D visualisations of interiors and exteriors — see your project in stunning detail before a single brick is laid.",
-      img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
+      img: img8
     },
     {
       title: "Project Planning & Supervision",
       desc: "Detailed project scheduling, resource allocation, and on-site supervision to keep every phase on time and within budget.",
-      img: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=2070&auto=format&fit=crop"
+      img: img1
     },
     {
       title: "Land Surveying Services",
       desc: "Accurate topographic and boundary surveys using modern instruments — essential groundwork for every successful project.",
-      img: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=2070&auto=format&fit=crop"
+      img: img3
     },
     {
       title: "Town Planning & Development",
       desc: "Strategic urban and residential town planning — master plans, zoning consultation, and development approvals handled end to end.",
-      img: "https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2070&auto=format&fit=crop"
+      img: img2
     },
   ];
 
@@ -84,7 +94,7 @@ const Services = () => {
       />
 
       {/* Hero Sticky Image */}
-      <StickyImageSection imageSrc="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?q=80&w=2070&auto=format&fit=crop" heightClass="h-[60vh]">
+      <StickyImageSection imageSrc={img10} heightClass="h-[60vh]">
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -148,7 +158,7 @@ const Services = () => {
       </div>
 
       {/* CTA Sticky Background */}
-      <StickyImageSection imageSrc="https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop" heightClass="h-[50vh]">
+      <StickyImageSection imageSrc={img6} heightClass="h-[50vh]">
         <motion.div 
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}

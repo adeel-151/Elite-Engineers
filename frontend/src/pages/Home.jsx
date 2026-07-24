@@ -10,29 +10,40 @@ import TestimonialSlider from '../components/ui/TestimonialSlider';
 import ProcessTimeline from '../components/ui/ProcessTimeline';
 import BlogPreview from '../components/ui/BlogPreview';
 import PartnerLogos from '../components/ui/PartnerLogos';
+import img1 from '../assets/img1.jpg';
+import img2 from '../assets/img2.jpg';
+import img3 from '../assets/img3.jpg';
+import img4 from '../assets/img4.jpg';
+import img5 from '../assets/img5.jpg';
+import img6 from '../assets/img6.jpg';
+import img7 from '../assets/img7.jpg';
+import img8 from '../assets/img8.jpg';
+import img9 from '../assets/img9.jpg';
+import img10 from '../assets/img10.jpg';
+import img11 from '../assets/img11.jpg';
 
 // ─── Hero Slideshow Data ─────────────────────────────────────────────────────
 const heroSlides = [
   {
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop',
+    image: img1,
     headline: 'BUILDING\nTHE FUTURE',
     subtext: 'Engineering landmarks that define the modern skyline.',
     tag: 'Excellence in Construction',
   },
   {
-    image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2062&auto=format&fit=crop',
+    image: img7,
     headline: 'PRECISION\nCRAFTED',
     subtext: 'Every structure built with uncompromising attention to detail.',
     tag: 'Structural Mastery',
   },
   {
-    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop',
+    image: img11,
     headline: 'INNOVATIVE\nDESIGN',
     subtext: 'Where architectural elegance meets engineering resilience.',
     tag: 'Architecture & Innovation',
   },
   {
-    image: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=2073&auto=format&fit=crop',
+    image: img4,
     headline: 'TRUSTED\nPARTNERS',
     subtext: 'Over 15 years delivering world-class engineering solutions.',
     tag: 'Legacy of Trust',
@@ -79,48 +90,48 @@ const servicesPreview = [
     title: 'Engineering & Construction',
     desc: 'Full-spectrum construction solutions from structural planning to on-site execution.',
     icon: '⬡',
-    img: 'https://images.unsplash.com/photo-1504307651254-35680f356f58?q=80&w=600&auto=format&fit=crop',
+    img: img6,
   },
   {
     title: 'Turnkey Construction',
     desc: 'Complete project delivery — first blueprint to final handover under one roof.',
     icon: '⬡',
-    img: 'https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=600&auto=format&fit=crop',
+    img: img10,
   },
   {
     title: 'Architectural Consultancy',
     desc: 'Expert guidance on space planning, façade design, and regulatory compliance.',
     icon: '⬡',
-    img: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=600&auto=format&fit=crop',
+    img: img3,
   },
   {
     title: 'Structural Design & Analysis',
     desc: 'Advanced structural engineering ensuring safety and international code compliance.',
     icon: '⬡',
-    img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=600&auto=format&fit=crop',
+    img: img5,
   },
   {
     title: '3D Interior & Exterior Design',
     desc: 'Photorealistic 3D visualisations — see your project in detail before it is built.',
     icon: '⬡',
-    img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop',
+    img: img8,
   },
   {
     title: 'Town Planning & Development',
     desc: 'Strategic master plans, zoning consultation, and development approvals.',
     icon: '⬡',
-    img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=600&auto=format&fit=crop',
+    img: img4,
   },
 ];
 
 // ─── Gallery Images ──────────────────────────────────────────────────────────
 const galleryImages = [
-  { src: 'https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=800&auto=format&fit=crop', label: 'Commercial Tower', span: 'md:col-span-2 md:row-span-2' },
-  { src: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=600&auto=format&fit=crop', label: 'Luxury Residence', span: '' },
-  { src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop', label: 'Modern Office Interior', span: '' },
-  { src: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=600&auto=format&fit=crop', label: 'Structural Detail', span: '' },
-  { src: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=600&auto=format&fit=crop', label: 'Construction Progress', span: '' },
-  { src: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=600&auto=format&fit=crop', label: 'Corporate HQ', span: '' },
+  { src: img1, label: 'Commercial Tower', span: 'md:col-span-2 md:row-span-2' },
+  { src: img2, label: 'Luxury Residence', span: '' },
+  { src: img8, label: 'Modern Office Interior', span: '' },
+  { src: img11, label: 'Structural Blueprint', span: '' },
+  { src: img6, label: 'Construction Progress', span: '' },
+  { src: img7, label: 'Corporate HQ', span: '' },
 ];
 
 // ─── Hero Slideshow Component ────────────────────────────────────────────────
@@ -244,7 +255,7 @@ const Home = () => {
   const [featuredProjects, setFeaturedProjects] = useState([]);
 
   const getImageUrl = (imagePath) => {
-    if (!imagePath) return 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop';
+    if (!imagePath) return img1;
     if (imagePath.startsWith('http')) return imagePath;
     return `${API_BASE_URL}/${imagePath.replace(/\\/g, '/')}`;
   };
@@ -257,9 +268,9 @@ const Home = () => {
         setFeaturedProjects(allProjects.slice(0, 3));
       } catch {
         setFeaturedProjects([
-          { _id: '1', title: 'The Skyline Tower', category: 'Commercial', images: ['https://images.unsplash.com/photo-1572120360610-d971b9d7767c?q=80&w=2070&auto=format&fit=crop'] },
-          { _id: '2', title: 'Aura Residences', category: 'Residential', images: ['https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2075&auto=format&fit=crop'] },
-          { _id: '3', title: 'Tech Hub Interior', category: 'Interior Fit-out', images: ['https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop'] },
+          { _id: '1', title: 'The Skyline Tower', category: 'Commercial', images: [img1] },
+          { _id: '2', title: 'Aura Residences', category: 'Residential', images: [img2] },
+          { _id: '3', title: 'Tech Hub Interior', category: 'Interior Fit-out', images: [img8] },
         ]);
       }
     };
