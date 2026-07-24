@@ -32,6 +32,7 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
+    { name: 'HOME', path: '/' },
     { name: 'PORTFOLIO', path: '/projects', children: [
       { name: 'All Projects', path: '/projects' },
       { name: 'Projects Gallery', path: '/gallery' },
@@ -87,14 +88,12 @@ const Navbar = () => {
             ${isSolid ? 'text-gray-700' : 'text-white/90'}
           `}
         >
-          {navLinks.map((link) => (
+          {navLinks.map((link) =>
             link.children ? (
               /* Dropdown link */
               <div
                 key={link.path}
-                className="relative"
-                onMouseEnter={() => setOpenDropdown(link.path)}
-                onMouseLeave={() => setOpenDropdown(null)}
+                className="relative group"
               >
                 <button
                   className={`
@@ -105,35 +104,25 @@ const Navbar = () => {
                   `}
                 >
                   {link.name}
-                  <FaChevronDown className={`text-[8px] transition-transform duration-200 ${openDropdown === link.path ? 'rotate-180' : ''}`} />
+                  <FaChevronDown className="text-[8px] transition-transform duration-200 group-hover:rotate-180" />
                 </button>
 
-                {/* Dropdown menu */}
-                <AnimatePresence>
-                  {openDropdown === link.path && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: 8 }}
-                      transition={{ duration: 0.18 }}
-                      className="absolute top-full left-0 mt-3 w-48 bg-white border border-gray-100 shadow-xl z-50 py-1"
+                {/* Dropdown menu — shows on group hover via CSS, no JS state needed */}
+                <div className="absolute top-full left-0 mt-2 w-52 bg-white border border-gray-100 shadow-xl z-50 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-200">
+                  {link.children.map((child) => (
+                    <Link
+                      key={child.path}
+                      to={child.path}
+                      className={`block px-5 py-3 text-[11px] tracking-widest uppercase transition-colors duration-200 border-l-2
+                        ${location.pathname === child.path
+                          ? 'text-amber-500 border-amber-500 bg-amber-50'
+                          : 'text-gray-600 border-transparent hover:text-amber-500 hover:border-amber-500 hover:bg-amber-50'
+                        }`}
                     >
-                      {link.children.map((child) => (
-                        <Link
-                          key={child.path}
-                          to={child.path}
-                          className={`block px-5 py-3 text-[11px] tracking-widest uppercase transition-colors duration-200 border-l-2
-                            ${isActive(child.path)
-                              ? 'text-amber-500 border-amber-500 bg-amber-50'
-                              : 'text-gray-600 border-transparent hover:text-amber-500 hover:border-amber-500 hover:bg-amber-50'
-                            }`}
-                        >
-                          {child.name}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                      {child.name}
+                    </Link>
+                  ))}
+                </div>
               </div>
             ) : (
               /* Regular link */
@@ -150,7 +139,7 @@ const Navbar = () => {
                 {link.name}
               </Link>
             )
-          ))}
+          )}
 
           {/* Get a Quote CTA button */}
           <Link
