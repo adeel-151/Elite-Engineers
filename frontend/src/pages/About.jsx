@@ -6,6 +6,9 @@ import img1 from '../assets/img1.jpg';
 import img3 from '../assets/img3.jpg';
 import img9 from '../assets/img9.jpg';
 import img11 from '../assets/img11.jpg';
+import secp from '../assets/secp.jpg';
+import pec from '../assets/pec.jpg';
+
 
 // Reusable Sticky Section Component
 const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
@@ -148,7 +151,7 @@ const About = () => {
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 bg-white border border-gray-200 rounded-full flex items-center justify-center p-2 shadow-sm shrink-0">
-                  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/ef/Pakistan_Engineering_Council_logo.svg/1200px-Pakistan_Engineering_Council_logo.svg.png" alt="PEC Logo" className="w-full h-full object-contain" />
+                  <img src={pec} alt="PEC Logo" className="w-full h-full object-contain" />
                 </div>
                 <div>
                   <h3 className="text-lg md:text-xl font-semibold tracking-wide uppercase text-black">PEC Registered</h3>
@@ -168,7 +171,7 @@ const About = () => {
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-16 h-16 bg-white border border-gray-200 rounded-full flex items-center justify-center p-2 shadow-sm shrink-0">
-                  <div className="text-accent font-bold text-xl tracking-widest">SECP</div>
+                  <img src={secp} alt="SECP Logo" className="w-full h-full object-contain" />
                 </div>
                 <div>
                   <h3 className="text-lg md:text-xl font-semibold tracking-wide uppercase text-black">SECP Incorporated</h3>
