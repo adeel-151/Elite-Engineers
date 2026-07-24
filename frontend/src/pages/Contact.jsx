@@ -55,8 +55,21 @@ const Contact = () => {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      await axios.post(`${API_BASE_URL}/api/inquiries`, { ...data, type: 'contact' });
-      toast.success('Thank you! Your message has been sent.');
+      await fetch("https://formsubmit.co/ajax/elite.pk@outlook.com", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Contact Inquiry from ${data.name}`,
+          name: data.name,
+          email: data.email,
+          phone: data.phone,
+          message: data.message
+        })
+      });
+      toast.success('Thank you! Your message has been sent to Elite Engineers.');
       reset();
     } catch (error) {
       toast.error('Failed to send message. Please try again.');

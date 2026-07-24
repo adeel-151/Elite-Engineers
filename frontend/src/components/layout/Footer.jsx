@@ -52,12 +52,32 @@ const Footer = () => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
 
-  const handleSubscribe = (e) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubscribe = async (e) => {
     e.preventDefault();
-    if (email.includes('@')) {
+    if (!email.includes('@') || isSubmitting) return;
+    
+    setIsSubmitting(true);
+    try {
+      await fetch("https://formsubmit.co/ajax/elite.pk@outlook.com", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: "New Newsletter Subscription",
+          email: email
+        })
+      });
       setSubscribed(true);
       setEmail('');
       setTimeout(() => setSubscribed(false), 4000);
+    } catch (error) {
+      console.error('Subscription error:', error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
