@@ -55,7 +55,7 @@ const Contact = () => {
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
-      await fetch("https://formsubmit.co/ajax/adeelkhattak223@gmail.com", {
+      await fetch("https://formsubmit.co/ajax/elite.pk@outlook.com", {
         method: "POST",
         headers: {
           'Content-Type': 'application/json',
