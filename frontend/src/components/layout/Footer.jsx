@@ -6,6 +6,7 @@ import {
   FaArrowRight, FaCheckCircle, FaChevronUp,
 } from 'react-icons/fa';
 import { useState } from 'react';
+import logoImg from '../../assets/logo.png';
 
 // ─── Footer Data ─────────────────────────────────────────────────────────────
 const services = [
@@ -101,11 +102,12 @@ const Footer = () => {
           {/* Column 1 — Brand & Bio */}
           <div className="lg:col-span-2">
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-3 mb-6 group w-fit">
-              <div className="w-9 h-9 border-[1.5px] border-amber-400 flex items-center justify-center transform rotate-45 transition-transform duration-300 group-hover:rotate-[225deg]">
-                <div className="w-3.5 h-3.5 bg-amber-400 transform -rotate-45" />
-              </div>
-              <span className="font-display text-xl tracking-[0.2em] font-bold text-white">ELITE ENGINEERS</span>
+            <Link to="/" className="flex items-center mb-6 group w-fit">
+              <img
+                src={logoImg}
+                alt="Elite Engineers Logo"
+                className="h-16 object-contain brightness-0 invert opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+              />
             </Link>
 
             <p className="text-gray-400 font-light text-sm leading-relaxed mb-6 max-w-sm">
@@ -280,14 +282,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* ── Back to Top Button ─────────────────────────────────────────────── */}
-      <button
-        onClick={scrollToTop}
-        aria-label="Back to top"
-        className="absolute bottom-20 right-6 w-10 h-10 bg-amber-400 text-black flex items-center justify-center hover:bg-white transition-colors duration-300 shadow-lg z-10"
-      >
-        <FaChevronUp className="text-sm" />
-      </button>
 
     </footer>
   );

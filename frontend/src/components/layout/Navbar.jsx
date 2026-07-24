@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import logoImg from '../../assets/logo.png';
 
 const Navbar = () => {
   const location = useLocation();
@@ -47,36 +48,18 @@ const Navbar = () => {
         {/* ── Logo (always left) ───────────────────────────────────────── */}
         <Link
           to="/"
-          className="flex items-center gap-2.5 md:gap-3 group flex-shrink-0 z-50"
+          className="flex items-center flex-shrink-0 z-50"
           onClick={() => setIsOpen(false)}
         >
-          {/* Diamond icon — shrinks slightly on scroll */}
-          <div
-            className={`
-              flex items-center justify-center transform rotate-45 transition-all duration-300
-              ${isSolid ? 'w-7 h-7 md:w-8 md:h-8 border-[1.5px] border-amber-500' : 'w-8 h-8 md:w-9 md:h-9 border-[1.5px] border-white'}
-            `}
-          >
-            <div
-              className={`
-                transform -rotate-45 transition-all duration-300
-                ${isSolid ? 'w-2.5 h-2.5 md:w-3 md:h-3 bg-amber-500' : 'w-3 h-3 md:w-3.5 md:h-3.5 bg-white'}
-              `}
-            />
-          </div>
-
-          {/* Brand text — shrinks on scroll */}
-          <span
-            className={`
-              font-display font-bold tracking-[0.18em] transition-all duration-300
-              ${isSolid
-                ? 'text-sm md:text-base text-gray-900'
-                : 'text-base md:text-lg text-white'
-              }
-            `}
-          >
-            ELITE ENGINEERS
-          </span>
+          <img
+            src={logoImg}
+            alt="Elite Engineers Logo"
+            className={`object-contain transition-all duration-300 ${
+              isSolid
+                ? 'h-12 md:h-14 brightness-100'
+                : 'h-14 md:h-16 brightness-0 invert'
+            }`}
+          />
         </Link>
 
         {/* ── Desktop Nav Links (right side) ──────────────────────────── */}
@@ -146,11 +129,12 @@ const Navbar = () => {
             className="fixed inset-0 bg-[#080d1a] z-40 flex flex-col items-center justify-center gap-1 md:hidden"
           >
             {/* Logo in mobile overlay */}
-            <div className="absolute top-5 left-6 flex items-center gap-2.5">
-              <div className="w-7 h-7 border-[1.5px] border-amber-500 flex items-center justify-center transform rotate-45">
-                <div className="w-2.5 h-2.5 bg-amber-500 transform -rotate-45" />
-              </div>
-              <span className="font-display font-bold tracking-[0.18em] text-sm text-white">ELITE ENGINEERS</span>
+            <div className="absolute top-4 left-6">
+              <img
+                src={logoImg}
+                alt="Elite Engineers Logo"
+                className="h-12 object-contain brightness-0 invert"
+              />
             </div>
 
             {navLinks.map((link, i) => (
