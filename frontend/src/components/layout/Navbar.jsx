@@ -90,12 +90,12 @@ const Navbar = () => {
         >
           {navLinks.map((link) =>
             link.children ? (
-              /* Dropdown link */
               <div
                 key={link.path}
                 className="relative group"
               >
-                <button
+                <Link
+                  to={link.path}
                   className={`
                     flex items-center gap-1 relative pb-0.5 hover:text-amber-500 transition-colors duration-300
                     after:absolute after:bottom-0 after:left-0 after:h-[1.5px] after:bg-amber-500
@@ -105,23 +105,25 @@ const Navbar = () => {
                 >
                   {link.name}
                   <FaChevronDown className="text-[8px] transition-transform duration-200 group-hover:rotate-180" />
-                </button>
+                </Link>
 
-                {/* Dropdown menu — shows on group hover via CSS, no JS state needed */}
-                <div className="absolute top-full left-0 mt-2 w-52 bg-white border border-gray-100 shadow-xl z-50 py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-200">
-                  {link.children.map((child) => (
-                    <Link
-                      key={child.path}
-                      to={child.path}
-                      className={`block px-5 py-3 text-[11px] tracking-widest uppercase transition-colors duration-200 border-l-2
-                        ${location.pathname === child.path
-                          ? 'text-amber-500 border-amber-500 bg-amber-50'
-                          : 'text-gray-600 border-transparent hover:text-amber-500 hover:border-amber-500 hover:bg-amber-50'
-                        }`}
-                    >
-                      {child.name}
-                    </Link>
-                  ))}
+                {/* Dropdown menu — wrapper with top padding creates an invisible bridge so hover isn't lost */}
+                <div className="absolute top-full left-0 pt-4 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-200 z-50">
+                  <div className="bg-white border border-gray-100 shadow-xl py-1">
+                    {link.children.map((child) => (
+                      <Link
+                        key={child.path}
+                        to={child.path}
+                        className={`block px-5 py-3 text-[11px] tracking-widest uppercase transition-colors duration-200 border-l-2
+                          ${location.pathname === child.path
+                            ? 'text-amber-500 border-amber-500 bg-amber-50'
+                            : 'text-gray-600 border-transparent hover:text-amber-500 hover:border-amber-500 hover:bg-amber-50'
+                          }`}
+                      >
+                        {child.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             ) : (
