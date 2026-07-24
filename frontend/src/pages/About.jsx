@@ -18,7 +18,7 @@ const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) =>
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
   return (
-    <div ref={containerRef} className={`${heightClass} w-full relative overflow-hidden`}>
+    <div ref={containerRef} className={`${heightClass} w-full relative overflow-hidden bg-black`}>
       <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
         <img src={imageSrc} alt="Background" className="w-full h-full object-cover opacity-60 scale-110" />
       </motion.div>

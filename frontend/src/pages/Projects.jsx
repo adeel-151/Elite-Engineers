@@ -6,14 +6,24 @@ import { FaChevronUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import BeforeAfterSlider from '../components/ui/BeforeAfterSlider';
 import API_BASE_URL from '../config/api';
-import img1 from '../assets/img1.jpg';
-import img2 from '../assets/img2.jpg';
-import img3 from '../assets/img3.jpg';
-import img4 from '../assets/img4.jpg';
-import img6 from '../assets/img6.jpg';
-import img7 from '../assets/img7.jpg';
-import img8 from '../assets/img8.jpg';
-import img10 from '../assets/img10.jpg';
+import img1 from '../assets/img1.jpeg';
+import img2 from '../assets/img2.jpeg';
+import img3 from '../assets/img3.jpeg';
+import img4 from '../assets/img4.jpeg';
+import img6 from '../assets/img6.jpeg';
+import img7 from '../assets/img7.jpeg';
+import img8 from '../assets/img8.jpeg';
+import img10 from '../assets/img10.jpeg';
+import img12 from '../assets/img12.jpeg';
+import img15 from '../assets/img15.jpeg';
+import img18 from '../assets/img18.jpeg';
+import img21 from '../assets/img21.jpeg';
+import img25 from '../assets/img25.jpeg';
+import img30 from '../assets/img30.jpeg';
+import img35 from '../assets/img35.jpeg';
+import img40 from '../assets/img40.jpeg';
+import img45 from '../assets/img45.jpeg';
+import img50 from '../assets/img50.jpeg';
 
 // Reusable Sticky Section Component
 const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
@@ -25,7 +35,7 @@ const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) =>
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
 
   return (
-    <div ref={containerRef} className={`${heightClass} w-full relative overflow-hidden`}>
+    <div ref={containerRef} className={`${heightClass} w-full relative overflow-hidden bg-black`}>
       <motion.div style={{ y }} className="absolute inset-0 w-full h-full">
         <img src={imageSrc} alt="Background" className="w-full h-full object-cover opacity-60 scale-110" />
       </motion.div>
@@ -64,7 +74,19 @@ const Projects = () => {
           { _id: '3', title: 'Tech Hub Interior', category: 'Interior', images: [img8] },
           { _id: '4', title: 'Urban Plaza', category: 'Commercial', images: [img7] },
           { _id: '5', title: 'Serenity Villa', category: 'Residential', images: [img4] },
-          { _id: '6', title: 'Modern Office', category: 'Interior', images: [img3] }
+          { _id: '6', title: 'Modern Office Space', category: 'Interior', images: [img3] },
+          { _id: '7', title: 'Grand Mall Phase 1', category: 'Commercial', images: [img12] },
+          { _id: '8', title: 'Lakeview Apartments', category: 'Residential', images: [img15] },
+          { _id: '9', title: 'Corporate HQ Design', category: 'Interior', images: [img18] },
+          { _id: '10', title: 'Central Business District', category: 'Commercial', images: [img21] },
+          { _id: '11', title: 'Elite Luxury Mansions', category: 'Residential', images: [img25] },
+          { _id: '12', title: 'Executive Lounge', category: 'Interior', images: [img30] },
+          { _id: '13', title: 'Green Energy Park', category: 'Commercial', images: [img35] },
+          { _id: '14', title: 'Oasis Townhouses', category: 'Residential', images: [img40] },
+          { _id: '15', title: 'Minimalist Cafe', category: 'Interior', images: [img45] },
+          { _id: '16', title: 'Tech Valley Complex', category: 'Commercial', images: [img50] },
+          { _id: '17', title: 'Sunset Boulevard Villas', category: 'Residential', images: [img6] },
+          { _id: '18', title: 'Boutique Hotel Lobby', category: 'Interior', images: [img10] }
         ];
         setProjects(dummyProjects);
         setLoading(false);
@@ -166,10 +188,7 @@ const Projects = () => {
           )}
         </div>
         
-        {/* Floating Divider Icon */}
-        <div className="absolute -bottom-6 right-8 md:right-24 w-12 h-12 rounded-full border border-gray-300 bg-white flex items-center justify-center text-gray-400 z-10">
-           <FaChevronUp />
-        </div>
+        
       </div>
 
       {/* Before & After Showcase */}

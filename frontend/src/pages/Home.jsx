@@ -239,7 +239,7 @@ const StickyImageSection = ({ imageSrc, children }) => {
   const opacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 1, 0]);
 
   return (
-    <div ref={containerRef} className="h-screen w-full relative overflow-hidden">
+    <div ref={containerRef} className="h-screen w-full relative overflow-hidden bg-black">
       <motion.div style={{ y, opacity }} className="absolute inset-0 w-full h-full">
         <img src={imageSrc} alt="Background" className="w-full h-full object-cover opacity-70" />
       </motion.div>
