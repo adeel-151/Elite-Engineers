@@ -25,25 +25,25 @@ import img11 from '../assets/img11.jpg';
 // ─── Hero Slideshow Data ─────────────────────────────────────────────────────
 const heroSlides = [
   {
-    image: img1,
+    image: img7,
     headline: 'BUILDING\nTHE FUTURE',
     subtext: 'Engineering landmarks that define the modern skyline.',
     tag: 'Excellence in Construction',
   },
   {
-    image: img7,
+    image: img3,
     headline: 'PRECISION\nCRAFTED',
     subtext: 'Every structure built with uncompromising attention to detail.',
     tag: 'Structural Mastery',
   },
   {
-    image: img11,
+    image: img6,
     headline: 'INNOVATIVE\nDESIGN',
     subtext: 'Where architectural elegance meets engineering resilience.',
     tag: 'Architecture & Innovation',
   },
   {
-    image: img4,
+    image: img3,
     headline: 'TRUSTED\nPARTNERS',
     subtext: 'Over 15 years delivering world-class engineering solutions.',
     tag: 'Legacy of Trust',
