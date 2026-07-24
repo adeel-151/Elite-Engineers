@@ -126,6 +126,63 @@ const About = () => {
         </div>
       </div>
 
+      {/* Certifications & Licenses */}
+      <div className="py-24 bg-white relative z-20 border-t border-gray-100">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+             initial={{ opacity: 0 }}
+             whileInView={{ opacity: 1 }}
+             viewport={{ once: true }}
+             className="text-center mb-16"
+          >
+             <h2 className="text-3xl tracking-widest uppercase">LICENSES & CERTIFICATIONS</h2>
+             <div className="w-12 h-[1px] bg-accent mx-auto mt-6"></div>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <motion.div 
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow bg-surface"
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 bg-white border border-gray-200 rounded-full flex items-center justify-center p-2 shadow-sm shrink-0">
+                  <img src="https://upload.wikimedia.org/wikipedia/en/thumb/e/ef/Pakistan_Engineering_Council_logo.svg/1200px-Pakistan_Engineering_Council_logo.svg.png" alt="PEC Logo" className="w-full h-full object-contain" />
+                </div>
+                <div>
+                  <h3 className="text-lg md:text-xl font-semibold tracking-wide uppercase text-black">PEC Registered</h3>
+                  <p className="text-[10px] md:text-xs text-accent tracking-widest uppercase mt-1">Licence No: 17520 (Category: C4/E)</p>
+                </div>
+              </div>
+              <p className="text-gray-500 font-light text-sm leading-relaxed">
+                Officially licensed by the Pakistan Engineering Council (PEC) as a certified Constructor and Operator, adhering strictly to national engineering standards and bye-laws.
+              </p>
+            </motion.div>
+
+            <motion.div 
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow bg-surface"
+            >
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 bg-white border border-gray-200 rounded-full flex items-center justify-center p-2 shadow-sm shrink-0">
+                  <div className="text-accent font-bold text-xl tracking-widest">SECP</div>
+                </div>
+                <div>
+                  <h3 className="text-lg md:text-xl font-semibold tracking-wide uppercase text-black">SECP Incorporated</h3>
+                  <p className="text-[10px] md:text-xs text-accent tracking-widest uppercase mt-1">CUIN: 0312523</p>
+                </div>
+              </div>
+              <p className="text-gray-500 font-light text-sm leading-relaxed">
+                Registered and incorporated under the Securities and Exchange Commission of Pakistan (SECP) as ELITE ENGINEERS (SMC-PRIVATE) LIMITED.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+
       {/* Leadership Team */}
       <div className="py-24 bg-gray-50 relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
