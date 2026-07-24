@@ -24,6 +24,7 @@ import img35 from '../assets/img35.jpeg';
 import img40 from '../assets/img40.jpeg';
 import img45 from '../assets/img45.jpeg';
 import img50 from '../assets/img50.jpeg';
+import afterImg from '../assets/after.png';
 
 // Reusable Sticky Section Component
 const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
@@ -194,7 +195,7 @@ const Projects = () => {
           </div>
           <BeforeAfterSlider 
             beforeImage={img10}
-            afterImage={img2}
+            afterImage={afterImg}
           />
         </div>
       </div>
