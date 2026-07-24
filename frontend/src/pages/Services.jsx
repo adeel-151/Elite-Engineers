@@ -30,25 +30,50 @@ const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) =>
 const Services = () => {
   const services = [
     {
-      title: "Architectural Design",
-      desc: "Creating timeless, functional, and aesthetically striking spaces tailored to client visions and environmental contexts.",
-      img: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop"
-    },
-    {
-      title: "Structural Engineering",
-      desc: "Ensuring uncompromising safety and durability through advanced structural analysis and innovative materials.",
-      img: "https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
-    },
-    {
-      title: "Project Management",
-      desc: "Comprehensive oversight from conception to completion, ensuring projects are delivered on time and within budget.",
+      title: "Engineering & Construction Services",
+      desc: "Full-spectrum engineering and construction solutions — from structural planning to on-site execution — delivered with precision and professionalism.",
       img: "https://images.unsplash.com/photo-1504307651254-35680f356f58?q=80&w=2070&auto=format&fit=crop"
     },
     {
-      title: "Interior Fit-Out",
-      desc: "Transforming empty shells into vibrant, productive, and luxurious interiors with premium finishing.",
+      title: "Turnkey Construction Solutions",
+      desc: "Complete project delivery from first blueprint to final handover — one team, zero coordination headaches, total accountability.",
+      img: "https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      title: "Grey Structure Execution",
+      desc: "Robust and precise grey structure construction — foundations, columns, beams, slabs — built to last and built to code.",
+      img: "https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      title: "Architectural Consultancy",
+      desc: "Expert architectural guidance from concept to completion — space planning, façade design, and regulatory compliance handled expertly.",
+      img: "https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      title: "Structural Design & Analysis",
+      desc: "Advanced structural engineering using modern software to ensure safety, durability, and compliance with international standards.",
+      img: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      title: "3D Interior & Exterior Design",
+      desc: "Photorealistic 3D visualisations of interiors and exteriors — see your project in stunning detail before a single brick is laid.",
       img: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
-    }
+    },
+    {
+      title: "Project Planning & Supervision",
+      desc: "Detailed project scheduling, resource allocation, and on-site supervision to keep every phase on time and within budget.",
+      img: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      title: "Land Surveying Services",
+      desc: "Accurate topographic and boundary surveys using modern instruments — essential groundwork for every successful project.",
+      img: "https://images.unsplash.com/photo-1618761714954-0b8cd0026356?q=80&w=2070&auto=format&fit=crop"
+    },
+    {
+      title: "Town Planning & Development",
+      desc: "Strategic urban and residential town planning — master plans, zoning consultation, and development approvals handled end to end.",
+      img: "https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=2070&auto=format&fit=crop"
+    },
   ];
 
   return (

@@ -76,28 +76,40 @@ const whyFeatures = [
 // ─── Services Preview Data ───────────────────────────────────────────────────
 const servicesPreview = [
   {
-    title: 'Architectural Design',
-    desc: 'Timeless, functional, and aesthetically striking spaces tailored to your vision.',
-    icon: '⬡',
-    img: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    title: 'Structural Engineering',
-    desc: 'Uncompromising safety and durability through advanced structural analysis.',
-    icon: '⬡',
-    img: 'https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=600&auto=format&fit=crop',
-  },
-  {
-    title: 'Project Management',
-    desc: 'Comprehensive oversight from conception to completion, on time and on budget.',
+    title: 'Engineering & Construction',
+    desc: 'Full-spectrum construction solutions from structural planning to on-site execution.',
     icon: '⬡',
     img: 'https://images.unsplash.com/photo-1504307651254-35680f356f58?q=80&w=600&auto=format&fit=crop',
   },
   {
-    title: 'Interior Fit-Out',
-    desc: 'Luxury interiors with premium finishes that reflect your brand and personality.',
+    title: 'Turnkey Construction',
+    desc: 'Complete project delivery — first blueprint to final handover under one roof.',
+    icon: '⬡',
+    img: 'https://images.unsplash.com/photo-1541888086425-d81bb19240f5?q=80&w=600&auto=format&fit=crop',
+  },
+  {
+    title: 'Architectural Consultancy',
+    desc: 'Expert guidance on space planning, façade design, and regulatory compliance.',
+    icon: '⬡',
+    img: 'https://images.unsplash.com/photo-1487958449943-2429e8be8625?q=80&w=600&auto=format&fit=crop',
+  },
+  {
+    title: 'Structural Design & Analysis',
+    desc: 'Advanced structural engineering ensuring safety and international code compliance.',
+    icon: '⬡',
+    img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=600&auto=format&fit=crop',
+  },
+  {
+    title: '3D Interior & Exterior Design',
+    desc: 'Photorealistic 3D visualisations — see your project in detail before it is built.',
     icon: '⬡',
     img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop',
+  },
+  {
+    title: 'Town Planning & Development',
+    desc: 'Strategic master plans, zoning consultation, and development approvals.',
+    icon: '⬡',
+    img: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?q=80&w=600&auto=format&fit=crop',
   },
 ];
 

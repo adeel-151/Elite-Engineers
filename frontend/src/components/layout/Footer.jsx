@@ -10,12 +10,15 @@ import logoImg from '../../assets/logo.png';
 
 // ─── Footer Data ─────────────────────────────────────────────────────────────
 const services = [
-  'Architectural Design',
-  'Structural Engineering',
-  'Project Management',
-  'Interior Fit-Out',
-  'Renovation & Retrofit',
-  'Site Supervision',
+  'Engineering & Construction Services',
+  'Turnkey Construction Solutions',
+  'Grey Structure Execution',
+  'Architectural Consultancy',
+  'Structural Design & Analysis',
+  '3D Interior & Exterior Design',
+  'Project Planning & Supervision',
+  'Land Surveying Services',
+  'Town Planning & Development',
 ];
 
 const quickLinks = [
