@@ -1,14 +1,24 @@
 import { motion } from 'framer-motion';
 
+// Import images
+import logoBahria from '../../assets/bahria-town.png';
+import logoDha from '../../assets/dha.png';
+import logoEmaar from '../../assets/emaar.png';
+import logoNespak from '../../assets/nespek.png';
+import logoPackages from '../../assets/pakage-mall.jpg';
+import logoArfa from '../../assets/arfa.png';
+import logoFfc from '../../assets/FFC.PK_BIG.png';
+import logoSapphire from '../../assets/SapphireGroup.png';
+
 const partners = [
-  { name: 'Bahria Town', category: 'Real Estate Developer' },
-  { name: 'DHA Lahore', category: 'Housing Authority' },
-  { name: 'Emaar Pakistan', category: 'International Developer' },
-  { name: 'NESPAK', category: 'Engineering Consultancy' },
-  { name: 'Packages Mall', category: 'Commercial Development' },
-  { name: 'Arfa Tech Park', category: 'Technology Campus' },
-  { name: 'FFC Corporation', category: 'Industrial Client' },
-  { name: 'Sapphire Group', category: 'Fashion & Real Estate' },
+  { name: 'Bahria Town', category: 'Real Estate Developer', logo: logoBahria },
+  { name: 'DHA Lahore', category: 'Housing Authority', logo: logoDha },
+  { name: 'Emaar Pakistan', category: 'International Developer', logo: logoEmaar },
+  { name: 'NESPAK', category: 'Engineering Consultancy', logo: logoNespak },
+  { name: 'Packages Mall', category: 'Commercial Development', logo: logoPackages },
+  { name: 'Arfa Tech Park', category: 'Technology Campus', logo: logoArfa },
+  { name: 'FFC Corporation', category: 'Industrial Client', logo: logoFfc },
+  { name: 'Sapphire Group', category: 'Fashion & Real Estate', logo: logoSapphire },
 ];
 
 const PartnerLogos = () => {
@@ -37,9 +47,12 @@ const PartnerLogos = () => {
               transition={{ duration: 0.5, delay: i * 0.07 }}
               className="bg-white group flex flex-col items-center justify-center text-center p-8 md:p-10 hover:bg-gray-50 transition-colors duration-300 cursor-default"
             >
-              {/* Stylized logo placeholder */}
-              <div className="w-12 h-12 border border-gray-200 group-hover:border-amber-400 flex items-center justify-center mb-4 transition-colors duration-300 transform rotate-45">
-                <div className="w-4 h-4 bg-gray-300 group-hover:bg-amber-400 transition-colors duration-300 transform -rotate-45" />
+              <div className="h-16 flex items-center justify-center mb-4">
+                <img 
+                  src={partner.logo} 
+                  alt={partner.name} 
+                  className="max-h-full max-w-[120px] object-contain filter grayscale group-hover:grayscale-0 opacity-70 group-hover:opacity-100 transition-all duration-300" 
+                />
               </div>
               <h4 className="font-display text-sm font-bold tracking-wider text-gray-800 uppercase">
                 {partner.name}
