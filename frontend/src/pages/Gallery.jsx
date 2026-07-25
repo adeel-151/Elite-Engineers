@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from '../components/ui/SEO';
 import { FaTimes, FaChevronLeft, FaChevronRight, FaExpand } from 'react-icons/fa';
+import axios from 'axios';
+import API_BASE_URL from '../config/api';
 
 // ─── Import all 51 project images ────────────────────────────────────────────
 import img1  from '../assets/img1.jpeg';
@@ -57,7 +59,7 @@ import img50 from '../assets/img50.jpeg';
 import img51 from '../assets/img51.jpeg';
 
 // ─── Gallery Data ─────────────────────────────────────────────────────────────
-const allImages = [
+const staticImages = [
   img1, img2, img3, img4, img5, img6, img7, img8, img9, img10,
   img11, img12, img13, img14, img15, img16, img17, img18, img19, img20,
   img21, img22, img23, img24, img25, img26, img27, img28, img29, img30,
@@ -68,9 +70,25 @@ const allImages = [
 
 // ─── Gallery Component ────────────────────────────────────────────────────────
 const Gallery = () => {
+  const [allImages, setAllImages] = useState(staticImages);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [loaded, setLoaded] = useState({});
+
+  useEffect(() => {
+    const fetchImages = async () => {
+      try {
+        const res = await axios.get(`${API_BASE_URL}/api/gallery`);
+        if (res.data.data.images && res.data.data.images.length > 0) {
+          const apiImages = res.data.data.images.map(img => img.imageUrl);
+          setAllImages([...apiImages, ...staticImages]);
+        }
+      } catch (err) {
+        console.error('Failed to fetch gallery images', err);
+      }
+    };
+    fetchImages();
+  }, []);
 
   const openLightbox = (index) => {
     setActiveIndex(index);

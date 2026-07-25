@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 import ProjectForm from '../components/admin/ProjectForm';
 import ProjectGrid from '../components/admin/ProjectGrid';
+import GalleryManager from '../components/admin/GalleryManager';
 import API_BASE_URL from '../config/api';
 
 const Admin = () => {
@@ -12,7 +13,7 @@ const Admin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
-  const [activeTab, setActiveTab] = useState('manage'); // 'manage' | 'form'
+  const [activeTab, setActiveTab] = useState('manage'); // 'manage' | 'form' | 'gallery'
   const [editingProject, setEditingProject] = useState(null);
 
   const handleLogin = async (e) => {
@@ -92,6 +93,12 @@ const Admin = () => {
               >
                 {editingProject ? 'Edit Project' : 'Add New Project'}
               </button>
+              <button 
+                onClick={() => { setActiveTab('gallery'); setEditingProject(null); }}
+                className={`text-sm uppercase tracking-widest pb-2 transition-colors ${activeTab === 'gallery' ? 'text-black border-b-2 border-black font-semibold' : 'text-gray-400 hover:text-black'}`}
+              >
+                Manage Gallery
+              </button>
             </div>
           </div>
           <button onClick={handleLogout} className="text-xs text-red-500 uppercase tracking-widest hover:text-red-700 pb-2">
@@ -107,6 +114,8 @@ const Admin = () => {
         >
           {activeTab === 'manage' ? (
             <ProjectGrid token={token} onEdit={handleEdit} />
+          ) : activeTab === 'gallery' ? (
+            <GalleryManager token={token} />
           ) : (
             <>
               <h2 className="text-xl font-display uppercase tracking-widest mb-8">

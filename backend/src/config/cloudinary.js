@@ -12,8 +12,9 @@ const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
     folder: 'EliteEngineers/Projects',
-    allowedFormats: ['jpeg', 'png', 'jpg'],
-    // transformation: [{ width: 800, height: 600, crop: 'limit' }] // Optional optimization
+    allowedFormats: ['jpeg', 'png', 'jpg', 'webp'],
+    format: 'webp',
+    transformation: [{ width: 1920, crop: 'limit', quality: 'auto:good' }]
   },
 });
 

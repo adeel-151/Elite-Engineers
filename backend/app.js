@@ -7,6 +7,7 @@ const projectRoutes = require('./src/routes/project.routes');
 const clientRoutes = require('./src/routes/client.routes');
 const inquiryRoutes = require('./src/routes/inquiry.routes');
 const authRoutes = require('./src/routes/auth.routes');
+const galleryRoutes = require('./src/routes/gallery.routes');
 
 const app = express();
 
@@ -53,6 +54,7 @@ app.use('/api/projects', projectRoutes);
 app.use('/api/clients', clientRoutes);
 app.use('/api/inquiries', inquiryRoutes);
 app.use('/api/auth', authRoutes);
+app.use('/api/gallery', galleryRoutes);
 
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'success', message: 'API is running' });
