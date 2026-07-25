@@ -294,10 +294,8 @@ const Footer = () => {
             <p>© {new Date().getFullYear()} ELITE ENGINEERS. ALL RIGHTS RESERVED.</p>
 
             <div className="flex items-center gap-1 text-gray-600">
-              <span>Made in</span>
-              <span className="text-base leading-none">🇵🇰</span>
-              <span>Pakistan with</span>
-              <span className="text-red-500 text-base leading-none">♥</span>
+              <span>A product of</span>
+              <span className="text-gray-400 font-bold uppercase tracking-widest ml-1">Xarkode</span>
             </div>
 
             <div className="flex gap-6 text-gray-600">

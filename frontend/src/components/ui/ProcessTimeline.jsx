@@ -6,6 +6,7 @@ import img2 from '../../assets/img2.jpg';
 import img3 from '../../assets/img3.jpg';
 import img4 from '../../assets/img4.jpg';
 import img5 from '../../assets/img5.jpg';
+import elite2 from '../../assets/elite2.png';
 
 const steps = [
   {
@@ -27,7 +28,7 @@ const steps = [
     step: '03',
     title: 'Approvals & Permitting',
     desc: 'We manage the entire regulatory process — LDA, DHA, and CDA approvals, environmental clearances, and building permits — so you can focus on your business while we handle the bureaucracy.',
-    img: img3,
+    img: elite2,
   },
   {
     icon: FaHardHat,
