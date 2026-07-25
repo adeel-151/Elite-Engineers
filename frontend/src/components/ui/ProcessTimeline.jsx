@@ -1,41 +1,47 @@
 import { motion } from 'framer-motion';
 import { FaSearch, FaPencilRuler, FaFileSignature, FaHardHat, FaKey } from 'react-icons/fa';
 
+import img1 from '../../assets/img1.jpg';
+import img2 from '../../assets/img2.jpg';
+import img3 from '../../assets/img3.jpg';
+import img4 from '../../assets/img4.jpg';
+import img5 from '../../assets/img5.jpg';
+
 const steps = [
   {
     icon: FaSearch,
     step: '01',
     title: 'Discovery & Consultation',
     desc: 'We begin with a deep-dive consultation to understand your vision, budget, site constraints, and timeline. Our team conducts a thorough feasibility analysis to map the clearest path forward.',
-    img: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=800&auto=format&fit=crop',
+    img: img1,
   },
   {
     icon: FaPencilRuler,
     step: '02',
     title: 'Design & Engineering',
     desc: 'Our architects and structural engineers collaborate on BIM-integrated 3D models, structural calculations, MEP coordination, and material specifications — all aligned with local codes and regulations.',
-    img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop',
+    img: img2,
   },
   {
     icon: FaFileSignature,
     step: '03',
     title: 'Approvals & Permitting',
     desc: 'We manage the entire regulatory process — LDA, DHA, and CDA approvals, environmental clearances, and building permits — so you can focus on your business while we handle the bureaucracy.',
-    img: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop',
+    img: img3,
   },
   {
     icon: FaHardHat,
     step: '04',
     title: 'Precision Construction',
     desc: 'Our certified construction teams execute every phase with meticulous quality control — from foundation to rooftop. Weekly progress reports and on-site inspections ensure we stay on track.',
-    img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?q=80&w=800&auto=format&fit=crop',
+    img: img4,
   },
   {
     icon: FaKey,
     step: '05',
     title: 'Handover & Warranty',
     desc: 'Final inspection, snag-list resolution, full documentation handover — and a comprehensive post-completion warranty. Our relationship with you doesnt end at handover; it continues for years.',
-    img: 'https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=800&auto=format&fit=crop',
+    img: img5,
   },
 ];
 
