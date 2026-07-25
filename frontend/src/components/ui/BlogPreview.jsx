@@ -3,6 +3,10 @@ import { FaArrowRight, FaCalendarAlt, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
+import img6 from '../../assets/img6.jpg';
+import img7 from '../../assets/img7.jpg';
+import img8 from '../../assets/img8.jpg';
+
 const articles = [
   {
     id: 1,
@@ -11,7 +15,7 @@ const articles = [
     title: 'Top 5 Construction Trends Shaping Pakistan\'s Skyline in 2025',
     excerpt: 'From smart buildings and prefabricated structures to green rooftops and BIM-integrated workflows — we explore the technologies revolutionizing construction in Pakistan\'s fastest-growing cities.',
     fullContent: 'The construction industry in Pakistan is undergoing a massive transformation. Rapid urbanization and technological advancements are forcing developers to adopt modern methods.\n\n1. Smart Building Technologies\nModern buildings now integrate IoT devices for automated lighting, HVAC control, and advanced security, reducing energy consumption significantly.\n\n2. Prefabricated and Modular Construction\nTo combat rising labor costs and delays, developers are turning to off-site manufacturing. This drastically reduces on-site construction time.\n\n3. Green and Sustainable Architecture\nWith growing environmental concerns, LEED-certified buildings featuring solar panels, green roofs, and rainwater harvesting are becoming the new standard.\n\n4. Building Information Modeling (BIM)\nBIM allows architects, engineers, and contractors to collaborate on a single 3D model, preventing costly clashes during the construction phase.\n\n5. Advanced Safety Protocols\nThe use of drones for site inspection and wearable tech for workers is minimizing accidents and improving overall site efficiency.\n\nAt Elite Engineers, we are proud to be at the forefront of these innovations, integrating them into our latest commercial and residential projects across the country.',
-    img: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=600&auto=format&fit=crop',
+    img: img6,
     readTime: '5 min read',
   },
   {
@@ -21,7 +25,7 @@ const articles = [
     title: 'The Complete Guide to DHA Lahore Building Approval in 2025',
     excerpt: 'Navigating DHA approvals can be complex. This comprehensive guide covers every step — from site plan submission and NOC requirements to construction start certificates and completion procedures.',
     fullContent: 'Securing building approvals in DHA Lahore requires strict adherence to their constantly updating bylaws. Knowing the exact process can save you months of delays.\n\nPhase 1: Soil Testing & Initial Survey\nBefore drawing a single line, a certified soil test is mandatory to ensure structural viability.\n\nPhase 2: Architectural & Structural Drawings\nDHA requires detailed submissions including floor plans, elevations, plumbing, electrification, and structural drawings vetted by a registered structural engineer.\n\nPhase 3: The NOC Process\nYou must obtain No Objection Certificates from various departments, including water, electricity, and sometimes environmental agencies, depending on the project scale.\n\nPhase 4: Site Demarcation & Construction Start\nOnce approved, DHA surveyors will demarcate your plot. Only then can you officially break ground.\n\nPhase 5: Inspections & Completion Certificate\nDHA teams will inspect the site at key milestones (foundation, plinth, roof casting). Upon finishing, a final inspection grants the completion certificate, allowing utility connections.\n\nOur regulatory team at Elite Engineers handles this entire process turnkey, ensuring 100% compliance without the headache.',
-    img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=600&auto=format&fit=crop',
+    img: img7,
     readTime: '8 min read',
   },
   {
@@ -31,7 +35,7 @@ const articles = [
     title: 'Sustainable Architecture in Pakistan: Building Greener, Smarter Futures',
     excerpt: 'As energy costs rise and environmental awareness grows, LEED-aligned architecture is gaining momentum in Pakistan. Here\'s how Elite Engineers is leading the charge toward net-zero buildings.',
     fullContent: 'Sustainability is no longer a buzzword; it is a critical necessity in Pakistan due to energy crises and climate change. \n\nPassive Cooling Techniques\nBy orienting buildings to maximize natural airflow and minimize direct solar heat gain, we drastically reduce the reliance on mechanical air conditioning.\n\nEnergy-Efficient Materials\nUsing double-glazed windows, insulated cavity walls, and high-SRI (Solar Reflectance Index) roofing materials helps maintain internal temperatures naturally.\n\nWater Conservation Systems\nIntegrating greywater recycling and rainwater harvesting systems can reduce a building\'s freshwater consumption by up to 40%.\n\nSolar Integration\nInstead of treating solar panels as an afterthought, modern sustainable architecture incorporates Building-Integrated Photovoltaics (BIPV) directly into the facade and roofing.\n\nElite Engineers is committed to pushing the boundaries of green architecture, proving that luxury and sustainability can seamlessly coexist.',
-    img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=600&auto=format&fit=crop',
+    img: img8,
     readTime: '6 min read',
   },
 ];
