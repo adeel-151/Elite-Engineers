@@ -21,6 +21,8 @@ import img8 from '../assets/img8.jpg';
 import img9 from '../assets/img9.jpg';
 import img10 from '../assets/img10.jpg';
 import img11 from '../assets/img11.jpg';
+import img38 from '../assets/img38.jpeg';
+import elite2 from '../assets/elite2.png';
 
 // ─── Hero Slideshow Data ─────────────────────────────────────────────────────
 const heroSlides = [
@@ -96,13 +98,13 @@ const servicesPreview = [
     title: 'Turnkey Construction',
     desc: 'Complete project delivery — first blueprint to final handover under one roof.',
     icon: '⬡',
-    img: img10,
+    img: img38,
   },
   {
     title: 'Architectural Consultancy',
     desc: 'Expert guidance on space planning, façade design, and regulatory compliance.',
     icon: '⬡',
-    img: img3,
+    img: elite2,
   },
   {
     title: 'Structural Design & Analysis',
