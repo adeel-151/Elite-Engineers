@@ -20,6 +20,14 @@ import img8 from '../assets/img8.jpg';
 import img10 from '../assets/img10.jpg';
 import img11 from '../assets/img11.jpg';
 
+// Helper to build correct image URL (handles both Cloudinary and relative paths)
+const getImageUrl = (imgPath) => {
+  if (!imgPath) return '';
+  if (typeof imgPath !== 'string') return imgPath; // already imported asset
+  if (imgPath.startsWith('http') || imgPath.startsWith('data:')) return imgPath;
+  return imgPath; // static imported assets are already resolved
+};
+
 const initialServices = [
   {
     title: "Engineering & Construction Services",
@@ -134,7 +142,7 @@ const Services = () => {
                 className="group relative h-96 overflow-hidden cursor-pointer"
               >
                 <img 
-                  src={service.img} 
+                  src={getImageUrl(service.img)} 
                   alt={service.title} 
                   className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:scale-105 transition-all duration-700"
                 />

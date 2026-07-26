@@ -18,17 +18,22 @@ const cacheMiddleware = (req, res, next) => {
   }
 
   // Override res.json to cache the response before sending it
-  const originalJson = res.json;
+  const originalJson = res.json.bind(res);
   res.json = function (body) {
     // Only cache successful responses
     if (res.statusCode === 200) {
       cache.set(key, body);
     }
     // Call the original res.json
-    originalJson.call(this, body);
+    return originalJson(body);
   };
 
   next();
 };
 
-module.exports = { cache, cacheMiddleware };
+// Clear all cache (call after any write operation)
+const clearCache = () => {
+  cache.flushAll();
+};
+
+module.exports = { cache, cacheMiddleware, clearCache };

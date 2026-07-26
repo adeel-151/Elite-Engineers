@@ -1,6 +1,7 @@
 const Gallery = require('../models/Gallery');
 const AppError = require('../utils/AppError');
 const { cloudinary } = require('../config/cloudinary');
+const { clearCache } = require('../middlewares/cache');
 
 exports.getAllImages = async (req, res, next) => {
   try {
@@ -27,6 +28,8 @@ exports.uploadImage = async (req, res, next) => {
       publicId: req.file.filename
     });
 
+    clearCache();
+
     res.status(201).json({
       status: 'success',
       data: { image: newImage }
@@ -49,6 +52,8 @@ exports.deleteImage = async (req, res, next) => {
     }
 
     await Gallery.findByIdAndDelete(req.params.id);
+
+    clearCache();
 
     res.status(204).json({
       status: 'success',

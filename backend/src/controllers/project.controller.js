@@ -1,9 +1,10 @@
 const Project = require('../models/Project');
 const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
+const { clearCache } = require('../middlewares/cache');
 
 exports.getAllProjects = catchAsync(async (req, res, next) => {
-  const projects = await Project.find().populate('client', 'name company');
+  const projects = await Project.find().sort('-createdAt').populate('client', 'name company');
 
   res.status(200).json({
     status: 'success',
@@ -31,6 +32,7 @@ exports.createProject = catchAsync(async (req, res, next) => {
   }
 
   const newProject = await Project.create(req.body);
+  clearCache(); // Bust cache so frontend shows new data
 
   res.status(201).json({
     status: 'success',
@@ -40,7 +42,6 @@ exports.createProject = catchAsync(async (req, res, next) => {
 
 exports.updateProject = catchAsync(async (req, res, next) => {
   if (req.files && req.files.length > 0) {
-    // We are replacing old images here, but you can append to them if needed
     req.body.images = req.files.map(file => file.path);
   }
 
@@ -52,6 +53,8 @@ exports.updateProject = catchAsync(async (req, res, next) => {
   if (!project) {
     return next(new AppError('No project found with that ID', 404));
   }
+
+  clearCache(); // Bust cache
 
   res.status(200).json({
     status: 'success',
@@ -65,6 +68,8 @@ exports.deleteProject = catchAsync(async (req, res, next) => {
   if (!project) {
     return next(new AppError('No project found with that ID', 404));
   }
+
+  clearCache(); // Bust cache
 
   res.status(204).json({
     status: 'success',

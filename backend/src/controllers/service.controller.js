@@ -1,9 +1,10 @@
 const Service = require('../models/Service');
 const AppError = require('../utils/AppError');
 const catchAsync = require('../utils/catchAsync');
+const { clearCache } = require('../middlewares/cache');
 
 exports.getAllServices = catchAsync(async (req, res, next) => {
-  const services = await Service.find();
+  const services = await Service.find().sort('-createdAt');
 
   res.status(200).json({
     status: 'success',
@@ -17,6 +18,7 @@ exports.createService = catchAsync(async (req, res, next) => {
     req.body.img = req.file.path;
   }
   const newService = await Service.create(req.body);
+  clearCache();
 
   res.status(201).json({
     status: 'success',
@@ -37,6 +39,8 @@ exports.updateService = catchAsync(async (req, res, next) => {
     return next(new AppError('No service found with that ID', 404));
   }
 
+  clearCache();
+
   res.status(200).json({
     status: 'success',
     data: { service }
@@ -49,6 +53,8 @@ exports.deleteService = catchAsync(async (req, res, next) => {
   if (!service) {
     return next(new AppError('No service found with that ID', 404));
   }
+
+  clearCache();
 
   res.status(204).json({
     status: 'success',
