@@ -190,23 +190,6 @@ const Projects = () => {
         </div>
       </div>
 
-      {/* Client Testimonials */}
-      <div className="py-24 bg-gray-50 relative z-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <motion.div 
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-sm tracking-widest text-accent uppercase mb-12">Client Testimonials</h2>
-            <div className="text-xl md:text-2xl font-light italic text-gray-700 mb-8 leading-relaxed">
-              "Elite Engineers transformed our vision into a structural masterpiece. Their attention to detail and unwavering commitment to quality is truly unmatched in the industry."
-            </div>
-            <div className="font-semibold uppercase tracking-wider">— Faisal Rehman</div>
-            <div className="text-xs text-gray-500 uppercase tracking-widest">CEO, Apex Holdings</div>
-          </motion.div>
-        </div>
-      </div>
     </>
   );
 };
