@@ -8,7 +8,7 @@ import {
 import { useState } from 'react';
 import axios from 'axios';
 import API_BASE_URL from '../../config/api';
-import logoImg from '../../assets/logo.jpeg';
+import logoImg from '../../assets/logo-transparent.png';
 
 // ─── Footer Data ─────────────────────────────────────────────────────────────
 const services = [
