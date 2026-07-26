@@ -12,6 +12,11 @@ import img11 from '../assets/img11.jpg';
 import secp from '../assets/secp.jpg';
 import pec from '../assets/pec.jpg';
 
+import bashir from '../assets/bashir.jpeg';
+import nazir from '../assets/nazir.jpeg';
+import rashid from '../assets/rashid.jpeg';
+import sultan from '../assets/sultan.jpeg';
+
 // Reusable Sticky Section Component
 const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
   const containerRef = useRef(null);
@@ -35,10 +40,10 @@ const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) =>
 };
 
 const initialTeam = [
-  { name: 'Adeel Khan', role: 'Chief Executive Officer', img: img9 },
-  { name: 'Sarah Ahmed', role: 'Head of Architecture', img: img3 },
-  { name: 'Usman Ali', role: 'Lead Structural Engineer', img: img11 },
-  { name: 'Fatima Zafar', role: 'Project Manager', img: img9 }
+  { name: 'Engr Bashir Ahmad', role: 'CEO', img: bashir },
+  { name: 'Engr Nazir Khan', role: 'GM', img: nazir },
+  { name: 'Engr Rashid Khan', role: 'Project Manager', img: rashid },
+  { name: 'Engr Sultan Ahmad', role: 'Project Manager', img: sultan }
 ];
 
 const About = () => {

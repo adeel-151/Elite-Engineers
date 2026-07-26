@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImg from '../../assets/logo.png';
+import logoImg from '../../assets/logo.jpeg';
 
 const InitialLoader = ({ onComplete }) => {
   const [isVisible, setIsVisible] = useState(true);
