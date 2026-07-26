@@ -57,25 +57,21 @@ const Navbar = () => {
           px-6 md:px-12
           transition-all duration-300 ease-in-out
           ${isSolid
-            ? 'bg-white/95 backdrop-blur-lg border-b border-gray-200/60 shadow-sm py-3 md:py-4'
-            : 'bg-transparent border-transparent py-5 md:py-6'
+            ? 'bg-white/95 backdrop-blur-lg border-b border-gray-200/60 shadow-sm h-20 md:h-24'
+            : 'bg-transparent border-transparent h-24 md:h-28'
           }
         `}
       >
         {/* ── Logo ─────────────────────────────────────────────────────── */}
         <Link
           to="/"
-          className="flex items-center flex-shrink-0 z-50"
+          className="flex items-center flex-shrink-0 z-50 h-full py-1 md:py-2"
           onClick={() => setIsOpen(false)}
         >
           <img
             src={logoImg}
             alt="Elite Engineers Logo"
-            className={`object-contain transition-all duration-300 ${
-              isSolid
-                ? 'w-36 md:w-48 h-auto max-h-14'
-                : 'w-40 md:w-52 h-auto max-h-14'
-            }`}
+            className="h-full w-auto object-contain transition-all duration-300"
           />
         </Link>
 
