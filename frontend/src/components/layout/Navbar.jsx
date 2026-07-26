@@ -71,7 +71,7 @@ const Navbar = () => {
           <img
             src={logoImg}
             alt="Elite Engineers Logo"
-            className={`object-contain transition-all duration-300 ${\
+            className={`object-contain transition-all duration-300 ${
               isSolid
                 ? 'w-36 md:w-48 h-auto max-h-14'
                 : 'w-40 md:w-52 h-auto max-h-14'
