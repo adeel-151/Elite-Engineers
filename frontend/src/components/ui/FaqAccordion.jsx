@@ -53,17 +53,17 @@ const FaqAccordion = () => {
     <div className="w-full max-w-4xl mx-auto py-16">
       <div className="text-center mb-12">
         <h2 className="text-sm tracking-widest text-accent uppercase mb-2 font-semibold">Got Questions?</h2>
-        <h3 className="text-3xl md:text-4xl font-display uppercase tracking-widest text-primary">Frequently Asked Questions</h3>
+        <h3 className="text-3xl md:text-4xl font-display uppercase tracking-widest text-primary dark:text-white">Frequently Asked Questions</h3>
       </div>
 
       <div className="space-y-4">
         {faqs.map((faq, index) => (
-          <div key={index} className="border border-gray-200 bg-white rounded-lg overflow-hidden shadow-sm">
+          <div key={index} className="border border-gray-200 dark:border-gray-800 bg-white dark:bg-secondary rounded-lg overflow-hidden shadow-sm">
             <button
               onClick={() => toggleFaq(index)}
-              className="w-full flex justify-between items-center p-6 text-left focus:outline-none hover:bg-gray-50 transition-colors"
+              className="w-full flex justify-between items-center p-6 text-left focus:outline-none hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
             >
-              <span className="font-semibold text-primary font-display pr-4">{faq.question}</span>
+              <span className="font-semibold text-primary dark:text-white font-display pr-4">{faq.question}</span>
               <motion.div
                 animate={{ rotate: activeIndex === index ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
@@ -81,7 +81,7 @@ const FaqAccordion = () => {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="p-6 pt-0 text-gray-600 font-light border-t border-gray-100">
+                  <div className="p-6 pt-0 text-gray-600 dark:text-gray-300 font-light border-t border-gray-100 dark:border-gray-800">
                     {faq.answer}
                   </div>
                 </motion.div>

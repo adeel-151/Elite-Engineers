@@ -111,7 +111,7 @@ const Projects = () => {
       <PageHeader title="Our Portfolio" subtitle="Discover Our Work" />
 
 
-      <div className="py-24 bg-white relative">
+      <div className="py-24 bg-white dark:bg-[#0a0a0a] relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <motion.div 
@@ -121,7 +121,7 @@ const Projects = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl">OUR PROJECTS</h2>
+            <h2 className="text-4xl md:text-5xl dark:text-white">OUR PROJECTS</h2>
           </motion.div>
           
           {loading && (
@@ -144,7 +144,7 @@ const Projects = () => {
                   <button 
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`px-6 py-2 text-xs tracking-widest uppercase transition-colors border ${activeCategory === cat ? 'bg-accent border-accent text-white' : 'bg-transparent border-gray-300 text-gray-500 hover:border-black hover:text-black'}`}
+                    className={`px-6 py-2 text-xs tracking-widest uppercase transition-colors border ${activeCategory === cat ? 'bg-accent border-accent text-white' : 'bg-transparent border-gray-300 dark:border-gray-700 text-gray-500 hover:border-black hover:text-black dark:hover:border-white dark:hover:text-white'}`}
                   >
                     {cat}
                   </button>
@@ -159,7 +159,7 @@ const Projects = () => {
                 className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
               >
                 {projects.filter(p => activeCategory === 'All' || p.category.toLowerCase() === activeCategory.toLowerCase()).map((project, index) => (
-                  <Link to={`/projects/${project._id}`} key={project._id + index} className="relative group overflow-hidden h-64 md:h-80 bg-gray-100 cursor-pointer block">
+                  <Link to={`/projects/${project._id}`} key={project._id + index} className="relative group overflow-hidden h-64 md:h-80 bg-gray-100 dark:bg-gray-800 cursor-pointer block">
                     {project.images && project.images.length > 0 ? (
                       <img 
                         src={getImageUrl(project.images[0])} 
@@ -185,11 +185,11 @@ const Projects = () => {
       </div>
 
       {/* Before & After Showcase */}
-      <div className="py-24 bg-white relative z-20 border-b border-gray-100">
+      <div className="py-24 bg-white dark:bg-[#0a0a0a] relative z-20 border-b border-gray-100 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-sm tracking-widest text-accent uppercase mb-2">Transformation Showcase</h2>
-            <h3 className="text-3xl font-display uppercase tracking-widest text-black">From Blueprint to Reality</h3>
+            <h3 className="text-3xl font-display uppercase tracking-widest text-black dark:text-white">From Blueprint to Reality</h3>
           </div>
           <BeforeAfterSlider 
             beforeImage={img10}

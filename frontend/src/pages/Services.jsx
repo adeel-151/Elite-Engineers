@@ -124,7 +124,7 @@ const Services = () => {
       <PageHeader title="Our Expertise" subtitle="Comprehensive Engineering Solutions" />
 
       {/* Services Grid Content */}
-      <div className="py-24 bg-white relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      <div className="py-24 bg-white dark:bg-[#0a0a0a] relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-16">
@@ -164,12 +164,12 @@ const Services = () => {
       </div>
 
       {/* FAQ Section */}
-      <div className="bg-gray-50 border-t border-gray-200">
+      <div className="bg-gray-50 dark:bg-[#111] border-t border-gray-200 dark:border-gray-800">
         <FaqAccordion />
       </div>
 
       {/* Cost Estimator Section */}
-      <div className="py-24 bg-white relative z-20">
+      <div className="py-24 bg-white dark:bg-[#0a0a0a] relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <CostEstimator />
         </div>

@@ -66,7 +66,7 @@ const ProjectGrid = ({ token, onEdit }) => {
         <h2 className="text-xl font-display uppercase tracking-widest text-white">Manage Projects</h2>
         <button 
           onClick={() => onEdit(null)}
-          className="px-6 py-2 bg-accent text-white text-xs tracking-widest uppercase rounded-full hover:bg-amber-500 transition-colors"
+          className="px-6 py-2 bg-accent text-white text-xs tracking-widest uppercase rounded-full hover:bg-black transition-colors duration-300"
         >
           + Add New Project
         </button>

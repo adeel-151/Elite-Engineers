@@ -66,12 +66,12 @@ const ClientsManager = ({ token }) => {
     try {
       if (editingId) {
         await axios.put(`${API_BASE_URL}/api/clients/${editingId}`, formData, {
-          headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
+          headers: { 'Authorization': `Bearer ${token}` }
         });
         toast.success('Client updated successfully', { id: toastId });
       } else {
         await axios.post(`${API_BASE_URL}/api/clients`, formData, {
-          headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
+          headers: { 'Authorization': `Bearer ${token}` }
         });
         toast.success('Client added successfully', { id: toastId });
       }
@@ -126,16 +126,16 @@ const ClientsManager = ({ token }) => {
           <input 
             id="client-image-upload"
             type="file" accept="image/*" onChange={e => setImageFile(e.target.files[0])}
-            className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-accent file:text-white hover:file:bg-amber-500 cursor-pointer transition-all"
+            className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-accent file:text-white hover:file:bg-black transition-all duration-300 cursor-pointer transition-all"
           />
         </div>
 
         <div className="flex gap-4">
-          <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full ${isSubmitting ? 'bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-accent text-white hover:bg-amber-500'}`}>
+          <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full ${isSubmitting ? 'bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-accent text-white hover:bg-black transition-colors duration-300'}`}>
             {isSubmitting ? 'Please Wait...' : (editingId ? 'Update Client' : 'Save Client')}
           </button>
           {editingId && (
-            <button type="button" onClick={resetForm} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full bg-gray-800 text-white hover:bg-gray-700 border border-gray-700">
+            <button type="button" onClick={resetForm} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full bg-transparent text-accent hover:bg-accent hover:text-white border border-accent transition-colors duration-300">
               Cancel
             </button>
           )}

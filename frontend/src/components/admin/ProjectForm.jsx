@@ -64,16 +64,14 @@ const ProjectForm = ({ token, initialData = null, onSuccess, onCancel }) => {
       if (isEditing) {
         await axios.put(`${API_BASE_URL}/api/projects/${initialData._id}`, formData, {
           headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data'
+            'Authorization': `Bearer ${token}`
           }
         });
         toast.success('Project updated successfully!', { id: toastId });
       } else {
         await axios.post(`${API_BASE_URL}/api/projects`, formData, {
           headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'multipart/form-data'
+            'Authorization': `Bearer ${token}`
           }
         });
         toast.success('Project created successfully!', { id: toastId });
@@ -128,16 +126,16 @@ const ProjectForm = ({ token, initialData = null, onSuccess, onCancel }) => {
         </label>
         <input 
           type="file" multiple accept="image/*" onChange={e => setImages(e.target.files)}
-          className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-accent file:text-white hover:file:bg-amber-500 cursor-pointer file:cursor-pointer transition-all"
+          className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-accent file:text-white hover:file:bg-black transition-all duration-300 cursor-pointer file:cursor-pointer transition-all"
         />
       </div>
 
       <div className="flex gap-4">
-        <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full ${isSubmitting ? 'bg-gray-700 text-gray-400 cursor-not-allowed' : 'bg-accent text-white hover:bg-amber-500'}`}>
+        <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full ${isSubmitting ? 'bg-gray-700 text-gray-400 cursor-not-allowed' : 'bg-accent text-white hover:bg-black transition-colors duration-300'}`}>
           {isSubmitting ? 'Please Wait...' : (isEditing ? 'Update Project' : 'Publish Project')}
         </button>
         {isEditing && (
-          <button type="button" onClick={onCancel} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full bg-gray-800 text-white hover:bg-gray-700 border border-gray-700">
+          <button type="button" onClick={onCancel} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full bg-transparent text-accent hover:bg-accent hover:text-white border border-accent transition-colors duration-300">
             Cancel Edit
           </button>
         )}

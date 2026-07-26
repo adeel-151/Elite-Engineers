@@ -73,7 +73,7 @@ const Contact = () => {
     }
   };
 
-  const inputClasses = "w-full py-3 bg-transparent border-0 border-b border-gray-300 rounded-none focus:ring-0 focus:border-black outline-none text-sm transition-colors";
+  const inputClasses = "w-full py-3 bg-transparent border-0 border-b border-gray-300 dark:border-gray-700 rounded-none focus:ring-0 focus:border-black dark:focus:border-white outline-none text-sm text-black dark:text-white transition-colors";
 
   return (
     <>
@@ -87,7 +87,7 @@ const Contact = () => {
 
 
 
-      <div className="py-24 bg-white relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      <div className="py-24 bg-white dark:bg-[#0a0a0a] relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <motion.div

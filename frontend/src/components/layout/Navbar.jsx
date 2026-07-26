@@ -1,10 +1,12 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
+import { FaBars, FaTimes, FaChevronDown, FaSun, FaMoon } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 import logoImg from '../../assets/logo-transparent.png';
+import { ThemeContext } from '../../context/ThemeContext';
 
 const Navbar = () => {
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -57,7 +59,7 @@ const Navbar = () => {
           px-6 md:px-12
           transition-all duration-300 ease-in-out
           ${isSolid
-            ? 'bg-white/95 backdrop-blur-lg border-b border-gray-200/60 shadow-sm h-20 md:h-24'
+            ? 'bg-white/95 dark:bg-secondary/95 backdrop-blur-lg border-b border-gray-200/60 dark:border-gray-800 shadow-sm h-20 md:h-24'
             : 'bg-transparent border-transparent h-24 md:h-28'
           }
         `}
@@ -81,7 +83,7 @@ const Navbar = () => {
           className={`
             hidden md:flex items-center gap-8 lg:gap-10
             text-xs font-semibold tracking-[0.18em] uppercase transition-all duration-300
-            ${isSolid ? 'text-gray-700' : 'text-white/90'}
+            ${isSolid ? 'text-gray-700 dark:text-gray-200' : 'text-white/90'}
           `}
         >
           {navLinks.map((link) =>
@@ -105,15 +107,15 @@ const Navbar = () => {
 
                 {/* Dropdown menu — wrapper with top padding creates an invisible bridge so hover isn't lost */}
                 <div className="absolute top-full left-0 pt-4 w-52 opacity-0 invisible group-hover:opacity-100 group-hover:visible translate-y-2 group-hover:translate-y-0 transition-all duration-200 z-50">
-                  <div className="bg-white border border-gray-100 shadow-xl py-1">
+                  <div className="bg-white dark:bg-[#111] border border-gray-100 dark:border-gray-800 shadow-xl py-1">
                     {link.children.map((child) => (
                       <Link
                         key={child.path}
                         to={child.path}
                         className={`block px-5 py-3 text-[11px] tracking-widest uppercase transition-colors duration-200 border-l-2
                           ${location.pathname === child.path
-                            ? 'text-amber-500 border-amber-500 bg-amber-50'
-                            : 'text-gray-600 border-transparent hover:text-amber-500 hover:border-amber-500 hover:bg-amber-50'
+                            ? 'text-amber-500 border-amber-500 bg-amber-50 dark:bg-[#222]'
+                            : 'text-gray-600 dark:text-gray-300 border-transparent hover:text-amber-500 hover:border-amber-500 hover:bg-amber-50 dark:hover:bg-[#222]'
                           }`}
                       >
                         {child.name}
@@ -139,6 +141,19 @@ const Navbar = () => {
             )
           )}
 
+          {/* Theme Toggle Button */}
+          <button 
+            onClick={toggleTheme}
+            className={`ml-4 p-2 rounded-full transition-colors duration-300 ${
+              isSolid 
+                ? 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800' 
+                : 'text-white hover:bg-white/10'
+            }`}
+            aria-label="Toggle Theme"
+          >
+            {theme === 'dark' ? <FaSun className="text-amber-400 text-lg" /> : <FaMoon className="text-lg" />}
+          </button>
+
           {/* Get a Quote CTA button */}
           <Link
             to="/contact"
@@ -154,19 +169,29 @@ const Navbar = () => {
           </Link>
         </div>
 
-        {/* ── Mobile Hamburger ────────────────────────────────────────── */}
-        <button
-          className={`md:hidden text-xl z-50 focus:outline-none transition-colors duration-300 ${isSolid ? 'text-gray-900' : 'text-white'}`}
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label={isOpen ? 'Close menu' : 'Open menu'}
-        >
-          <AnimatePresence mode="wait">
-            {isOpen
-              ? <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}><FaTimes /></motion.span>
-              : <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}><FaBars /></motion.span>
-            }
-          </AnimatePresence>
-        </button>
+        {/* ── Mobile Hamburger & Theme Toggle ────────────────────────────────────────── */}
+        <div className="flex items-center gap-4 md:hidden z-50">
+          <button 
+            onClick={toggleTheme}
+            className={`p-2 rounded-full transition-colors duration-300 ${isSolid ? 'text-gray-900 dark:text-gray-200' : 'text-white'}`}
+            aria-label="Toggle Theme"
+          >
+            {theme === 'dark' ? <FaSun className="text-amber-400 text-xl" /> : <FaMoon className="text-xl" />}
+          </button>
+          
+          <button
+            className={`text-xl focus:outline-none transition-colors duration-300 ${isSolid ? 'text-gray-900 dark:text-gray-200' : 'text-white'}`}
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? 'Close menu' : 'Open menu'}
+          >
+            <AnimatePresence mode="wait">
+              {isOpen
+                ? <motion.span key="close" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}><FaTimes /></motion.span>
+                : <motion.span key="open" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}><FaBars /></motion.span>
+              }
+            </AnimatePresence>
+          </button>
+        </div>
       </nav>
 
       {/* ── Mobile Full-Screen Menu ──────────────────────────────────────── */}

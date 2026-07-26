@@ -68,7 +68,7 @@ const Admin = () => {
             <div className="mb-6"></div>
             <input type="password" placeholder="Password" className={inputClasses} value={password} onChange={e => setPassword(e.target.value)} required />
             <div className="mb-8"></div>
-            <button type="submit" className="w-full py-3 bg-accent text-white text-xs tracking-widest uppercase hover:bg-amber-500 transition-colors">
+            <button type="submit" className="w-full py-3 bg-accent text-white text-xs tracking-widest uppercase hover:bg-black transition-colors duration-300 rounded-full">
               Login
             </button>
           </form>

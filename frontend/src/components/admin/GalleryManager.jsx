@@ -38,8 +38,7 @@ const GalleryManager = ({ token }) => {
     try {
       await axios.post(`${API_BASE_URL}/api/gallery`, formData, {
         headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'multipart/form-data'
+          'Authorization': `Bearer ${token}`
         }
       });
       toast.success('Image uploaded successfully', { id: toastId });
@@ -79,13 +78,13 @@ const GalleryManager = ({ token }) => {
             type="file" 
             accept="image/*" 
             onChange={(e) => setFile(e.target.files[0])}
-            className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-accent file:text-white hover:file:bg-amber-500 cursor-pointer transition-all"
+            className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-accent file:text-white hover:file:bg-black transition-all duration-300 cursor-pointer transition-all"
           />
         </div>
         <button 
           type="submit" 
           disabled={uploading || !file} 
-          className={`px-8 py-3 w-full md:w-auto text-xs tracking-widest uppercase transition-colors rounded-full mt-4 md:mt-0 ${uploading || !file ? 'bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-accent text-white hover:bg-amber-500'}`}
+          className={`px-8 py-3 w-full md:w-auto text-xs tracking-widest uppercase transition-colors rounded-full mt-4 md:mt-0 ${uploading || !file ? 'bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-accent text-white hover:bg-black transition-colors duration-300'}`}
         >
           {uploading ? 'Uploading...' : 'Upload'}
         </button>

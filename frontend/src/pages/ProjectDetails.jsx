@@ -57,7 +57,7 @@ const ProjectDetails = () => {
   };
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white dark:bg-[#0a0a0a] min-h-screen">
       <SEO 
         title={project.title} 
         description={project.description}
@@ -85,46 +85,46 @@ const ProjectDetails = () => {
           
           {/* Main Description */}
           <div className="lg:col-span-2">
-            <h2 className="text-2xl font-display uppercase tracking-widest mb-6">Project Overview</h2>
-            <p className="text-gray-600 font-light leading-relaxed mb-8">{project.description || project.desc}</p>
+            <h2 className="text-2xl font-display uppercase tracking-widest mb-6 dark:text-white">Project Overview</h2>
+            <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed mb-8">{project.description || project.desc}</p>
             
-            <h2 className="text-2xl font-display uppercase tracking-widest mb-6">The Challenge</h2>
-            <p className="text-gray-600 font-light leading-relaxed">
+            <h2 className="text-2xl font-display uppercase tracking-widest mb-6 dark:text-white">The Challenge</h2>
+            <p className="text-gray-600 dark:text-gray-300 font-light leading-relaxed">
               Every project comes with its unique set of hurdles. For this endeavor, our team had to navigate complex zoning laws and ensure structural stability while maintaining the architect's pure, minimalist vision. Through innovative engineering and rigorous quality control, we delivered beyond expectations.
             </p>
           </div>
 
           {/* Quick Facts Sidebar */}
-          <div className="bg-gray-50 p-8 border border-gray-200 h-fit">
-            <h3 className="text-sm font-display uppercase tracking-widest mb-6 text-black border-b border-gray-300 pb-2">Project Facts</h3>
+          <div className="bg-gray-50 dark:bg-[#111] p-8 border border-gray-200 dark:border-gray-800 h-fit">
+            <h3 className="text-sm font-display uppercase tracking-widest mb-6 text-black dark:text-white border-b border-gray-300 dark:border-gray-700 pb-2">Project Facts</h3>
             
             <ul className="space-y-6">
               <li className="flex items-start gap-4">
                 <FaUserTie className="text-accent mt-1 text-lg" />
                 <div>
                   <p className="text-xs text-gray-500 uppercase tracking-widest">Client</p>
-                  <p className="font-semibold text-sm">{project.client?.name || project.client || 'N/A'}</p>
+                  <p className="font-semibold text-sm dark:text-gray-200">{project.client?.name || project.client || 'N/A'}</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">
                 <FaMapMarkerAlt className="text-accent mt-1 text-lg" />
                 <div>
                   <p className="text-xs text-gray-500 uppercase tracking-widest">Location</p>
-                  <p className="font-semibold text-sm">{project.location}</p>
+                  <p className="font-semibold text-sm dark:text-gray-200">{project.location}</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">
                 <FaRulerCombined className="text-accent mt-1 text-lg" />
                 <div>
                   <p className="text-xs text-gray-500 uppercase tracking-widest">Area</p>
-                  <p className="font-semibold text-sm">{project.area || 'N/A'}</p>
+                  <p className="font-semibold text-sm dark:text-gray-200">{project.area || 'N/A'}</p>
                 </div>
               </li>
               <li className="flex items-start gap-4">
                 <FaCalendarAlt className="text-accent mt-1 text-lg" />
                 <div>
                   <p className="text-xs text-gray-500 uppercase tracking-widest">Completed</p>
-                  <p className="font-semibold text-sm">{project.completedDate ? new Date(project.completedDate).getFullYear() : (project.year || 'N/A')}</p>
+                  <p className="font-semibold text-sm dark:text-gray-200">{project.completedDate ? new Date(project.completedDate).getFullYear() : (project.year || 'N/A')}</p>
                 </div>
               </li>
             </ul>

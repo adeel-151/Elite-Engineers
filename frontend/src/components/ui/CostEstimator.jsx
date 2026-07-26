@@ -61,7 +61,7 @@ const CostEstimator = () => {
   };
 
   return (
-    <div className="bg-gray-50 border border-gray-200 p-8 md:p-12">
+    <div className="bg-gray-50 dark:bg-secondary border border-gray-200 dark:border-gray-800 p-8 md:p-12">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +83,7 @@ const CostEstimator = () => {
                 <button 
                   key={type}
                   onClick={() => setProjectType(type)}
-                  className={`flex-1 py-3 border text-xs tracking-widest uppercase transition-colors ${projectType === type ? 'border-accent bg-accent text-white' : 'border-gray-300 text-gray-500 hover:border-black hover:text-black'}`}
+                  className={`flex-1 py-3 border text-xs tracking-widest uppercase transition-colors ${projectType === type ? 'border-accent bg-accent text-white' : 'border-gray-300 dark:border-gray-700 text-gray-500 hover:border-black hover:text-black dark:hover:border-white dark:hover:text-white'}`}
                 >
                   {type}
                 </button>
@@ -93,7 +93,7 @@ const CostEstimator = () => {
 
           <div>
             <label className="block text-xs uppercase tracking-widest text-gray-500 mb-4">
-              Total Area: <span className="text-black font-semibold">{area.toLocaleString()} Sq Ft</span>
+              Total Area: <span className="text-black dark:text-white font-semibold">{area.toLocaleString()} Sq Ft</span>
             </label>
             <input 
               type="range" 
@@ -115,7 +115,7 @@ const CostEstimator = () => {
                 <button 
                   key={q}
                   onClick={() => setQuality(q)}
-                  className={`flex-1 py-3 border text-xs tracking-widest uppercase transition-colors ${quality === q ? 'border-accent bg-accent text-white' : 'border-gray-300 text-gray-500 hover:border-black hover:text-black'}`}
+                  className={`flex-1 py-3 border text-xs tracking-widest uppercase transition-colors ${quality === q ? 'border-accent bg-accent text-white' : 'border-gray-300 dark:border-gray-700 text-gray-500 hover:border-black hover:text-black dark:hover:border-white dark:hover:text-white'}`}
                 >
                   {q}
                 </button>
@@ -125,7 +125,7 @@ const CostEstimator = () => {
         </div>
 
         {/* Results & Lead Capture */}
-        <div className="bg-white p-8 border border-gray-200 flex flex-col justify-center text-center">
+        <div className="bg-white dark:bg-[#111] p-8 border border-gray-200 dark:border-gray-800 flex flex-col justify-center text-center">
           <p className="text-xs uppercase tracking-widest text-gray-500 mb-2">Estimated Range</p>
           <div className="text-2xl md:text-3xl lg:text-4xl font-display text-accent mb-8">
             {formatCurrency(estimatedCost.min)} <br/><span className="text-sm text-gray-400 font-sans">to</span> <br/>{formatCurrency(estimatedCost.max)}
@@ -148,12 +148,12 @@ const CostEstimator = () => {
                   placeholder="Enter email for detailed breakdown" 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 py-3 px-4 border border-gray-300 rounded-none focus:outline-none focus:border-black text-sm"
+                  className="flex-1 py-3 px-4 border border-gray-300 dark:border-gray-700 dark:bg-transparent dark:text-white rounded-none focus:outline-none focus:border-black dark:focus:border-white text-sm"
                 />
                 <button 
                   type="submit" 
                   disabled={isSubmitting}
-                  className="py-3 px-6 bg-black text-white text-xs uppercase tracking-widest hover:bg-accent transition-colors"
+                  className="py-3 px-6 bg-black dark:bg-white text-white dark:text-black text-xs uppercase tracking-widest hover:bg-accent dark:hover:bg-accent dark:hover:text-white transition-colors"
                 >
                   {isSubmitting ? 'Sending...' : 'Send Details'}
                 </button>

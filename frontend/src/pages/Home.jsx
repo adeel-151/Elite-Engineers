@@ -280,7 +280,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="bg-white">
+    <div className="bg-white dark:bg-[#0a0a0a] transition-colors duration-300">
       <SEO
         title="Home"
         description="Elite Engineers is a premier engineering firm in Lahore delivering cutting-edge architectural, structural, and construction solutions across Pakistan."
@@ -290,14 +290,14 @@ const Home = () => {
       <HeroSlideshow />
 
       {/* ── 2. CINEMATIC INTRO TEXT ───────────────────────────────────────── */}
-      <div className="py-28 bg-white relative z-20 shadow-[0_-20px_60px_rgba(0,0,0,0.6)]">
+      <div className="py-28 bg-white dark:bg-[#0a0a0a] relative z-20 shadow-[0_-20px_60px_rgba(0,0,0,0.6)]">
         <div className="max-w-5xl mx-auto px-4 text-center">
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed text-gray-800 tracking-wide"
+            className="text-2xl md:text-3xl lg:text-4xl font-light leading-relaxed text-gray-800 dark:text-gray-200 tracking-wide"
           >
             We merge architectural elegance with structural resilience,{' '}
             <span className="text-amber-500 font-medium">defining the modern skyline</span> of Pakistan — one landmark at a time.
@@ -334,7 +334,7 @@ const Home = () => {
       </div>
 
       {/* ── 4. SERVICES PREVIEW STRIP ─────────────────────────────────────── */}
-      <div className="py-28 bg-white relative z-20">
+      <div className="py-28 bg-white dark:bg-[#0a0a0a] relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
             <motion.div
@@ -344,7 +344,7 @@ const Home = () => {
               transition={{ duration: 0.7 }}
             >
               <p className="text-amber-500 text-xs tracking-[0.3em] uppercase mb-3">What We Do</p>
-              <h2 className="text-3xl md:text-4xl font-display tracking-widest uppercase text-gray-900">Our Expertise</h2>
+              <h2 className="text-3xl md:text-4xl font-display tracking-widest uppercase text-gray-900 dark:text-white">Our Expertise</h2>
               <div className="w-12 h-[1px] bg-amber-500 mt-5" />
             </motion.div>
             <motion.div
@@ -404,7 +404,7 @@ const Home = () => {
       </StickyImageSection>
 
       {/* ── 6. PHILOSOPHY GRID & EXPANDED STATS ───────────────────────────── */}
-      <div className="py-32 bg-white relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      <div className="py-32 bg-white dark:bg-[#0a0a0a] relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <motion.div
@@ -414,11 +414,11 @@ const Home = () => {
               transition={{ duration: 0.8 }}
             >
               <p className="text-amber-500 text-xs tracking-[0.3em] uppercase mb-4">Since 2009</p>
-              <h3 className="text-3xl md:text-4xl font-display uppercase tracking-widest mb-8 text-gray-900">Precision & Innovation</h3>
-              <p className="text-gray-600 font-light leading-loose mb-6 text-base">
+              <h3 className="text-3xl md:text-4xl font-display uppercase tracking-widest mb-8 text-gray-900 dark:text-white">Precision & Innovation</h3>
+              <p className="text-gray-600 dark:text-gray-300 font-light leading-loose mb-6 text-base">
                 Every project is a testament to our commitment to excellence. We do not just construct buildings — we engineer landmarks that withstand the test of time. By integrating sustainable practices with cutting-edge technology, we ensure our structures are as efficient as they are striking.
               </p>
-              <p className="text-gray-600 font-light leading-loose mb-10 text-base">
+              <p className="text-gray-600 dark:text-gray-300 font-light leading-loose mb-10 text-base">
                 Our multidisciplinary team navigates the full spectrum — from initial site feasibility and concept design through structural engineering, regulatory approvals, construction supervision, and final handover. This holistic approach means fewer stakeholders, tighter coordination, and superior results.
               </p>
               <Link to="/about" className="inline-flex items-center gap-3 px-8 py-3 border border-gray-300 text-xs tracking-widest text-gray-600 uppercase hover:text-black hover:border-black transition-colors">
@@ -439,9 +439,9 @@ const Home = () => {
                 { value: '50+', label: 'Expert Engineers' },
                 { value: '100%', label: 'Client Satisfaction' },
               ].map((stat, i) => (
-                <div key={stat.label} className={`p-10 border border-gray-100 text-center group hover:bg-gray-900 transition-colors duration-500 ${i === 0 ? 'bg-gray-900' : 'bg-white'}`}>
-                  <div className={`text-4xl md:text-5xl font-display font-bold mb-3 transition-colors duration-500 ${i === 0 ? 'text-amber-400' : 'text-gray-900 group-hover:text-amber-400'}`}>{stat.value}</div>
-                  <div className={`text-xs tracking-widest uppercase transition-colors duration-500 ${i === 0 ? 'text-gray-400' : 'text-gray-500 group-hover:text-gray-400'}`}>{stat.label}</div>
+                <div key={stat.label} className={`p-10 border border-gray-100 dark:border-gray-800 text-center group hover:bg-gray-900 transition-colors duration-500 ${i === 0 ? 'bg-gray-900' : 'bg-white dark:bg-[#111]'}`}>
+                  <div className={`text-4xl md:text-5xl font-display font-bold mb-3 transition-colors duration-500 ${i === 0 ? 'text-amber-400' : 'text-gray-900 dark:text-white group-hover:text-amber-400'}`}>{stat.value}</div>
+                  <div className={`text-xs tracking-widest uppercase transition-colors duration-500 ${i === 0 ? 'text-gray-400' : 'text-gray-500 dark:text-gray-400 group-hover:text-gray-400'}`}>{stat.label}</div>
                 </div>
               ))}
             </motion.div>
@@ -494,7 +494,7 @@ const Home = () => {
       <ProcessTimeline />
 
       {/* ── 9. FEATURED PROJECTS ──────────────────────────────────────────── */}
-      <div className="py-28 bg-gray-50 relative z-20">
+      <div className="py-28 bg-gray-50 dark:bg-[#111] relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
             <motion.div
@@ -504,10 +504,10 @@ const Home = () => {
               transition={{ duration: 0.7 }}
             >
               <p className="text-amber-500 text-xs tracking-[0.3em] uppercase mb-3">Our Masterpieces</p>
-              <h2 className="text-3xl md:text-4xl font-display uppercase tracking-widest text-gray-900">Featured Works</h2>
+              <h2 className="text-3xl md:text-4xl font-display uppercase tracking-widest text-gray-900 dark:text-white">Featured Works</h2>
               <div className="w-12 h-[1px] bg-amber-500 mt-5" />
             </motion.div>
-            <Link to="/projects" className="hidden md:flex items-center gap-2 text-xs font-semibold tracking-widest uppercase hover:text-amber-500 transition-colors border-b border-black hover:border-amber-500 pb-1 mt-6 md:mt-0">
+            <Link to="/projects" className="hidden md:flex items-center gap-2 text-xs font-semibold tracking-widest uppercase hover:text-amber-500 dark:text-gray-300 dark:hover:text-amber-500 transition-colors border-b border-black dark:border-gray-500 hover:border-amber-500 pb-1 mt-6 md:mt-0">
               View All Projects <FaArrowRight className="text-[10px]" />
             </Link>
           </div>
@@ -535,7 +535,7 @@ const Home = () => {
                     <FaArrowRight className="text-black text-sm" />
                   </div>
                 </div>
-                <h4 className="text-xl font-display uppercase tracking-wider mb-1 group-hover:text-amber-500 transition-colors duration-300">{p.title}</h4>
+                <h4 className="text-xl font-display uppercase tracking-wider mb-1 group-hover:text-amber-500 dark:text-white transition-colors duration-300">{p.title}</h4>
                 <p className="text-xs text-gray-400 uppercase tracking-widest">{p.category}</p>
               </motion.div>
             ))}
@@ -550,7 +550,7 @@ const Home = () => {
       </div>
 
       {/* ── 10. TRUST BADGES MARQUEE ──────────────────────────────────────── */}
-      <div className="bg-white py-12 border-y border-gray-100 overflow-hidden relative z-20">
+      <div className="bg-white dark:bg-[#0a0a0a] py-12 border-y border-gray-100 dark:border-gray-800 overflow-hidden relative z-20">
         <div className="text-center mb-8">
           <h3 className="text-xs tracking-[0.3em] text-gray-400 uppercase">Trusted by Industry Leaders & Certified by</h3>
         </div>
@@ -571,7 +571,7 @@ const Home = () => {
       <TestimonialSlider />
 
       {/* ── 12. PROJECT GALLERY MOSAIC ────────────────────────────────────── */}
-      <div className="py-28 bg-white relative z-20">
+      <div className="py-28 bg-white dark:bg-[#0a0a0a] relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -581,7 +581,7 @@ const Home = () => {
             className="text-center mb-16"
           >
             <p className="text-amber-500 text-xs tracking-[0.3em] uppercase mb-3">Our Finest Work</p>
-            <h2 className="text-3xl md:text-4xl font-display tracking-widest uppercase text-gray-900">Project Gallery</h2>
+            <h2 className="text-3xl md:text-4xl font-display tracking-widest uppercase text-gray-900 dark:text-white">Project Gallery</h2>
             <div className="w-16 h-[1px] bg-amber-500 mx-auto mt-5" />
           </motion.div>
 
@@ -605,7 +605,7 @@ const Home = () => {
           </div>
 
           <div className="text-center mt-10">
-            <Link to="/projects" className="inline-flex items-center gap-3 px-10 py-3 border border-gray-300 text-xs tracking-widest uppercase text-gray-600 hover:bg-gray-900 hover:text-white hover:border-gray-900 transition-all duration-300">
+            <Link to="/projects" className="inline-flex items-center gap-3 px-10 py-3 border border-gray-300 dark:border-gray-700 text-xs tracking-widest uppercase text-gray-600 dark:text-gray-300 hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300">
               View Full Portfolio <FaArrowRight className="text-[10px]" />
             </Link>
           </div>

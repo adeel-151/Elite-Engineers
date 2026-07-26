@@ -73,7 +73,7 @@ const About = () => {
       <PageHeader title="About Us" subtitle="Who We Are" />
 
       {/* Main Content */}
-      <div className="py-24 bg-white relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      <div className="py-24 bg-white dark:bg-[#0a0a0a] relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           
           <motion.div 
@@ -83,10 +83,10 @@ const About = () => {
             transition={{ duration: 0.8 }}
             className="mb-12"
           >
-            <p className="text-base font-light leading-relaxed text-gray-600 mb-6">
+            <p className="text-base font-light leading-relaxed text-gray-600 dark:text-gray-300 mb-6">
               Elite Engineers is a premier consulting and construction firm dedicated to transforming visions into reality. With a strong foundation in structural integrity and modern aesthetics, we navigate complex engineering challenges with precision.
             </p>
-            <p className="text-base font-light leading-relaxed text-gray-600">
+            <p className="text-base font-light leading-relaxed text-gray-600 dark:text-gray-300">
               Our multidisciplinary team of architects, civil engineers, and project managers work synergistically to deliver sustainable, cutting-edge solutions for commercial and residential developments across the region.
             </p>
           </motion.div>
@@ -108,7 +108,7 @@ const About = () => {
       </StickyImageSection>
 
       {/* Core Values Grid */}
-      <div className="py-24 bg-white relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
+      <div className="py-24 bg-white dark:bg-[#0a0a0a] relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
             
@@ -119,8 +119,8 @@ const About = () => {
               transition={{ duration: 0.6 }}
               className="text-center"
             >
-              <h3 className="text-xl mb-4 tracking-widest uppercase font-semibold">Integrity</h3>
-              <p className="text-gray-500 font-light text-sm">We believe in transparent operations, honest communication, and delivering exactly what we promise, ensuring trust at every step.</p>
+              <h3 className="text-xl mb-4 tracking-widest uppercase font-semibold text-gray-900 dark:text-white">Integrity</h3>
+              <p className="text-gray-500 dark:text-gray-400 font-light text-sm">We believe in transparent operations, honest communication, and delivering exactly what we promise, ensuring trust at every step.</p>
             </motion.div>
 
             <motion.div 
@@ -130,8 +130,8 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-center"
             >
-              <h3 className="text-xl mb-4 tracking-widest uppercase font-semibold">Innovation</h3>
-              <p className="text-gray-500 font-light text-sm">Embracing the latest technologies and sustainable practices to create structures that are built for tomorrow's challenges.</p>
+              <h3 className="text-xl mb-4 tracking-widest uppercase font-semibold text-gray-900 dark:text-white">Innovation</h3>
+              <p className="text-gray-500 dark:text-gray-400 font-light text-sm">Embracing the latest technologies and sustainable practices to create structures that are built for tomorrow's challenges.</p>
             </motion.div>
 
             <motion.div 
@@ -141,8 +141,8 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="text-center"
             >
-              <h3 className="text-xl mb-4 tracking-widest uppercase font-semibold">Excellence</h3>
-              <p className="text-gray-500 font-light text-sm">A relentless pursuit of quality. From materials to execution, we accept nothing short of perfection in our craft.</p>
+              <h3 className="text-xl mb-4 tracking-widest uppercase font-semibold text-gray-900 dark:text-white">Excellence</h3>
+              <p className="text-gray-500 dark:text-gray-400 font-light text-sm">A relentless pursuit of quality. From materials to execution, we accept nothing short of perfection in our craft.</p>
             </motion.div>
 
           </div>
@@ -150,7 +150,7 @@ const About = () => {
       </div>
 
       {/* Certifications & Licenses */}
-      <div className="py-24 bg-white relative z-20 border-t border-gray-100">
+      <div className="py-24 bg-white dark:bg-[#0a0a0a] relative z-20 border-t border-gray-100 dark:border-gray-800">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
              initial={{ opacity: 0 }}
@@ -167,18 +167,18 @@ const About = () => {
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow bg-surface"
+              className="p-8 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow bg-surface dark:bg-secondary"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-white border border-gray-200 rounded-full flex items-center justify-center p-2 shadow-sm shrink-0">
+                <div className="w-16 h-16 bg-white border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center p-2 shadow-sm shrink-0">
                   <img src={pec} alt="PEC Logo" className="w-full h-full object-contain" />
                 </div>
                 <div>
-                  <h3 className="text-lg md:text-xl font-semibold tracking-wide uppercase text-black">PEC Registered</h3>
+                  <h3 className="text-lg md:text-xl font-semibold tracking-wide uppercase text-black dark:text-white">PEC Registered</h3>
                   <p className="text-[10px] md:text-xs text-accent tracking-widest uppercase mt-1">Licence No: 17520 (Category: C4/E)</p>
                 </div>
               </div>
-              <p className="text-gray-500 font-light text-sm leading-relaxed">
+              <p className="text-gray-500 dark:text-gray-400 font-light text-sm leading-relaxed">
                 Officially licensed by the Pakistan Engineering Council (PEC) as a certified Constructor and Operator, adhering strictly to national engineering standards and bye-laws.
               </p>
             </motion.div>
@@ -187,18 +187,18 @@ const About = () => {
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="p-8 border border-gray-100 shadow-sm hover:shadow-md transition-shadow bg-surface"
+              className="p-8 border border-gray-100 dark:border-gray-800 shadow-sm hover:shadow-md transition-shadow bg-surface dark:bg-secondary"
             >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-white border border-gray-200 rounded-full flex items-center justify-center p-2 shadow-sm shrink-0">
+                <div className="w-16 h-16 bg-white border border-gray-200 dark:border-gray-700 rounded-full flex items-center justify-center p-2 shadow-sm shrink-0">
                   <img src={secp} alt="SECP Logo" className="w-full h-full object-contain" />
                 </div>
                 <div>
-                  <h3 className="text-lg md:text-xl font-semibold tracking-wide uppercase text-black">SECP Incorporated</h3>
+                  <h3 className="text-lg md:text-xl font-semibold tracking-wide uppercase text-black dark:text-white">SECP Incorporated</h3>
                   <p className="text-[10px] md:text-xs text-accent tracking-widest uppercase mt-1">CUIN: 0312523</p>
                 </div>
               </div>
-              <p className="text-gray-500 font-light text-sm leading-relaxed">
+              <p className="text-gray-500 dark:text-gray-400 font-light text-sm leading-relaxed">
                 Registered and incorporated under the Securities and Exchange Commission of Pakistan (SECP) as ELITE ENGINEERS (SMC-PRIVATE) LIMITED.
               </p>
             </motion.div>
@@ -207,7 +207,7 @@ const About = () => {
       </div>
 
       {/* Leadership Team */}
-      <div className="py-24 bg-gray-50 relative z-20">
+      <div className="py-24 bg-gray-50 dark:bg-[#111] relative z-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
              initial={{ opacity: 0 }}
@@ -229,10 +229,10 @@ const About = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="group cursor-pointer"
               >
-                <div className="w-full h-80 bg-gray-200 overflow-hidden mb-4 transition-all duration-500">
-                  <img src={person.img} alt={person.name} className="w-full h-full object-cover" />
+                <div className="w-full h-80 bg-gray-200 dark:bg-gray-800 overflow-hidden mb-4 transition-all duration-500">
+                  <img src={person.img} alt={person.name} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" />
                 </div>
-                <h4 className="font-semibold uppercase tracking-wider">{person.name}</h4>
+                <h4 className="font-semibold uppercase tracking-wider text-gray-900 dark:text-white">{person.name}</h4>
                 <p className="text-xs text-accent uppercase tracking-widest mt-1">{person.role}</p>
               </motion.div>
             ))}
