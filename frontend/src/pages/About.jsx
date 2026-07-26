@@ -1,5 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import { FaChevronUp } from 'react-icons/fa';
 import SEO from '../components/ui/SEO';
 import img1 from '../assets/img1.jpg';
@@ -8,7 +10,6 @@ import img9 from '../assets/img9.jpg';
 import img11 from '../assets/img11.jpg';
 import secp from '../assets/secp.jpg';
 import pec from '../assets/pec.jpg';
-
 
 // Reusable Sticky Section Component
 const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
@@ -32,7 +33,30 @@ const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) =>
   );
 };
 
+const initialTeam = [
+  { name: 'Adeel Khan', role: 'Chief Executive Officer', img: img9 },
+  { name: 'Sarah Ahmed', role: 'Head of Architecture', img: img3 },
+  { name: 'Usman Ali', role: 'Lead Structural Engineer', img: img11 },
+  { name: 'Fatima Zafar', role: 'Project Manager', img: img9 }
+];
+
 const About = () => {
+  const [team, setTeam] = useState(initialTeam);
+
+  useEffect(() => {
+    const fetchTeam = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/api/team`);
+        if (response.data?.data?.teamMembers?.length > 0) {
+          setTeam(response.data.data.teamMembers);
+        }
+      } catch (error) {
+        console.error('Failed to fetch team members:', error);
+      }
+    };
+    fetchTeam();
+  }, []);
+
   return (
     <>
       <SEO 
@@ -200,12 +224,7 @@ const About = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { name: 'Adeel Khan', role: 'Chief Executive Officer', img: img9 },
-              { name: 'Sarah Ahmed', role: 'Head of Architecture', img: img3 },
-              { name: 'Usman Ali', role: 'Lead Structural Engineer', img: img11 },
-              { name: 'Fatima Zafar', role: 'Project Manager', img: img9 }
-            ].map((person, index) => (
+            {team.map((person, index) => (
               <motion.div 
                 key={index}
                 initial={{ opacity: 0, scale: 0.95 }}

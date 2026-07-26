@@ -13,8 +13,6 @@ const app = express();
 
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
-const mongoSanitize = require('express-mongo-sanitize');
-const xss = require('xss-clean');
 const hpp = require('hpp');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./src/config/swagger');
@@ -35,13 +33,9 @@ app.use(cors());
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 
-// 3. Data sanitization against NoSQL query injection
-// Note: express-mongo-sanitize has a known issue with Express 5 where req.query is read-only
-// app.use(mongoSanitize());
-
-// 4. Data sanitization against XSS
-// Note: xss-clean is deprecated and crashes Express 5
-// app.use(xss());
+// 3. Data sanitization against NoSQL query injection and XSS
+const sanitizer = require('./src/middlewares/sanitizer');
+app.use(sanitizer());
 
 // 5. Prevent parameter pollution
 app.use(hpp());
@@ -49,12 +43,19 @@ app.use(hpp());
 // Swagger API Documentation Route
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+const serviceRoutes = require('./src/routes/service.routes');
+const faqRoutes = require('./src/routes/faq.routes');
+const teamRoutes = require('./src/routes/team.routes');
+
 // Routes
 app.use('/api/projects', projectRoutes);
 app.use('/api/clients', clientRoutes);
 app.use('/api/inquiries', inquiryRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/gallery', galleryRoutes);
+app.use('/api/services', serviceRoutes);
+app.use('/api/faqs', faqRoutes);
+app.use('/api/team', teamRoutes);
 
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'success', message: 'API is running' });

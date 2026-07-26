@@ -6,6 +6,8 @@ import {
   FaArrowRight, FaCheckCircle, FaChevronUp, FaWhatsapp,
 } from 'react-icons/fa';
 import { useState } from 'react';
+import axios from 'axios';
+import API_BASE_URL from '../../config/api';
 import logoImg from '../../assets/logo.png';
 
 // ─── Footer Data ─────────────────────────────────────────────────────────────
@@ -60,16 +62,8 @@ const Footer = () => {
     
     setIsSubmitting(true);
     try {
-      await fetch("https://formsubmit.co/ajax/elite.pk@outlook.com", {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        },
-        body: JSON.stringify({
-          _subject: "New Newsletter Subscription",
-          email: email
-        })
+      await axios.post(`${API_BASE_URL}/api/inquiries/newsletter`, {
+        email: email
       });
       setSubscribed(true);
       setEmail('');

@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaChevronDown } from 'react-icons/fa';
+import axios from 'axios';
+import API_BASE_URL from '../../../config/api';
 
-const faqs = [
+const initialFaqs = [
   {
     question: "How long does a typical commercial project take?",
     answer: "Project timelines vary greatly depending on scope, scale, and local regulations. A mid-sized commercial building typically takes 12 to 18 months from ground-breaking to handover, while interior fit-outs can take 3 to 6 months."
@@ -27,6 +29,21 @@ const faqs = [
 
 const FaqAccordion = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [faqs, setFaqs] = useState(initialFaqs);
+
+  useEffect(() => {
+    const fetchFaqs = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/api/faqs`);
+        if (response.data?.data?.faqs?.length > 0) {
+          setFaqs(response.data.data.faqs);
+        }
+      } catch (error) {
+        console.error('Failed to fetch FAQs:', error);
+      }
+    };
+    fetchFaqs();
+  }, []);
 
   const toggleFaq = (index) => {
     setActiveIndex(activeIndex === index ? null : index);

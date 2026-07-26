@@ -1,6 +1,8 @@
+import { useState, useEffect, useRef } from 'react';
+import axios from 'axios';
+import API_BASE_URL from '../config/api';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import SEO from '../components/ui/SEO';
-import { useRef } from 'react';
 import { FaChevronUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import CostEstimator from '../components/ui/CostEstimator';
@@ -15,6 +17,54 @@ import img7 from '../assets/img7.jpg';
 import img8 from '../assets/img8.jpg';
 import img10 from '../assets/img10.jpg';
 import img11 from '../assets/img11.jpg';
+
+const initialServices = [
+  {
+    title: "Engineering & Construction Services",
+    desc: "Full-spectrum engineering and construction solutions — from structural planning to on-site execution — delivered with precision and professionalism.",
+    img: img6
+  },
+  {
+    title: "Turnkey Construction Solutions",
+    desc: "Complete project delivery from first blueprint to final handover — one team, zero coordination headaches, total accountability.",
+    img: img10
+  },
+  {
+    title: "Grey Structure Execution",
+    desc: "Robust and precise grey structure construction — foundations, columns, beams, slabs — built to last and built to code.",
+    img: img7
+  },
+  {
+    title: "Architectural Consultancy",
+    desc: "Expert architectural guidance from concept to completion — space planning, façade design, and regulatory compliance handled expertly.",
+    img: img4
+  },
+  {
+    title: "Structural Design & Analysis",
+    desc: "Advanced structural engineering using modern software to ensure safety, durability, and compliance with international standards.",
+    img: img5
+  },
+  {
+    title: "3D Interior & Exterior Design",
+    desc: "Photorealistic 3D visualisations of interiors and exteriors — see your project in stunning detail before a single brick is laid.",
+    img: img8
+  },
+  {
+    title: "Project Planning & Supervision",
+    desc: "Detailed project scheduling, resource allocation, and on-site supervision to keep every phase on time and within budget.",
+    img: img1
+  },
+  {
+    title: "Land Surveying Services",
+    desc: "Accurate topographic and boundary surveys using modern instruments — essential groundwork for every successful project.",
+    img: img3
+  },
+  {
+    title: "Town Planning & Development",
+    desc: "Strategic urban and residential town planning — master plans, zoning consultation, and development approvals handled end to end.",
+    img: img2
+  },
+];
 
 const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
   const containerRef = useRef(null);
@@ -38,53 +88,21 @@ const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) =>
 };
 
 const Services = () => {
-  const services = [
-    {
-      title: "Engineering & Construction Services",
-      desc: "Full-spectrum engineering and construction solutions — from structural planning to on-site execution — delivered with precision and professionalism.",
-      img: img6
-    },
-    {
-      title: "Turnkey Construction Solutions",
-      desc: "Complete project delivery from first blueprint to final handover — one team, zero coordination headaches, total accountability.",
-      img: img10
-    },
-    {
-      title: "Grey Structure Execution",
-      desc: "Robust and precise grey structure construction — foundations, columns, beams, slabs — built to last and built to code.",
-      img: img7
-    },
-    {
-      title: "Architectural Consultancy",
-      desc: "Expert architectural guidance from concept to completion — space planning, façade design, and regulatory compliance handled expertly.",
-      img: img4
-    },
-    {
-      title: "Structural Design & Analysis",
-      desc: "Advanced structural engineering using modern software to ensure safety, durability, and compliance with international standards.",
-      img: img5
-    },
-    {
-      title: "3D Interior & Exterior Design",
-      desc: "Photorealistic 3D visualisations of interiors and exteriors — see your project in stunning detail before a single brick is laid.",
-      img: img8
-    },
-    {
-      title: "Project Planning & Supervision",
-      desc: "Detailed project scheduling, resource allocation, and on-site supervision to keep every phase on time and within budget.",
-      img: img1
-    },
-    {
-      title: "Land Surveying Services",
-      desc: "Accurate topographic and boundary surveys using modern instruments — essential groundwork for every successful project.",
-      img: img3
-    },
-    {
-      title: "Town Planning & Development",
-      desc: "Strategic urban and residential town planning — master plans, zoning consultation, and development approvals handled end to end.",
-      img: img2
-    },
-  ];
+  const [services, setServices] = useState(initialServices);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/api/services`);
+        if (response.data?.data?.services?.length > 0) {
+          setServices(response.data.data.services);
+        }
+      } catch (error) {
+        console.error('Failed to fetch services:', error);
+      }
+    };
+    fetchServices();
+  }, []);
 
   return (
     <>

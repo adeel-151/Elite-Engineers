@@ -26,8 +26,23 @@ const Clients = () => {
       { _id: '12', name: 'Samara Contracting' },
       { _id: '13', name: 'Confit Associates' },
     ];
-    setClients(staticClients);
-    setLoading(false);
+
+    const fetchClients = async () => {
+      try {
+        const response = await axios.get(`${API_BASE_URL}/api/clients`);
+        if (response.data?.data?.clients?.length > 0) {
+          setClients(response.data.data.clients);
+        } else {
+          setClients(staticClients);
+        }
+      } catch (err) {
+        console.error('Failed to fetch clients:', err);
+        setClients(staticClients);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchClients();
   }, []);
 
   return (

@@ -59,3 +59,34 @@ exports.updateInquiryStatus = catchAsync(async (req, res, next) => {
     data: { inquiry }
   });
 });
+
+exports.subscribeNewsletter = catchAsync(async (req, res, next) => {
+  const { email } = req.body;
+  if (!email) {
+    return next(new AppError('Please provide an email address.', 400));
+  }
+  
+  // Here we could save it to a separate Newsletter model, but saving as an inquiry type 'newsletter' works
+  const newInquiry = await Inquiry.create({
+    name: 'Newsletter Subscriber',
+    email,
+    message: 'Subscribed to newsletter',
+    type: 'general'
+  });
+
+  try {
+    const userMessage = `Hi there,\n\nThank you for subscribing to Elite Engineers newsletter! You'll receive updates on our latest projects and insights.\n\nBest Regards,\nElite Engineers Team`;
+    await sendEmail({
+      email,
+      subject: 'Welcome to Elite Engineers Newsletter',
+      message: userMessage
+    });
+  } catch (err) {
+    console.error('Error sending newsletter confirmation:', err);
+  }
+
+  res.status(200).json({
+    status: 'success',
+    message: 'Subscribed successfully'
+  });
+});

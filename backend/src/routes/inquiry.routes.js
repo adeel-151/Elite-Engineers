@@ -7,6 +7,9 @@ const router = express.Router();
 // Public route to submit an inquiry (contact or quotation)
 router.post('/', inquiryController.createInquiry);
 
+// Public route for newsletter subscription
+router.post('/newsletter', inquiryController.subscribeNewsletter);
+
 // Admin routes
 router.use(authMiddleware.protect);
 router.get('/', inquiryController.getAllInquiries);
