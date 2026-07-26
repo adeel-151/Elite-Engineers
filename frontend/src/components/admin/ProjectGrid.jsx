@@ -60,18 +60,30 @@ const ProjectGrid = ({ token, onEdit }) => {
     );
   }
 
-  if (projects.length === 0) {
-    return <div className="text-center py-12 text-gray-500 border border-dashed border-gray-300 rounded-lg">No projects found. Switch to the 'Add New' tab to create one!</div>;
-  }
-
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {projects.map((project) => (
-        <div key={project._id} className="bg-white border border-gray-100 shadow-sm rounded-lg overflow-hidden group hover:shadow-md transition-shadow">
-          <div className="h-48 relative bg-gray-100">
-            {project.images && project.images.length > 0 ? (
-              <img src={getImageUrl(project.images[0])} alt={project.title} className="w-full h-full object-cover" />
-            ) : (
+    <div>
+      <div className="flex justify-between items-center mb-8">
+        <h2 className="text-xl font-display uppercase tracking-widest">Manage Projects</h2>
+        <button 
+          onClick={() => onEdit(null)}
+          className="px-6 py-2 bg-black text-white text-xs tracking-widest uppercase rounded-full hover:bg-gray-800 transition-colors"
+        >
+          + Add New Project
+        </button>
+      </div>
+
+      {projects.length === 0 ? (
+        <div className="text-center py-12 text-gray-500 border border-dashed border-gray-300 rounded-lg">
+          No projects found. Click "Add New Project" to create one!
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <div key={project._id} className="bg-white border border-gray-100 shadow-sm rounded-lg overflow-hidden group hover:shadow-md transition-shadow">
+              <div className="h-48 relative bg-gray-100">
+                {project.images && project.images.length > 0 ? (
+                  <img src={getImageUrl(project.images[0])} alt={project.title} className="w-full h-full object-cover" />
+                ) : (
               <div className="w-full h-full flex items-center justify-center text-gray-400">No Image</div>
             )}
             
@@ -102,6 +114,8 @@ const ProjectGrid = ({ token, onEdit }) => {
           </div>
         </div>
       ))}
+        </div>
+      )}
     </div>
   );
 };
