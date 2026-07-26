@@ -99,16 +99,16 @@ const ServicesManager = ({ token }) => {
     }
   };
 
-  const inputClasses = "w-full py-3 bg-transparent border-0 border-b border-gray-300 rounded-none focus:ring-0 focus:border-black outline-none text-sm transition-colors mb-2";
+  const inputClasses = "w-full py-3 bg-transparent border-0 border-b border-gray-700 rounded-none focus:ring-0 focus:border-accent outline-none text-sm transition-colors mb-2 text-white placeholder-gray-500";
 
   return (
     <div>
-      <h2 className="text-xl font-display uppercase tracking-widest mb-8">
+      <h2 className="text-xl font-display uppercase tracking-widest mb-8 text-white">
         {editingId ? 'Edit Service' : 'Add New Service'}
       </h2>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="mb-12 bg-gray-50 p-6 border border-gray-100">
+      <form onSubmit={handleSubmit} className="mb-12 bg-primary p-6 border border-gray-800">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
           <div>
             <input type="text" placeholder="Service Title" className={inputClasses} value={title} onChange={e => setTitle(e.target.value)} required />
@@ -122,23 +122,23 @@ const ServicesManager = ({ token }) => {
           <textarea placeholder="Service Description..." rows="3" className={`${inputClasses} resize-none`} value={desc} onChange={e => setDesc(e.target.value)} required></textarea>
         </div>
 
-        <div className="mb-8">
-          <label className="block text-xs text-gray-500 uppercase tracking-widest mb-2">
+        <div className="mb-8 mt-6">
+          <label className="block text-xs text-gray-400 uppercase tracking-widest mb-4">
             {editingId ? 'Upload New Image (Optional)' : 'Upload Service Image'}
           </label>
           <input 
             id="service-image-upload"
             type="file" accept="image/*" onChange={e => setImageFile(e.target.files[0])}
-            className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-white file:border file:border-gray-200 file:text-black hover:file:bg-gray-100"
+            className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-accent file:text-white hover:file:bg-amber-500 cursor-pointer transition-all"
           />
         </div>
 
         <div className="flex gap-4">
-          <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full ${isSubmitting ? 'bg-gray-400 text-white cursor-not-allowed' : 'bg-black text-white hover:bg-gray-800'}`}>
+          <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full ${isSubmitting ? 'bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-accent text-white hover:bg-amber-500'}`}>
             {isSubmitting ? 'Please Wait...' : (editingId ? 'Update Service' : 'Save Service')}
           </button>
           {editingId && (
-            <button type="button" onClick={resetForm} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full bg-gray-200 text-black hover:bg-gray-300">
+            <button type="button" onClick={resetForm} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full bg-gray-800 text-white hover:bg-gray-700 border border-gray-700">
               Cancel
             </button>
           )}
@@ -146,26 +146,26 @@ const ServicesManager = ({ token }) => {
       </form>
 
       {/* List */}
-      <h2 className="text-xl font-display uppercase tracking-widest mb-6">Existing Services</h2>
+      <h2 className="text-xl font-display uppercase tracking-widest mb-6 text-white">Existing Services</h2>
       {loading ? (
-        <div className="text-gray-500 text-sm">Loading services...</div>
+        <div className="text-gray-400 text-sm">Loading services...</div>
       ) : services.length === 0 ? (
-        <div className="text-gray-500 text-sm italic">No services found.</div>
+        <div className="text-gray-400 text-sm italic">No services found.</div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map(service => (
-            <div key={service._id} className="border border-gray-200 bg-white p-4 flex flex-col">
+            <div key={service._id} className="border border-gray-800 bg-primary p-4 flex flex-col hover:border-gray-600 transition-all">
               {service.img && (
-                <img src={service.img} alt={service.title} className="w-full h-40 object-cover mb-4 bg-gray-100" />
+                <img src={service.img.startsWith('http') ? service.img : `${API_BASE_URL}/${service.img.replace(/\\/g, '/')}`} alt={service.title} className="w-full h-40 object-cover mb-4 bg-secondary" />
               )}
-              <h3 className="font-display uppercase tracking-widest text-lg mb-2">{service.title}</h3>
-              <p className="text-xs text-gray-500 mb-4 line-clamp-3 flex-grow">{service.desc}</p>
+              <h3 className="font-display uppercase tracking-widest text-lg mb-2 text-white">{service.title}</h3>
+              <p className="text-xs text-gray-400 mb-4 line-clamp-3 flex-grow">{service.desc}</p>
               
-              <div className="flex gap-2 mt-auto pt-4 border-t border-gray-100">
-                <button onClick={() => handleEdit(service)} className="flex-1 py-2 bg-gray-100 hover:bg-gray-200 text-xs tracking-widest uppercase transition-colors flex justify-center items-center gap-2">
+              <div className="flex gap-2 mt-auto pt-4 border-t border-gray-800">
+                <button onClick={() => handleEdit(service)} className="flex-1 py-2 bg-gray-800 hover:bg-gray-700 text-white text-xs tracking-widest uppercase transition-colors flex justify-center items-center gap-2">
                   <FaEdit /> Edit
                 </button>
-                <button onClick={() => handleDelete(service._id)} className="flex-1 py-2 bg-red-50 hover:bg-red-100 text-red-600 text-xs tracking-widest uppercase transition-colors flex justify-center items-center gap-2">
+                <button onClick={() => handleDelete(service._id)} className="flex-1 py-2 bg-red-900/30 hover:bg-red-900/50 text-red-400 text-xs tracking-widest uppercase transition-colors flex justify-center items-center gap-2">
                   <FaTrash /> Delete
                 </button>
               </div>

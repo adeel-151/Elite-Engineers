@@ -63,32 +63,32 @@ const ProjectGrid = ({ token, onEdit }) => {
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-xl font-display uppercase tracking-widest">Manage Projects</h2>
+        <h2 className="text-xl font-display uppercase tracking-widest text-white">Manage Projects</h2>
         <button 
           onClick={() => onEdit(null)}
-          className="px-6 py-2 bg-black text-white text-xs tracking-widest uppercase rounded-full hover:bg-gray-800 transition-colors"
+          className="px-6 py-2 bg-accent text-white text-xs tracking-widest uppercase rounded-full hover:bg-amber-500 transition-colors"
         >
           + Add New Project
         </button>
       </div>
 
       {projects.length === 0 ? (
-        <div className="text-center py-12 text-gray-500 border border-dashed border-gray-300 rounded-lg">
+        <div className="text-center py-12 text-gray-400 border border-dashed border-gray-800 rounded-lg">
           No projects found. Click "Add New Project" to create one!
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <div key={project._id} className="bg-white border border-gray-100 shadow-sm rounded-lg overflow-hidden group hover:shadow-md transition-shadow">
-              <div className="h-48 relative bg-gray-100">
+            <div key={project._id} className="bg-primary border border-gray-800 shadow-sm rounded-lg overflow-hidden group hover:shadow-md hover:border-gray-600 transition-all">
+              <div className="h-48 relative bg-secondary">
                 {project.images && project.images.length > 0 ? (
-                  <img src={getImageUrl(project.images[0])} alt={project.title} className="w-full h-full object-cover" />
+                  <img src={getImageUrl(project.images[0])} alt={project.title} className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
                 ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-400">No Image</div>
+              <div className="w-full h-full flex items-center justify-center text-gray-500">No Image</div>
             )}
             
             {/* Hover Overlay Actions */}
-            <div className="absolute inset-0 bg-black/70 flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px]">
+            <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px]">
               <button 
                 onClick={() => onEdit(project)}
                 className="flex items-center gap-2 px-6 py-2 bg-white text-black font-semibold tracking-widest uppercase text-xs rounded-full shadow-lg hover:bg-accent hover:text-white hover:scale-105 transition-all duration-300"
@@ -109,8 +109,8 @@ const ProjectGrid = ({ token, onEdit }) => {
           
           <div className="p-4">
             <span className="text-xs text-accent uppercase tracking-widest">{project.category}</span>
-            <h3 className="font-display text-lg mt-1 mb-2">{project.title}</h3>
-            <p className="text-sm text-gray-500 line-clamp-2">{project.description}</p>
+            <h3 className="font-display text-lg mt-1 mb-2 text-white">{project.title}</h3>
+            <p className="text-sm text-gray-400 line-clamp-2">{project.description}</p>
           </div>
         </div>
       ))}

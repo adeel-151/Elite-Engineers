@@ -89,18 +89,18 @@ const ProjectForm = ({ token, initialData = null, onSuccess, onCancel }) => {
     }
   };
 
-  const inputClasses = "w-full py-3 bg-transparent border-0 border-b border-gray-300 rounded-none focus:ring-0 focus:border-black outline-none text-sm transition-colors mb-2";
+  const inputClasses = "w-full py-3 bg-transparent border-0 border-b border-gray-700 rounded-none focus:ring-0 focus:border-accent outline-none text-sm transition-colors mb-2 text-white placeholder-gray-500";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
         <div>
           <input type="text" placeholder="Project Title" className={inputClasses} {...register('title')} />
-          {errors.title && <p className="text-red-500 text-xs">{errors.title.message}</p>}
+          {errors.title && <p className="text-red-400 text-xs mt-1">{errors.title.message}</p>}
         </div>
         
         <div>
-          <select className={inputClasses} {...register('category')}>
+          <select className={`${inputClasses} [&>option]:bg-secondary [&>option]:text-white`} {...register('category')}>
             <option value="Architectural & Structural Design">Architectural & Structural Design</option>
             <option value="Construction">Construction</option>
             <option value="Project Management & Supervision">Project Management & Supervision</option>
@@ -108,36 +108,36 @@ const ProjectForm = ({ token, initialData = null, onSuccess, onCancel }) => {
             <option value="Quantity Surveying/Estimation/BOQs">Quantity Surveying/Estimation/BOQs</option>
             <option value="Engineering Consultancy">Engineering Consultancy</option>
           </select>
-          {errors.category && <p className="text-red-500 text-xs">{errors.category.message}</p>}
+          {errors.category && <p className="text-red-400 text-xs mt-1">{errors.category.message}</p>}
         </div>
       </div>
 
       <div className="mb-4">
         <input type="text" placeholder="Location (e.g. DHA, Lahore)" className={inputClasses} {...register('location')} />
-        {errors.location && <p className="text-red-500 text-xs">{errors.location.message}</p>}
+        {errors.location && <p className="text-red-400 text-xs mt-1">{errors.location.message}</p>}
       </div>
 
       <div className="mb-4">
         <textarea placeholder="Project Description..." rows="4" className={`${inputClasses} resize-none min-h-[100px]`} {...register('description')}></textarea>
-        {errors.description && <p className="text-red-500 text-xs">{errors.description.message}</p>}
+        {errors.description && <p className="text-red-400 text-xs mt-1">{errors.description.message}</p>}
       </div>
 
-      <div className="mb-8">
-        <label className="block text-xs text-gray-500 uppercase tracking-widest mb-2">
+      <div className="mb-8 mt-6">
+        <label className="block text-xs text-gray-400 uppercase tracking-widest mb-4">
           {isEditing ? 'Upload New Images (Optional - will replace old ones)' : 'Upload Images (Max 10)'}
         </label>
         <input 
           type="file" multiple accept="image/*" onChange={e => setImages(e.target.files)}
-          className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-gray-100 file:text-black hover:file:bg-gray-200"
+          className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-accent file:text-white hover:file:bg-amber-500 cursor-pointer file:cursor-pointer transition-all"
         />
       </div>
 
       <div className="flex gap-4">
-        <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full ${isSubmitting ? 'bg-gray-400 text-white cursor-not-allowed' : 'bg-black text-white hover:bg-gray-800'}`}>
+        <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full ${isSubmitting ? 'bg-gray-700 text-gray-400 cursor-not-allowed' : 'bg-accent text-white hover:bg-amber-500'}`}>
           {isSubmitting ? 'Please Wait...' : (isEditing ? 'Update Project' : 'Publish Project')}
         </button>
         {isEditing && (
-          <button type="button" onClick={onCancel} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full bg-gray-200 text-black hover:bg-gray-300">
+          <button type="button" onClick={onCancel} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full bg-gray-800 text-white hover:bg-gray-700 border border-gray-700">
             Cancel Edit
           </button>
         )}
