@@ -98,12 +98,12 @@ const Admin = () => {
           <div className="bg-secondary border border-gray-800 p-6 shadow-sm sticky top-32">
             <h1 className="text-xl font-display uppercase tracking-widest mb-8 border-b border-gray-800 pb-4 text-white">Dashboard</h1>
             
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-1">
               {tabs.map((tab) => (
                 <button 
                   key={tab.id}
                   onClick={() => { setActiveTab(tab.id); setEditingProject(null); }}
-                  className={`text-left text-xs uppercase tracking-widest py-3 px-4 transition-colors rounded ${activeTab === tab.id || (activeTab === 'form' && tab.id === 'manage') ? 'bg-accent text-white font-semibold' : 'text-gray-400 hover:bg-gray-800 hover:text-white'}`}
+                  className={`text-left text-xs uppercase tracking-widest py-3 px-4 transition-all duration-200 border-l-2 ${activeTab === tab.id || (activeTab === 'form' && tab.id === 'manage') ? 'border-amber-400 bg-amber-400/10 text-amber-400 font-semibold' : 'border-transparent text-gray-400 hover:border-gray-500 hover:bg-gray-800/50 hover:text-white'}`}
                 >
                   {tab.label}
                 </button>
@@ -112,7 +112,7 @@ const Admin = () => {
 
             <button 
               onClick={handleLogout} 
-              className="w-full mt-12 text-left text-xs text-red-400 uppercase tracking-widest hover:text-red-300 py-3 px-4 border border-red-900/30 hover:bg-red-900/20 transition-colors"
+              className="w-full mt-12 text-xs text-red-400 uppercase tracking-widest hover:text-white py-3 px-4 border border-red-900/40 hover:bg-red-600 hover:border-red-600 transition-all duration-200"
             >
               Logout
             </button>

@@ -27,20 +27,20 @@ const InitialLoader = ({ onComplete }) => {
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-8"
+            className="mb-3"
           >
             <img
               src={logoImg}
               alt="Elite Engineers Logo"
-              className="h-28 md:h-36 object-contain brightness-0 invert"
+              className="h-44 md:h-56 w-auto object-contain"
             />
           </motion.div>
 
           <motion.div 
             initial={{ width: 0 }}
-            animate={{ width: "200px" }}
+            animate={{ width: "220px" }}
             transition={{ duration: 1.5, delay: 1, ease: "easeInOut" }}
-            className="h-[1px] bg-accent mt-8 opacity-50"
+            className="h-[1px] bg-accent mt-3 opacity-60"
           ></motion.div>
         </motion.div>
       )}

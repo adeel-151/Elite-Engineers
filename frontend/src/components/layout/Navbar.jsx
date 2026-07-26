@@ -73,8 +73,8 @@ const Navbar = () => {
             alt="Elite Engineers Logo"
             className={`object-contain transition-all duration-300 ${
               isSolid
-                ? 'h-12 md:h-14 brightness-100'
-                : 'h-14 md:h-16 brightness-0 invert'
+                ? 'h-16 md:h-20'
+                : 'h-18 md:h-24'
             }`}
           />
         </Link>

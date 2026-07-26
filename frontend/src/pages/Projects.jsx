@@ -28,6 +28,15 @@ import img45 from '../assets/img45.jpeg';
 import img50 from '../assets/img50.jpeg';
 import afterImg from '../assets/after.png';
 
+// Helper to build correct image URL for backend or static images
+const getImageUrl = (imagePath) => {
+  if (!imagePath) return '';
+  if (imagePath.startsWith('http') || imagePath.startsWith('blob') || imagePath.startsWith('/src')) return imagePath;
+  // Handle imported static assets (they come as strings after bundling)
+  if (typeof imagePath === 'string' && !imagePath.includes('\\') && !imagePath.includes('uploads/')) return imagePath;
+  return `${API_BASE_URL}/${imagePath.replace(/\\/g, '/')}`;
+};
+
 // Reusable Sticky Section Component
 const StickyImageSection = ({ imageSrc, heightClass = "h-[60vh]", children }) => {
   const containerRef = useRef(null);
@@ -135,7 +144,7 @@ const Projects = () => {
                   <button 
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`px-6 py-2 text-xs tracking-widest uppercase transition-colors rounded-full border ${activeCategory === cat ? 'bg-accent border-accent text-white' : 'bg-transparent border-gray-300 text-gray-500 hover:border-black hover:text-black'}`}
+                    className={`px-6 py-2 text-xs tracking-widest uppercase transition-colors border ${activeCategory === cat ? 'bg-accent border-accent text-white' : 'bg-transparent border-gray-300 text-gray-500 hover:border-black hover:text-black'}`}
                   >
                     {cat}
                   </button>
@@ -153,7 +162,7 @@ const Projects = () => {
                   <Link to={`/projects/${project._id}`} key={project._id + index} className="relative group overflow-hidden h-64 md:h-80 bg-gray-100 cursor-pointer block">
                     {project.images && project.images.length > 0 ? (
                       <img 
-                        src={project.images[0]} 
+                        src={getImageUrl(project.images[0])} 
                         alt={project.title} 
                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
                       />
@@ -194,3 +203,5 @@ const Projects = () => {
 };
 
 export default Projects;
+
+

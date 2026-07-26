@@ -123,7 +123,7 @@ const Footer = () => {
               <img
                 src={logoImg}
                 alt="Elite Engineers Logo"
-                className="h-16 object-contain brightness-0 invert opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                className="h-20 md:h-24 w-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
               />
             </Link>
 

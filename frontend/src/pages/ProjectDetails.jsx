@@ -8,6 +8,13 @@ import SkeletonLoader from '../components/ui/SkeletonLoader';
 import ImageLightbox from '../components/ui/ImageLightbox';
 import API_BASE_URL from '../config/api';
 
+// Helper to build correct image URL for backend or static images
+const getImageUrl = (imagePath) => {
+  if (!imagePath) return '';
+  if (imagePath.startsWith('http') || imagePath.startsWith('blob')) return imagePath;
+  return `${API_BASE_URL}/${imagePath.replace(/\\/g, '/')}`;
+};
+
 const ProjectDetails = () => {
   const { id } = useParams();
   const [project, setProject] = useState(null);
@@ -41,7 +48,8 @@ const ProjectDetails = () => {
   if (loading) return <SkeletonLoader type="detail" />;
   if (!project) return <div className="min-h-screen flex items-center justify-center">Project not found</div>;
 
-  const images = project.images && project.images.length > 0 ? project.images : ['https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop'];
+  const rawImages = project.images && project.images.length > 0 ? project.images : ['https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop'];
+  const images = rawImages.map(getImageUrl);
 
   const openLightbox = (index) => {
     setLightboxIndex(index);
