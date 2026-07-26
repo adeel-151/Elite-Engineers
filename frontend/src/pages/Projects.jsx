@@ -3,6 +3,7 @@ import SEO from '../components/ui/SEO';
 import axios from 'axios';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import PageHeader from '../components/ui/PageHeader';
+import SkeletonLoader from '../components/ui/SkeletonLoader';
 import { FaChevronUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import BeforeAfterSlider from '../components/ui/BeforeAfterSlider';
@@ -115,10 +116,8 @@ const Projects = () => {
           </motion.div>
           
           {loading && (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-               <div className="bg-gray-100 h-64 animate-pulse"></div>
-               <div className="bg-gray-100 h-64 animate-pulse"></div>
-               <div className="bg-gray-100 h-64 animate-pulse"></div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+               {[1, 2, 3, 4, 5, 6].map(i => <SkeletonLoader key={i} type="project" />)}
             </div>
           )}
 

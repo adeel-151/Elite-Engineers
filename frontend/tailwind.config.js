@@ -21,6 +21,11 @@ export default {
         sans: ['Inter', 'sans-serif'],
         display: ['Poppins', 'sans-serif'],
       },
+      keyframes: {
+        shimmer: {
+          '100%': { transform: 'translateX(100%)' }
+        }
+      },
     },
   },
   plugins: [],

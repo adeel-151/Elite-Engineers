@@ -4,6 +4,7 @@ import { lazy, Suspense, useState } from 'react';
 import Layout from './components/layout/Layout';
 import SkeletonLoader from './components/ui/SkeletonLoader';
 import InitialLoader from './components/ui/InitialLoader';
+import CustomCursor from './components/ui/CustomCursor';
 
 // Lazy loaded pages
 const Home = lazy(() => import('./pages/Home'));
@@ -21,6 +22,7 @@ function App() {
 
   return (
     <>
+      <CustomCursor />
       {showLoader && <InitialLoader onComplete={() => setShowLoader(false)} />}
       
       <Toaster position="top-center" toastOptions={{ duration: 4000, style: { borderRadius: '10px', background: '#333', color: '#fff' } }} />

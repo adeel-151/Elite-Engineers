@@ -15,3 +15,10 @@
     @apply font-display font-light uppercase tracking-widest;
   }
 }
+
+/* Hide default cursor on devices with a mouse, since we have a CustomCursor */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}

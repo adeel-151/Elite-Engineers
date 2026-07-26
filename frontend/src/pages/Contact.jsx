@@ -7,6 +7,7 @@ import axios from 'axios';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { toast } from 'react-hot-toast';
 import PageHeader from '../components/ui/PageHeader';
+import MagneticButton from '../components/ui/MagneticButton';
 import API_BASE_URL from '../config/api';
 import img6 from '../assets/img6.jpg';
 
@@ -127,13 +128,15 @@ const Contact = () => {
               </div>
 
               <div className="text-center pt-8">
-                <button 
-                  type="submit" 
-                  disabled={isSubmitting}
-                  className="px-12 py-3 border border-accent text-accent hover:bg-accent hover:text-white transition-colors text-xs tracking-widest uppercase rounded-full"
-                >
-                  {isSubmitting ? 'SENDING...' : 'SEND'}
-                </button>
+                <MagneticButton>
+                  <button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="px-12 py-3 border border-accent text-accent hover:bg-accent hover:text-white transition-colors text-xs tracking-widest uppercase rounded-full"
+                  >
+                    {isSubmitting ? 'SENDING...' : 'SEND'}
+                  </button>
+                </MagneticButton>
               </div>
             </form>
           </motion.div>

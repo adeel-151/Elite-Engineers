@@ -5,12 +5,15 @@ import { motion } from 'framer-motion';
 import { FaChevronLeft, FaMapMarkerAlt, FaRulerCombined, FaCalendarAlt, FaUserTie } from 'react-icons/fa';
 import axios from 'axios';
 import SkeletonLoader from '../components/ui/SkeletonLoader';
+import ImageLightbox from '../components/ui/ImageLightbox';
 import API_BASE_URL from '../config/api';
 
 const ProjectDetails = () => {
   const { id } = useParams();
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
   
   useEffect(() => {
     const fetchProject = async () => {
@@ -40,6 +43,11 @@ const ProjectDetails = () => {
 
   const images = project.images && project.images.length > 0 ? project.images : ['https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop'];
 
+  const openLightbox = (index) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
   return (
     <div className="bg-white min-h-screen">
       <SEO 
@@ -49,15 +57,15 @@ const ProjectDetails = () => {
       />
 
       {/* Hero Image */}
-      <div className="h-[60vh] w-full relative">
+      <div className="h-[60vh] w-full relative cursor-pointer" onClick={() => openLightbox(0)}>
         <img src={images[0]} alt={project.title} className="w-full h-full object-cover opacity-90" />
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/40 hover:bg-black/20 transition-colors duration-300"></div>
         
-        <Link to="/projects" className="absolute top-24 left-4 md:left-12 flex items-center gap-2 text-white text-xs uppercase tracking-widest hover:text-accent transition-colors z-10 bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full">
+        <Link to="/projects" onClick={(e) => e.stopPropagation()} className="absolute top-24 left-4 md:left-12 flex items-center gap-2 text-white text-xs uppercase tracking-widest hover:text-accent transition-colors z-10 bg-black/30 backdrop-blur-sm px-4 py-2 rounded-full">
           <FaChevronLeft /> Back to Projects
         </Link>
 
-        <div className="absolute bottom-12 left-4 md:left-12 z-10">
+        <div className="absolute bottom-12 left-4 md:left-12 z-10 pointer-events-none">
           <p className="text-accent text-sm uppercase tracking-widest mb-2 font-semibold">{project.category}</p>
           <h1 className="text-4xl md:text-6xl text-white font-display uppercase tracking-widest">{project.title}</h1>
         </div>
@@ -127,14 +135,21 @@ const ProjectDetails = () => {
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.2 }}
-              className={`h-[400px] w-full overflow-hidden ${i === 2 ? 'md:col-span-2 h-[500px]' : ''}`} // Make 3rd image full width
+              className={`h-[400px] w-full overflow-hidden cursor-pointer group ${i === 2 ? 'md:col-span-2 h-[500px]' : ''}`} 
+              onClick={() => openLightbox(i + 1)}
             >
-              <img src={img} alt={`${project.title} Gallery ${i}`} className="w-full h-full object-cover transition-all duration-700" />
+              <img src={img} alt={`${project.title} Gallery ${i}`} className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" />
             </motion.div>
           ))}
         </div>
       </div>
 
+      <ImageLightbox 
+        images={images} 
+        initialIndex={lightboxIndex} 
+        isOpen={lightboxOpen} 
+        onClose={() => setLightboxOpen(false)} 
+      />
     </div>
   );
 };

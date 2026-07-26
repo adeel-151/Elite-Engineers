@@ -36,6 +36,14 @@ const SkeletonLoader = ({ type = 'card' }) => {
     );
   }
 
+  if (type === 'project') {
+    return (
+      <div className="relative overflow-hidden h-64 md:h-80 bg-gray-100">
+        <div className="absolute inset-0 -translate-x-full animate-[shimmer_2s_infinite] bg-gradient-to-r from-gray-100 via-white to-gray-100"></div>
+      </div>
+    );
+  }
+
   // Default 'card' type
   return (
     <div className="w-full bg-white animate-pulse">
