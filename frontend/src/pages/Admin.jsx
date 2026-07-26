@@ -6,6 +6,11 @@ import { toast } from 'react-hot-toast';
 import ProjectForm from '../components/admin/ProjectForm';
 import ProjectGrid from '../components/admin/ProjectGrid';
 import GalleryManager from '../components/admin/GalleryManager';
+import InquiriesViewer from '../components/admin/InquiriesViewer';
+import ServicesManager from '../components/admin/ServicesManager';
+import TeamManager from '../components/admin/TeamManager';
+import ClientsManager from '../components/admin/ClientsManager';
+import FaqManager from '../components/admin/FaqManager';
 import API_BASE_URL from '../config/api';
 
 const Admin = () => {
@@ -72,64 +77,85 @@ const Admin = () => {
     );
   }
 
+  const tabs = [
+    { id: 'manage', label: 'Projects' },
+    { id: 'gallery', label: 'Gallery' },
+    { id: 'services', label: 'Services' },
+    { id: 'team', label: 'Team Members' },
+    { id: 'clients', label: 'Clients' },
+    { id: 'faqs', label: 'FAQs' },
+    { id: 'inquiries', label: 'Inquiries (Messages)' },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50 pt-48 pb-24">
+    <div className="min-h-screen bg-gray-50 pt-24 pb-24">
       <SEO title="Admin Dashboard" description="Elite Engineers Admin Dashboard" />
       
-      <div className="max-w-6xl mx-auto px-4 mt-8">
-        <div className="flex justify-between items-end mb-8 border-b border-gray-200 pb-4">
-          <div>
-            <h1 className="text-3xl font-display uppercase tracking-widest mb-4">Admin Dashboard</h1>
-            <div className="flex gap-6">
-              <button 
-                onClick={() => { setActiveTab('manage'); setEditingProject(null); }}
-                className={`text-sm uppercase tracking-widest pb-2 transition-colors ${activeTab === 'manage' ? 'text-black border-b-2 border-black font-semibold' : 'text-gray-400 hover:text-black'}`}
-              >
-                Manage Projects
-              </button>
-              <button 
-                onClick={() => { setActiveTab('form'); setEditingProject(null); }}
-                className={`text-sm uppercase tracking-widest pb-2 transition-colors ${activeTab === 'form' ? 'text-black border-b-2 border-black font-semibold' : 'text-gray-400 hover:text-black'}`}
-              >
-                {editingProject ? 'Edit Project' : 'Add New Project'}
-              </button>
-              <button 
-                onClick={() => { setActiveTab('gallery'); setEditingProject(null); }}
-                className={`text-sm uppercase tracking-widest pb-2 transition-colors ${activeTab === 'gallery' ? 'text-black border-b-2 border-black font-semibold' : 'text-gray-400 hover:text-black'}`}
-              >
-                Manage Gallery
-              </button>
+      <div className="max-w-[1400px] mx-auto px-4 mt-8 flex flex-col md:flex-row gap-8">
+        
+        {/* Sidebar */}
+        <div className="w-full md:w-64 shrink-0">
+          <div className="bg-white border border-gray-200 p-6 shadow-sm sticky top-32">
+            <h1 className="text-xl font-display uppercase tracking-widest mb-8 border-b border-gray-100 pb-4">Dashboard</h1>
+            
+            <div className="flex flex-col gap-2">
+              {tabs.map((tab) => (
+                <button 
+                  key={tab.id}
+                  onClick={() => { setActiveTab(tab.id); setEditingProject(null); }}
+                  className={`text-left text-xs uppercase tracking-widest py-3 px-4 transition-colors rounded ${activeTab === tab.id || (activeTab === 'form' && tab.id === 'manage') ? 'bg-black text-white font-semibold' : 'text-gray-500 hover:bg-gray-100 hover:text-black'}`}
+                >
+                  {tab.label}
+                </button>
+              ))}
             </div>
+
+            <button 
+              onClick={handleLogout} 
+              className="w-full mt-12 text-left text-xs text-red-500 uppercase tracking-widest hover:text-red-700 py-3 px-4 border border-red-100 hover:bg-red-50 transition-colors"
+            >
+              Logout
+            </button>
           </div>
-          <button onClick={handleLogout} className="text-xs text-red-500 uppercase tracking-widest hover:text-red-700 pb-2">
-            Logout
-          </button>
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          key={activeTab}
-          className="bg-white p-8 border border-gray-100 shadow-sm min-h-[500px]"
-        >
-          {activeTab === 'manage' ? (
-            <ProjectGrid token={token} onEdit={handleEdit} />
-          ) : activeTab === 'gallery' ? (
-            <GalleryManager token={token} />
-          ) : (
-            <>
-              <h2 className="text-xl font-display uppercase tracking-widest mb-8">
-                {editingProject ? 'Edit Project' : 'Add New Project'}
-              </h2>
-              <ProjectForm 
-                token={token} 
-                initialData={editingProject} 
-                onSuccess={handleFormSuccess} 
-                onCancel={editingProject ? handleFormCancel : null} 
-              />
-            </>
-          )}
-        </motion.div>
+        {/* Main Content Area */}
+        <div className="flex-grow">
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            key={activeTab}
+            className="bg-white p-6 md:p-10 border border-gray-200 shadow-sm min-h-[600px]"
+          >
+            {activeTab === 'manage' ? (
+              <ProjectGrid token={token} onEdit={handleEdit} />
+            ) : activeTab === 'form' ? (
+              <>
+                <h2 className="text-xl font-display uppercase tracking-widest mb-8">
+                  {editingProject ? 'Edit Project' : 'Add New Project'}
+                </h2>
+                <ProjectForm 
+                  token={token} 
+                  initialData={editingProject} 
+                  onSuccess={handleFormSuccess} 
+                  onCancel={editingProject ? handleFormCancel : null} 
+                />
+              </>
+            ) : activeTab === 'gallery' ? (
+              <GalleryManager token={token} />
+            ) : activeTab === 'services' ? (
+              <ServicesManager token={token} />
+            ) : activeTab === 'team' ? (
+              <TeamManager token={token} />
+            ) : activeTab === 'clients' ? (
+              <ClientsManager token={token} />
+            ) : activeTab === 'faqs' ? (
+              <FaqManager token={token} />
+            ) : activeTab === 'inquiries' ? (
+              <InquiriesViewer token={token} />
+            ) : null}
+          </motion.div>
+        </div>
       </div>
     </div>
   );
