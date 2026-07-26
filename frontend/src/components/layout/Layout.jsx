@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import BackToTop from '../ui/BackToTop';
 import FloatingWhatsApp from '../ui/FloatingWhatsApp';
+import CookieConsent from '../ui/CookieConsent';
 
 const Layout = () => {
   return (
@@ -16,6 +17,9 @@ const Layout = () => {
       
       {/* WhatsApp Floating Button */}
       <FloatingWhatsApp />
+
+      {/* Cookie Consent Banner */}
+      <CookieConsent />
     </div>
   );
 };
