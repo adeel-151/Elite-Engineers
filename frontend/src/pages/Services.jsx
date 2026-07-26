@@ -3,6 +3,7 @@ import axios from 'axios';
 import API_BASE_URL from '../config/api';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import SEO from '../components/ui/SEO';
+import PageHeader from '../components/ui/PageHeader';
 import { FaChevronUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import CostEstimator from '../components/ui/CostEstimator';
@@ -111,17 +112,7 @@ const Services = () => {
         description="Explore the comprehensive engineering, design, and construction services offered by Elite Engineers."
       />
 
-      {/* Hero Sticky Image */}
-      <StickyImageSection imageSrc={img10} heightClass="h-[60vh]">
-        <motion.h1 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-white text-3xl md:text-5xl lg:text-6xl tracking-widest uppercase text-center px-4"
-        >
-          OUR EXPERTISE
-        </motion.h1>
-      </StickyImageSection>
+      <PageHeader title="Our Expertise" subtitle="Comprehensive Engineering Solutions" />
 
       {/* Services Grid Content */}
       <div className="py-24 bg-white relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">

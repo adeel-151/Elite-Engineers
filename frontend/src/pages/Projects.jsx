@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import SEO from '../components/ui/SEO';
 import axios from 'axios';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import PageHeader from '../components/ui/PageHeader';
 import { FaChevronUp } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import BeforeAfterSlider from '../components/ui/BeforeAfterSlider';
@@ -97,18 +98,7 @@ const Projects = () => {
         description="View the diverse portfolio of residential, commercial, and interior projects completed by Elite Engineers."
       />
       
-
-      {/* Hero Sticky Image */}
-      <StickyImageSection imageSrc={img6} heightClass="h-[70vh]">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-white text-3xl md:text-5xl lg:text-6xl tracking-widest uppercase"
-        >
-          OUR PORTFOLIO
-        </motion.h1>
-      </StickyImageSection>
+      <PageHeader title="Our Portfolio" subtitle="Discover Our Work" />
 
 
       <div className="py-24 bg-white relative">

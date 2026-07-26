@@ -6,6 +6,7 @@ import * as z from 'zod';
 import axios from 'axios';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { toast } from 'react-hot-toast';
+import PageHeader from '../components/ui/PageHeader';
 import API_BASE_URL from '../config/api';
 import img6 from '../assets/img6.jpg';
 
@@ -80,18 +81,7 @@ const Contact = () => {
         description="Get in touch with Elite Engineers. We are ready to bring your architectural and structural visions to life."
       />
       
-
-      {/* Hero Sticky Image */}
-      <StickyImageSection imageSrc={img6} heightClass="h-[70vh]">
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-white text-3xl md:text-5xl lg:text-6xl tracking-widest uppercase"
-        >
-          CONTACT US
-        </motion.h1>
-      </StickyImageSection>
+      <PageHeader title="Contact Us" subtitle="Let's Build Together" />
 
 
 

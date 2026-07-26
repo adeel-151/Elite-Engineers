@@ -4,6 +4,7 @@ import axios from 'axios';
 import API_BASE_URL from '../config/api';
 import { FaChevronUp } from 'react-icons/fa';
 import SEO from '../components/ui/SEO';
+import PageHeader from '../components/ui/PageHeader';
 import img1 from '../assets/img1.jpg';
 import img3 from '../assets/img3.jpg';
 import img9 from '../assets/img9.jpg';
@@ -64,17 +65,7 @@ const About = () => {
         description="Learn about Elite Engineers, our mission, vision, and the expert team behind our world-class structural and architectural projects."
       />
 
-      {/* Hero Sticky Image */}
-      <StickyImageSection imageSrc={img1} heightClass="h-[70vh]">
-        <motion.h1 
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="text-white text-3xl md:text-5xl lg:text-6xl tracking-widest uppercase"
-        >
-          ABOUT US
-        </motion.h1>
-      </StickyImageSection>
+      <PageHeader title="About Us" subtitle="Who We Are" />
 
       {/* Main Content */}
       <div className="py-24 bg-white relative z-20 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
