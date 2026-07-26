@@ -13,6 +13,9 @@ exports.getAllClients = catchAsync(async (req, res, next) => {
 });
 
 exports.createClient = catchAsync(async (req, res, next) => {
+  if (req.file) {
+    req.body.logo = req.file.path;
+  }
   const newClient = await Client.create(req.body);
 
   res.status(201).json({
@@ -22,6 +25,9 @@ exports.createClient = catchAsync(async (req, res, next) => {
 });
 
 exports.updateClient = catchAsync(async (req, res, next) => {
+  if (req.file) {
+    req.body.logo = req.file.path;
+  }
   const client = await Client.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true

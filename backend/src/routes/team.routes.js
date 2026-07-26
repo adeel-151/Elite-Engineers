@@ -4,13 +4,14 @@ const authMiddleware = require('../middlewares/auth');
 const { cacheMiddleware } = require('../middlewares/cache');
 
 const router = express.Router();
+const upload = require('../middlewares/upload');
 
 router.route('/')
   .get(cacheMiddleware, teamController.getAllTeamMembers)
-  .post(authMiddleware.protect, teamController.createTeamMember);
+  .post(authMiddleware.protect, upload.single('image'), teamController.createTeamMember);
 
 router.route('/:id')
-  .patch(authMiddleware.protect, teamController.updateTeamMember)
+  .put(authMiddleware.protect, upload.single('image'), teamController.updateTeamMember)
   .delete(authMiddleware.protect, teamController.deleteTeamMember);
 
 module.exports = router;

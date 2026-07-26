@@ -4,13 +4,14 @@ const authMiddleware = require('../middlewares/auth');
 const { cacheMiddleware } = require('../middlewares/cache');
 
 const router = express.Router();
+const upload = require('../middlewares/upload');
 
 router.route('/')
   .get(cacheMiddleware, serviceController.getAllServices)
-  .post(authMiddleware.protect, serviceController.createService);
+  .post(authMiddleware.protect, upload.single('image'), serviceController.createService);
 
 router.route('/:id')
-  .patch(authMiddleware.protect, serviceController.updateService)
+  .put(authMiddleware.protect, upload.single('image'), serviceController.updateService)
   .delete(authMiddleware.protect, serviceController.deleteService);
 
 module.exports = router;

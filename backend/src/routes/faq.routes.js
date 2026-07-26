@@ -10,7 +10,7 @@ router.route('/')
   .post(authMiddleware.protect, faqController.createFaq);
 
 router.route('/:id')
-  .patch(authMiddleware.protect, faqController.updateFaq)
+  .put(authMiddleware.protect, faqController.updateFaq)
   .delete(authMiddleware.protect, faqController.deleteFaq);
 
 module.exports = router;

@@ -13,6 +13,9 @@ exports.getAllServices = catchAsync(async (req, res, next) => {
 });
 
 exports.createService = catchAsync(async (req, res, next) => {
+  if (req.file) {
+    req.body.img = req.file.path;
+  }
   const newService = await Service.create(req.body);
 
   res.status(201).json({
@@ -22,6 +25,9 @@ exports.createService = catchAsync(async (req, res, next) => {
 });
 
 exports.updateService = catchAsync(async (req, res, next) => {
+  if (req.file) {
+    req.body.img = req.file.path;
+  }
   const service = await Service.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true

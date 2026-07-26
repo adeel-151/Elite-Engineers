@@ -13,6 +13,9 @@ exports.getAllTeamMembers = catchAsync(async (req, res, next) => {
 });
 
 exports.createTeamMember = catchAsync(async (req, res, next) => {
+  if (req.file) {
+    req.body.img = req.file.path;
+  }
   const newTeamMember = await TeamMember.create(req.body);
 
   res.status(201).json({
@@ -22,6 +25,9 @@ exports.createTeamMember = catchAsync(async (req, res, next) => {
 });
 
 exports.updateTeamMember = catchAsync(async (req, res, next) => {
+  if (req.file) {
+    req.body.img = req.file.path;
+  }
   const teamMember = await TeamMember.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true
