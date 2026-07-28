@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaChevronDown, FaSun, FaMoon } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImg from '../../assets/logo-transparent.png';
+import logoImg from '../../assets/golden-logo.png';
 import { ThemeContext } from '../../context/ThemeContext';
 
 const Navbar = () => {
@@ -73,7 +73,7 @@ const Navbar = () => {
           <img
             src={logoImg}
             alt="Elite Engineers Logo"
-            className="h-full w-auto object-contain transition-all duration-300"
+            className={`w-auto object-contain transition-all duration-300 ${isSolid ? 'h-14 md:h-16' : 'h-16 md:h-20'}`}
           />
         </Link>
 

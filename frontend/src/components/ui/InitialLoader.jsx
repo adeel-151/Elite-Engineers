@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImg from '../../assets/logo-transparent.png';
+import logoImg from '../../assets/golden-logo.png';
 
 const InitialLoader = ({ onComplete }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -32,7 +32,7 @@ const InitialLoader = ({ onComplete }) => {
             <img
               src={logoImg}
               alt="Elite Engineers Logo"
-              className="h-44 md:h-56 w-auto object-contain"
+              className="h-24 md:h-32 w-auto object-contain"
             />
           </motion.div>
 
