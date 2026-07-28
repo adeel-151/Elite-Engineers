@@ -66,35 +66,35 @@ const Projects = () => {
   const [activeCategory, setActiveCategory] = useState('All');
 
   useEffect(() => {
+    const dummyProjects = [
+      { _id: '1', title: 'The Skyline Tower', category: 'Commercial', images: [img1] },
+      { _id: '2', title: 'Aura Residences', category: 'Residential', images: [img2] },
+      { _id: '3', title: 'Tech Hub Interior', category: 'Interior', images: [img8] },
+      { _id: '4', title: 'Urban Plaza', category: 'Commercial', images: [img7] },
+      { _id: '5', title: 'Serenity Villa', category: 'Residential', images: [img4] },
+      { _id: '6', title: 'Modern Office Space', category: 'Interior', images: [img3] },
+      { _id: '7', title: 'Grand Mall Phase 1', category: 'Commercial', images: [img12] },
+      { _id: '8', title: 'Lakeview Apartments', category: 'Residential', images: [img15] },
+      { _id: '9', title: 'Corporate HQ Design', category: 'Interior', images: [img18] },
+      { _id: '10', title: 'Central Business District', category: 'Commercial', images: [img21] },
+      { _id: '11', title: 'Elite Luxury Mansions', category: 'Residential', images: [img25] },
+      { _id: '12', title: 'Executive Lounge', category: 'Interior', images: [img30] },
+      { _id: '13', title: 'Green Energy Park', category: 'Commercial', images: [img35] },
+      { _id: '14', title: 'Oasis Townhouses', category: 'Residential', images: [img40] },
+      { _id: '15', title: 'Minimalist Cafe', category: 'Interior', images: [img45] },
+      { _id: '16', title: 'Tech Valley Complex', category: 'Commercial', images: [img50] },
+      { _id: '17', title: 'Sunset Boulevard Villas', category: 'Residential', images: [img6] },
+      { _id: '18', title: 'Boutique Hotel Lobby', category: 'Interior', images: [img10] }
+    ];
+
     const fetchProjects = async () => {
       try {
         const res = await axios.get(`${API_BASE_URL}/api/projects`);
-        const fetched = res.data.data.projects;
-        setProjects(fetched);
-        setLoading(false);
+        const fetched = res.data?.data?.projects || [];
+        setProjects([...fetched, ...dummyProjects]);
       } catch (err) {
-        // Fallback dummy data so the UI doesn't break if backend is not running
-        const dummyProjects = [
-          { _id: '1', title: 'The Skyline Tower', category: 'Commercial', images: [img1] },
-          { _id: '2', title: 'Aura Residences', category: 'Residential', images: [img2] },
-          { _id: '3', title: 'Tech Hub Interior', category: 'Interior', images: [img8] },
-          { _id: '4', title: 'Urban Plaza', category: 'Commercial', images: [img7] },
-          { _id: '5', title: 'Serenity Villa', category: 'Residential', images: [img4] },
-          { _id: '6', title: 'Modern Office Space', category: 'Interior', images: [img3] },
-          { _id: '7', title: 'Grand Mall Phase 1', category: 'Commercial', images: [img12] },
-          { _id: '8', title: 'Lakeview Apartments', category: 'Residential', images: [img15] },
-          { _id: '9', title: 'Corporate HQ Design', category: 'Interior', images: [img18] },
-          { _id: '10', title: 'Central Business District', category: 'Commercial', images: [img21] },
-          { _id: '11', title: 'Elite Luxury Mansions', category: 'Residential', images: [img25] },
-          { _id: '12', title: 'Executive Lounge', category: 'Interior', images: [img30] },
-          { _id: '13', title: 'Green Energy Park', category: 'Commercial', images: [img35] },
-          { _id: '14', title: 'Oasis Townhouses', category: 'Residential', images: [img40] },
-          { _id: '15', title: 'Minimalist Cafe', category: 'Interior', images: [img45] },
-          { _id: '16', title: 'Tech Valley Complex', category: 'Commercial', images: [img50] },
-          { _id: '17', title: 'Sunset Boulevard Villas', category: 'Residential', images: [img6] },
-          { _id: '18', title: 'Boutique Hotel Lobby', category: 'Interior', images: [img10] }
-        ];
         setProjects(dummyProjects);
+      } finally {
         setLoading(false);
       }
     };

@@ -53,11 +53,11 @@ const About = () => {
     const fetchTeam = async () => {
       try {
         const response = await axios.get(`${API_BASE_URL}/api/team`);
-        if (response.data?.data?.teamMembers?.length > 0) {
-          setTeam(response.data.data.teamMembers);
-        }
+        const fetched = response.data?.data?.teamMembers || [];
+        setTeam([...fetched, ...initialTeam]);
       } catch (error) {
         console.error('Failed to fetch team members:', error);
+        setTeam(initialTeam);
       }
     };
     fetchTeam();

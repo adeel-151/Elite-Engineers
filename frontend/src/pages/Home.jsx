@@ -263,17 +263,18 @@ const Home = () => {
   };
 
   useEffect(() => {
+    const dummyProjects = [
+      { _id: '1', title: 'The Skyline Tower', category: 'Commercial', images: [img1] },
+      { _id: '2', title: 'Aura Residences', category: 'Residential', images: [img2] },
+      { _id: '3', title: 'Tech Hub Interior', category: 'Interior Fit-out', images: [img8] },
+    ];
     const fetchProjects = async () => {
       try {
         const res = await axios.get(`${API_BASE_URL}/api/projects`);
-        const allProjects = res.data.data.projects;
-        setFeaturedProjects(allProjects.slice(0, 3));
+        const allProjects = res.data?.data?.projects || [];
+        setFeaturedProjects([...allProjects, ...dummyProjects].slice(0, 3));
       } catch {
-        setFeaturedProjects([
-          { _id: '1', title: 'The Skyline Tower', category: 'Commercial', images: [img1] },
-          { _id: '2', title: 'Aura Residences', category: 'Residential', images: [img2] },
-          { _id: '3', title: 'Tech Hub Interior', category: 'Interior Fit-out', images: [img8] },
-        ]);
+        setFeaturedProjects(dummyProjects);
       }
     };
     fetchProjects();

@@ -30,11 +30,8 @@ const Clients = () => {
     const fetchClients = async () => {
       try {
         const response = await axios.get(`${API_BASE_URL}/api/clients`);
-        if (response.data?.data?.clients?.length > 0) {
-          setClients(response.data.data.clients);
-        } else {
-          setClients(staticClients);
-        }
+        const fetched = response.data?.data?.clients || [];
+        setClients([...fetched, ...staticClients]);
       } catch (err) {
         console.error('Failed to fetch clients:', err);
         setClients(staticClients);

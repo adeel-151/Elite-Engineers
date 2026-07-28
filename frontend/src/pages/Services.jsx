@@ -104,11 +104,11 @@ const Services = () => {
     const fetchServices = async () => {
       try {
         const response = await axios.get(`${API_BASE_URL}/api/services`);
-        if (response.data?.data?.services?.length > 0) {
-          setServices(response.data.data.services);
-        }
+        const fetched = response.data?.data?.services || [];
+        setServices([...fetched, ...initialServices]);
       } catch (error) {
         console.error('Failed to fetch services:', error);
+        setServices(initialServices);
       }
     };
     fetchServices();

@@ -79,12 +79,12 @@ const Gallery = () => {
     const fetchImages = async () => {
       try {
         const res = await axios.get(`${API_BASE_URL}/api/gallery`);
-        if (res.data.data.images && res.data.data.images.length > 0) {
-          const apiImages = res.data.data.images.map(img => img.imageUrl);
-          setAllImages([...apiImages, ...staticImages]);
-        }
+        const fetched = res.data?.data?.images || [];
+        const apiImages = fetched.map(img => img.imageUrl);
+        setAllImages([...apiImages, ...staticImages]);
       } catch (err) {
         console.error('Failed to fetch gallery images', err);
+        setAllImages(staticImages);
       }
     };
     fetchImages();
