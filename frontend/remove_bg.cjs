@@ -1,7 +1,7 @@
 const Jimp = require('jimp');
 
 async function removeBackground() {
-  const image = await Jimp.read('./src/assets/logo-transparent.png');
+  const image = await Jimp.read('./frontend/src/assets/logo-transparent.png');
   const width = image.bitmap.width;
   const height = image.bitmap.height;
   
@@ -27,7 +27,7 @@ async function removeBackground() {
     }
   }
 
-  await image.writeAsync('./src/assets/logo-transparent-nobg.png');
+  await image.writeAsync('./frontend/src/assets/logo-transparent-nobg.png');
   console.log("Background removed successfully!");
 }
 

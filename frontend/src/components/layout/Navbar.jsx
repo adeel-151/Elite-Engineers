@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaChevronDown, FaSun, FaMoon } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImg from '../../assets/logo-transparent-nobg.png';
+import logoImg from '../../assets/golden-logo.png';
 import { ThemeContext } from '../../context/ThemeContext';
 
 const Navbar = () => {
