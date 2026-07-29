@@ -4,8 +4,17 @@ import { motion } from 'framer-motion';
 const CustomCursor = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [hasPointer, setHasPointer] = useState(true);
 
   useEffect(() => {
+    // Check if the device has a fine pointer (e.g., mouse)
+    const mediaQuery = window.matchMedia('(pointer: fine)');
+    setHasPointer(mediaQuery.matches);
+    
+    // Optional: listen for changes in pointer capability
+    const handleMediaChange = (e) => setHasPointer(e.matches);
+    mediaQuery.addEventListener('change', handleMediaChange);
+
     const updateMousePosition = (e) => {
       setMousePosition({ x: e.clientX, y: e.clientY });
     };
@@ -20,14 +29,19 @@ const CustomCursor = () => {
       setIsHovering(isInteractive);
     };
 
-    window.addEventListener('mousemove', updateMousePosition);
-    window.addEventListener('mouseover', handleMouseOver);
+    if (mediaQuery.matches) {
+      window.addEventListener('mousemove', updateMousePosition);
+      window.addEventListener('mouseover', handleMouseOver);
+    }
 
     return () => {
+      mediaQuery.removeEventListener('change', handleMediaChange);
       window.removeEventListener('mousemove', updateMousePosition);
       window.removeEventListener('mouseover', handleMouseOver);
     };
   }, []);
+
+  if (!hasPointer) return null;
 
   return (
     <>
