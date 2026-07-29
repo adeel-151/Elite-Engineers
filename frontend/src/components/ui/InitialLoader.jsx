@@ -27,7 +27,7 @@ const InitialLoader = ({ onComplete }) => {
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="mb-3"
+            className="mb-0"
           >
             <img
               src={logoImg}
@@ -40,7 +40,7 @@ const InitialLoader = ({ onComplete }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-            className="text-gray-300 font-display font-light uppercase tracking-[0.3em] text-lg md:text-xl mt-2 mb-2"
+            className="text-gray-300 font-display font-light uppercase tracking-[0.3em] text-lg md:text-xl mt-0 mb-2"
           >
             Elite Engineers
           </motion.div>
