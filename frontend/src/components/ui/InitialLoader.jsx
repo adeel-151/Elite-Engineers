@@ -36,11 +36,20 @@ const InitialLoader = ({ onComplete }) => {
             />
           </motion.div>
 
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
+            className="text-gray-300 font-display font-light uppercase tracking-[0.3em] text-lg md:text-xl mt-2 mb-2"
+          >
+            Elite Engineers
+          </motion.div>
+
           <motion.div 
             initial={{ width: 0 }}
-            animate={{ width: "220px" }}
+            animate={{ width: "240px" }}
             transition={{ duration: 1.5, delay: 1, ease: "easeInOut" }}
-            className="h-[1px] bg-accent mt-3 opacity-60"
+            className="h-[1px] bg-accent mt-2 opacity-60"
           ></motion.div>
         </motion.div>
       )}
