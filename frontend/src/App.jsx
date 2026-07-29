@@ -5,6 +5,7 @@ import Layout from './components/layout/Layout';
 import SkeletonLoader from './components/ui/SkeletonLoader';
 import InitialLoader from './components/ui/InitialLoader';
 import CustomCursor from './components/ui/CustomCursor';
+import ScrollToTop from './components/ui/ScrollToTop';
 
 // Lazy loaded pages
 const Home = lazy(() => import('./pages/Home'));
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <>
+      <ScrollToTop />
       <CustomCursor />
       {showLoader && <InitialLoader onComplete={() => setShowLoader(false)} />}
       
