@@ -214,13 +214,13 @@ const HeroSlideshow = () => {
       </button>
 
       {/* Slide indicators */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 flex gap-2">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-30 hidden md:flex gap-2">
         {heroSlides.map((_, i) => (
           <button key={i} onClick={() => goTo(i)} className={`transition-all duration-300 h-[2px] ${i === current ? 'w-8 bg-amber-400' : 'w-3 bg-white/30'}`} aria-label={`Slide ${i + 1}`} />
         ))}
       </div>
 
-      <div className="absolute bottom-10 right-8 z-30 text-white/50 text-xs tracking-widest">
+      <div className="absolute bottom-10 right-8 z-30 hidden md:block text-white/50 text-xs tracking-widest">
         {String(current + 1).padStart(2, '0')} / {String(heroSlides.length).padStart(2, '0')}
       </div>
 
