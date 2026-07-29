@@ -97,15 +97,15 @@ const ClientsManager = ({ token }) => {
     }
   };
 
-  const inputClasses = "w-full py-3 bg-transparent border-0 border-b border-gray-700 rounded-none focus:ring-0 focus:border-accent outline-none text-sm transition-colors mb-2 text-white placeholder-gray-500";
+  const inputClasses = "w-full py-3 bg-transparent border-0 border-b border-gray-300 dark:border-gray-700 rounded-none focus:ring-0 focus:border-accent outline-none text-sm transition-colors mb-2 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500";
 
   return (
     <div>
-      <h2 className="text-xl font-display uppercase tracking-widest mb-8 text-white">
+      <h2 className="text-xl font-display uppercase tracking-widest mb-8 text-gray-900 dark:text-white">
         {editingId ? 'Edit Client / Partner' : 'Add New Client / Partner'}
       </h2>
 
-      <form onSubmit={handleSubmit} className="mb-12 bg-primary p-6 border border-gray-800">
+      <form onSubmit={handleSubmit} className="mb-12 bg-gray-50 dark:bg-primary p-6 border border-gray-200 dark:border-gray-800">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-4">
           <div>
             <input type="text" placeholder="Client Name" className={inputClasses} value={name} onChange={e => setName(e.target.value)} required />
@@ -120,49 +120,49 @@ const ClientsManager = ({ token }) => {
         </div>
 
         <div className="mb-8 mt-6">
-          <label className="block text-xs text-gray-400 uppercase tracking-widest mb-4">
+          <label className="block text-xs text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">
             {editingId ? 'Upload New Logo (Optional)' : 'Upload Client Logo'}
           </label>
           <input 
             id="client-image-upload"
             type="file" accept="image/*" onChange={e => setImageFile(e.target.files[0])}
-            className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-accent file:text-white hover:file:bg-black transition-all duration-300 cursor-pointer transition-all"
+            className="w-full text-sm text-gray-500 dark:text-gray-400 file:mr-4 file:py-2 file:px-6 file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-accent file:text-gray-900 dark:text-white hover:file:bg-black transition-all duration-300 cursor-pointer transition-all"
           />
         </div>
 
         <div className="flex gap-4">
-          <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full ${isSubmitting ? 'bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-accent text-white hover:bg-black transition-colors duration-300'}`}>
+          <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors ${isSubmitting ? 'bg-gray-100 dark:bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-accent text-white hover:bg-black transition-colors duration-300'}`}>
             {isSubmitting ? 'Please Wait...' : (editingId ? 'Update Client' : 'Save Client')}
           </button>
           {editingId && (
-            <button type="button" onClick={resetForm} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full bg-transparent text-accent hover:bg-accent hover:text-white border border-accent transition-colors duration-300">
+            <button type="button" onClick={resetForm} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors bg-transparent text-accent hover:bg-accent hover:text-gray-900 dark:text-white border border-accent transition-colors duration-300">
               Cancel
             </button>
           )}
         </div>
       </form>
 
-      <h2 className="text-xl font-display uppercase tracking-widest mb-6 text-white">Our Clients</h2>
+      <h2 className="text-xl font-display uppercase tracking-widest mb-6 text-gray-900 dark:text-white">Our Clients</h2>
       {loading ? (
-        <div className="text-gray-400 text-sm">Loading clients...</div>
+        <div className="text-gray-500 dark:text-gray-400 text-sm">Loading clients...</div>
       ) : clients.length === 0 ? (
-        <div className="text-gray-400 text-sm italic">No clients found.</div>
+        <div className="text-gray-500 dark:text-gray-400 text-sm italic">No clients found.</div>
       ) : (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {clients.map(client => (
-            <div key={client._id} className="border border-gray-800 bg-primary p-4 flex flex-col items-center text-center hover:border-gray-600 transition-all">
-              <div className="w-full aspect-video flex items-center justify-center bg-secondary mb-4 overflow-hidden border border-gray-800 p-2">
+            <div key={client._id} className="border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-primary p-4 flex flex-col items-center text-center hover:border-gray-600 transition-all">
+              <div className="w-full aspect-video flex items-center justify-center bg-white dark:bg-secondary mb-4 overflow-hidden border border-gray-200 dark:border-gray-800 p-2">
                 {client.logo ? (
                   <img src={client.logo.startsWith('http') ? client.logo : `${API_BASE_URL}/${client.logo.replace(/\\/g, '/')}`} alt={client.name} className="max-w-full max-h-full object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-90 hover:opacity-100" />
                 ) : (
                   <span className="text-gray-600 text-xs">No Logo</span>
                 )}
               </div>
-              <h3 className="font-display uppercase tracking-widest text-sm mb-1 text-white">{client.name}</h3>
-              {client.company && <p className="text-[10px] text-gray-400 uppercase tracking-widest">{client.company}</p>}
+              <h3 className="font-display uppercase tracking-widest text-sm mb-1 text-gray-900 dark:text-white">{client.name}</h3>
+              {client.company && <p className="text-[10px] text-gray-500 dark:text-gray-400 uppercase tracking-widest">{client.company}</p>}
               
-              <div className="flex gap-2 w-full mt-4 pt-4 border-t border-gray-800">
-                <button onClick={() => handleEdit(client)} className="flex-1 py-1 text-gray-400 hover:text-white text-[10px] tracking-widest uppercase transition-colors flex justify-center items-center gap-1">
+              <div className="flex gap-2 w-full mt-4 pt-4 border-t border-gray-200 dark:border-gray-800">
+                <button onClick={() => handleEdit(client)} className="flex-1 py-1 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:text-white text-[10px] tracking-widest uppercase transition-colors flex justify-center items-center gap-1">
                   <FaEdit /> Edit
                 </button>
                 <button onClick={() => handleDelete(client._id)} className="flex-1 py-1 text-red-500 hover:text-red-400 text-[10px] tracking-widest uppercase transition-colors flex justify-center items-center gap-1">

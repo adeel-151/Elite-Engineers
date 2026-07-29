@@ -87,7 +87,7 @@ const ProjectForm = ({ token, initialData = null, onSuccess, onCancel }) => {
     }
   };
 
-  const inputClasses = "w-full py-3 bg-transparent border-0 border-b border-gray-700 rounded-none focus:ring-0 focus:border-accent outline-none text-sm transition-colors mb-2 text-white placeholder-gray-500";
+  const inputClasses = "w-full py-3 bg-transparent border-0 border-b border-gray-300 dark:border-gray-700 rounded-none focus:ring-0 focus:border-accent outline-none text-sm transition-colors mb-2 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500";
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -98,7 +98,7 @@ const ProjectForm = ({ token, initialData = null, onSuccess, onCancel }) => {
         </div>
         
         <div>
-          <select className={`${inputClasses} [&>option]:bg-secondary [&>option]:text-white`} {...register('category')}>
+          <select className={`${inputClasses} [&>option]:bg-white dark:bg-secondary [&>option]:text-gray-900 dark:text-white`} {...register('category')}>
             <option value="Architectural & Structural Design">Architectural & Structural Design</option>
             <option value="Construction">Construction</option>
             <option value="Project Management & Supervision">Project Management & Supervision</option>
@@ -121,21 +121,21 @@ const ProjectForm = ({ token, initialData = null, onSuccess, onCancel }) => {
       </div>
 
       <div className="mb-8 mt-6">
-        <label className="block text-xs text-gray-400 uppercase tracking-widest mb-4">
+        <label className="block text-xs text-gray-500 dark:text-gray-400 uppercase tracking-widest mb-4">
           {isEditing ? 'Upload New Images (Optional - will replace old ones)' : 'Upload Images (Max 10)'}
         </label>
         <input 
           type="file" multiple accept="image/*" onChange={e => setImages(e.target.files)}
-          className="w-full text-sm text-gray-400 file:mr-4 file:py-2 file:px-6 file:rounded-full file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-accent file:text-white hover:file:bg-black transition-all duration-300 cursor-pointer file:cursor-pointer transition-all"
+          className="w-full text-sm text-gray-500 dark:text-gray-400 file:mr-4 file:py-2 file:px-6 file:border-0 file:text-xs file:tracking-widest file:uppercase file:bg-accent file:text-gray-900 dark:text-white hover:file:bg-black transition-all duration-300 cursor-pointer file:cursor-pointer transition-all"
         />
       </div>
 
       <div className="flex gap-4">
-        <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full ${isSubmitting ? 'bg-gray-700 text-gray-400 cursor-not-allowed' : 'bg-accent text-white hover:bg-black transition-colors duration-300'}`}>
+        <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors ${isSubmitting ? 'bg-gray-700 text-gray-500 dark:text-gray-400 cursor-not-allowed' : 'bg-accent text-white hover:bg-black transition-colors duration-300'}`}>
           {isSubmitting ? 'Please Wait...' : (isEditing ? 'Update Project' : 'Publish Project')}
         </button>
         {isEditing && (
-          <button type="button" onClick={onCancel} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full bg-transparent text-accent hover:bg-accent hover:text-white border border-accent transition-colors duration-300">
+          <button type="button" onClick={onCancel} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors bg-transparent text-accent hover:bg-accent hover:text-gray-900 dark:text-white border border-accent transition-colors duration-300">
             Cancel Edit
           </button>
         )}

@@ -63,24 +63,24 @@ const ProjectGrid = ({ token, onEdit }) => {
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-xl font-display uppercase tracking-widest text-white">Manage Projects</h2>
+        <h2 className="text-xl font-display uppercase tracking-widest text-gray-900 dark:text-white">Manage Projects</h2>
         <button 
           onClick={() => onEdit(null)}
-          className="px-6 py-2 bg-accent text-white text-xs tracking-widest uppercase rounded-full hover:bg-black transition-colors duration-300"
+          className="px-6 py-2 bg-accent text-white text-xs tracking-widest uppercase hover:bg-black transition-colors duration-300"
         >
           + Add New Project
         </button>
       </div>
 
       {projects.length === 0 ? (
-        <div className="text-center py-12 text-gray-400 border border-dashed border-gray-800 rounded-lg">
+        <div className="text-center py-12 text-gray-500 dark:text-gray-400 border border-dashed border-gray-200 dark:border-gray-800 rounded-lg">
           No projects found. Click "Add New Project" to create one!
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project) => (
-            <div key={project._id} className="bg-primary border border-gray-800 shadow-sm rounded-lg overflow-hidden group hover:shadow-md hover:border-gray-600 transition-all">
-              <div className="h-48 relative bg-secondary">
+            <div key={project._id} className="bg-gray-50 dark:bg-primary border border-gray-200 dark:border-gray-800 shadow-sm rounded-lg overflow-hidden group hover:shadow-md hover:border-gray-600 transition-all">
+              <div className="h-48 relative bg-white dark:bg-secondary">
                 {project.images && project.images.length > 0 ? (
                   <img src={getImageUrl(project.images[0])} alt={project.title} className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
                 ) : (
@@ -91,7 +91,7 @@ const ProjectGrid = ({ token, onEdit }) => {
             <div className="absolute inset-0 bg-black/80 flex flex-col items-center justify-center gap-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 backdrop-blur-[2px]">
               <button 
                 onClick={() => onEdit(project)}
-                className="flex items-center gap-2 px-6 py-2 bg-white text-black font-semibold tracking-widest uppercase text-xs rounded-full shadow-lg hover:bg-accent hover:text-white hover:scale-105 transition-all duration-300"
+                className="flex items-center gap-2 px-6 py-2 bg-white text-black font-semibold tracking-widest uppercase text-xs shadow-lg hover:bg-accent hover:text-gray-900 dark:text-white hover:scale-105 transition-all duration-300"
                 title="Edit Project"
               >
                 <FiEdit2 /> Edit
@@ -99,7 +99,7 @@ const ProjectGrid = ({ token, onEdit }) => {
               <button 
                 onClick={() => handleDelete(project._id)}
                 disabled={deletingId === project._id}
-                className="flex items-center gap-2 px-6 py-2 bg-red-500 text-white font-semibold tracking-widest uppercase text-xs rounded-full shadow-lg hover:bg-red-600 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100"
+                className="flex items-center gap-2 px-6 py-2 bg-red-500 text-white font-semibold tracking-widest uppercase text-xs shadow-lg hover:bg-red-600 hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:hover:scale-100"
                 title="Delete Project"
               >
                 <FiTrash2 /> Delete
@@ -109,8 +109,8 @@ const ProjectGrid = ({ token, onEdit }) => {
           
           <div className="p-4">
             <span className="text-xs text-accent uppercase tracking-widest">{project.category}</span>
-            <h3 className="font-display text-lg mt-1 mb-2 text-white">{project.title}</h3>
-            <p className="text-sm text-gray-400 line-clamp-2">{project.description}</p>
+            <h3 className="font-display text-lg mt-1 mb-2 text-gray-900 dark:text-white">{project.title}</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">{project.description}</p>
           </div>
         </div>
       ))}

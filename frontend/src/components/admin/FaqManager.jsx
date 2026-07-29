@@ -84,15 +84,15 @@ const FaqManager = ({ token }) => {
     }
   };
 
-  const inputClasses = "w-full py-3 bg-transparent border-0 border-b border-gray-700 rounded-none focus:ring-0 focus:border-accent outline-none text-sm transition-colors mb-2 text-white placeholder-gray-500";
+  const inputClasses = "w-full py-3 bg-transparent border-0 border-b border-gray-300 dark:border-gray-700 rounded-none focus:ring-0 focus:border-accent outline-none text-sm transition-colors mb-2 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500";
 
   return (
     <div>
-      <h2 className="text-xl font-display uppercase tracking-widest mb-8 text-white">
+      <h2 className="text-xl font-display uppercase tracking-widest mb-8 text-gray-900 dark:text-white">
         {editingId ? 'Edit FAQ' : 'Add New FAQ'}
       </h2>
 
-      <form onSubmit={handleSubmit} className="mb-12 bg-primary p-6 border border-gray-800">
+      <form onSubmit={handleSubmit} className="mb-12 bg-gray-50 dark:bg-primary p-6 border border-gray-200 dark:border-gray-800">
         <div className="mb-4">
           <input type="text" placeholder="Question" className={inputClasses} value={question} onChange={e => setQuestion(e.target.value)} required />
         </div>
@@ -102,33 +102,33 @@ const FaqManager = ({ token }) => {
         </div>
 
         <div className="flex gap-4">
-          <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full ${isSubmitting ? 'bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-accent text-white hover:bg-black transition-colors duration-300'}`}>
+          <button type="submit" disabled={isSubmitting} className={`px-12 py-3 text-xs tracking-widest uppercase transition-colors ${isSubmitting ? 'bg-gray-100 dark:bg-gray-800 text-gray-500 cursor-not-allowed' : 'bg-accent text-white hover:bg-black transition-colors duration-300'}`}>
             {isSubmitting ? 'Please Wait...' : (editingId ? 'Update FAQ' : 'Save FAQ')}
           </button>
           {editingId && (
-            <button type="button" onClick={resetForm} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors rounded-full bg-transparent text-accent hover:bg-accent hover:text-white border border-accent transition-colors duration-300">
+            <button type="button" onClick={resetForm} className="px-12 py-3 text-xs tracking-widest uppercase transition-colors bg-transparent text-accent hover:bg-accent hover:text-gray-900 dark:text-white border border-accent transition-colors duration-300">
               Cancel
             </button>
           )}
         </div>
       </form>
 
-      <h2 className="text-xl font-display uppercase tracking-widest mb-6 text-white">Existing FAQs</h2>
+      <h2 className="text-xl font-display uppercase tracking-widest mb-6 text-gray-900 dark:text-white">Existing FAQs</h2>
       {loading ? (
-        <div className="text-gray-400 text-sm">Loading FAQs...</div>
+        <div className="text-gray-500 dark:text-gray-400 text-sm">Loading FAQs...</div>
       ) : faqs.length === 0 ? (
-        <div className="text-gray-400 text-sm italic">No FAQs found.</div>
+        <div className="text-gray-500 dark:text-gray-400 text-sm italic">No FAQs found.</div>
       ) : (
         <div className="flex flex-col gap-4">
           {faqs.map(faq => (
-            <div key={faq._id} className="border border-gray-800 bg-primary p-6 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between hover:border-gray-600 transition-all">
+            <div key={faq._id} className="border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-primary p-6 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between hover:border-gray-600 transition-all">
               <div className="flex-grow">
-                <h3 className="font-display uppercase tracking-widest text-sm mb-2 text-white">{faq.question}</h3>
-                <p className="text-xs text-gray-400">{faq.answer}</p>
+                <h3 className="font-display uppercase tracking-widest text-sm mb-2 text-gray-900 dark:text-white">{faq.question}</h3>
+                <p className="text-xs text-gray-500 dark:text-gray-400">{faq.answer}</p>
               </div>
               
               <div className="flex gap-2 shrink-0 w-full md:w-auto">
-                <button onClick={() => handleEdit(faq)} className="flex-1 md:flex-none px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-400 hover:text-white text-xs tracking-widest uppercase transition-colors flex justify-center items-center gap-2">
+                <button onClick={() => handleEdit(faq)} className="flex-1 md:flex-none px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-gray-700 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:text-white text-xs tracking-widest uppercase transition-colors flex justify-center items-center gap-2">
                   <FaEdit />
                 </button>
                 <button onClick={() => handleDelete(faq._id)} className="flex-1 md:flex-none px-4 py-2 bg-red-900/30 hover:bg-red-900/50 text-red-500 hover:text-red-400 text-xs tracking-widest uppercase transition-colors flex justify-center items-center gap-2">
