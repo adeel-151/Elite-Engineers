@@ -183,10 +183,10 @@ const Services = () => {
           viewport={{ once: true }}
           className="text-center px-4"
         >
-          <h2 className="text-white text-3xl md:text-5xl tracking-widest uppercase mb-8">Ready to Build?</h2>
+          <h2 className="text-white text-3xl md:text-5xl tracking-widest uppercase mb-8">Our Clients</h2>
           <MagneticButton>
-            <Link to="/contact" className="inline-block px-12 py-4 bg-accent text-white uppercase tracking-widest text-sm hover:bg-black transition-colors duration-300 rounded-full">
-              GET A QUOTE
+            <Link to="/clients" className="inline-block px-12 py-4 bg-accent text-white uppercase tracking-widest text-sm hover:bg-black transition-colors duration-300">
+              VIEW OUR CLIENTS
             </Link>
           </MagneticButton>
         </motion.div>
