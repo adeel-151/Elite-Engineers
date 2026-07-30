@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaChevronDown, FaSun, FaMoon } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
-import logoImg from '../../assets/golden-logo.png';
+import logoImg from '../../assets/elite-logo.svg';
 import { ThemeContext } from '../../context/ThemeContext';
 
 const Navbar = () => {
@@ -209,7 +209,7 @@ const Navbar = () => {
               <img
                 src={logoImg}
                 alt="Elite Engineers Logo"
-                className="h-12 object-contain brightness-0 invert"
+                className="h-12 object-contain"
               />
             </div>
 
