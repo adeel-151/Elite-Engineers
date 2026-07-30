@@ -437,7 +437,7 @@ const Home = () => {
               {[
                 { value: '15+', label: 'Years Experience' },
                 { value: '120', label: 'Projects Delivered' },
-                { value: '50+', label: 'Expert Engineers' },
+                { value: '15+', label: 'Expert Engineers' },
                 { value: '100%', label: 'Client Satisfaction' },
               ].map((stat, i) => (
                 <div key={stat.label} className={`p-10 border border-gray-100 dark:border-gray-800 text-center group hover:bg-gray-900 transition-colors duration-500 ${i === 0 ? 'bg-gray-900' : 'bg-white dark:bg-[#111]'}`}>
