@@ -125,7 +125,7 @@ const Navbar = () => {
           onClick={() => setIsOpen(false)}
         >
           <EliteLogo
-            className={`w-auto object-contain transition-all duration-300 h-16 md:h-20 ${
+            className={`w-auto object-contain transition-all duration-300 h-20 md:h-24 ${
               isSolid ? 'text-gray-900 dark:text-white' : 'text-white'
             }`}
           />
