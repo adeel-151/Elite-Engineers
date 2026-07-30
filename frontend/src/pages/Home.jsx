@@ -327,7 +327,7 @@ const Home = () => {
           <div className="grid grid-cols-2 md:grid-cols-5 gap-10 md:gap-6 divide-x-0 md:divide-x divide-white/10">
             <CounterStat end={15} suffix="+" label="Years Experience" duration={1800} />
             <CounterStat end={120} label="Projects Completed" duration={2000} />
-            <CounterStat end={50} suffix="+" label="Expert Engineers" duration={1600} />
+            <CounterStat end={15} suffix="+" label="Expert Engineers" duration={1600} />
             <CounterStat end={100} suffix="%" label="Client Satisfaction" duration={2200} />
             <CounterStat prefix="₨" end={2.5} suffix="B+" label="Value Delivered" duration={2000} />
           </div>
@@ -388,7 +388,7 @@ const Home = () => {
       </div>
 
       {/* ── 5. STICKY PHILOSOPHY BANNER ───────────────────────────────────── */}
-      <StickyImageSection imageSrc="https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2062&auto=format&fit=crop">
+      <StickyImageSection imageSrc={elite2}>
         <motion.div
           initial={{ opacity: 0, scale: 0.92 }}
           whileInView={{ opacity: 1, scale: 1 }}
