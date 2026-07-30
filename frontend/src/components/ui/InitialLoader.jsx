@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const EliteLogo = ({ className = '' }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 2550 3300"
+    viewBox="0 980 2550 1220"
     className={className}
     aria-label="Elite Engineers Logo"
     role="img"
@@ -91,7 +91,7 @@ const InitialLoader = ({ onComplete }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
-            className="text-gray-300 font-display font-light uppercase tracking-[0.3em] text-lg md:text-xl -mt-4 mb-2"
+            className="text-gray-300 font-display font-light uppercase tracking-[0.3em] text-lg md:text-xl mt-1 mb-2"
           >
             Elite Engineers
           </motion.div>
