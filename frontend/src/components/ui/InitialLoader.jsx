@@ -81,7 +81,7 @@ const InitialLoader = ({ onComplete }) => {
             initial={{ opacity: 0, scale: 0.7 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="-mb-11 md:-mb-16"
+            className="-mb-4 md:-mb-6"
           >
             {/* text-white makes the black (currentColor) parts appear white on dark bg */}
             <EliteLogo className="h-32 md:h-44 w-auto object-contain text-white" />
