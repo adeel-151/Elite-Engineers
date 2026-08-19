@@ -49,6 +49,7 @@ export default function BuildingExperience() {
       pin: true,
       scrub: 1,
       anticipatePin: 1,
+      refreshPriority: 2,
       onUpdate: (self) => {
         progressRef.current = self.progress;
         setCurrentStage(getStageIndex(self.progress));

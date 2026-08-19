@@ -282,7 +282,8 @@ const Home = () => {
           start: "top top",
           end: () => `+=${cardsWrapperRef.current.scrollWidth}`,
           invalidateOnRefresh: true,
-          anticipatePin: 1
+          anticipatePin: 1,
+          refreshPriority: 3
         }
       });
     }
@@ -303,7 +304,8 @@ const Home = () => {
           start: "top top",
           end: () => `+=${whyCardsWrapperRef.current.scrollWidth}`,
           invalidateOnRefresh: true,
-          anticipatePin: 1
+          anticipatePin: 1,
+          refreshPriority: 1
         }
       });
     }
@@ -388,7 +390,8 @@ const Home = () => {
       </div>
 
       {/* ── 4. SERVICES PREVIEW STRIP (HORIZONTAL SCROLL) ─────────────────── */}
-      <div ref={servicesRef} className="py-0 h-screen flex flex-col justify-center bg-white dark:bg-[#0a0a0a] relative z-20 overflow-hidden">
+      <div className="bg-white dark:bg-[#0a0a0a] relative z-20 w-full">
+        <div ref={servicesRef} className="py-0 h-screen flex flex-col justify-center relative overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8 max-w-[100vw]">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 max-w-7xl mx-auto">
             <motion.div
@@ -434,6 +437,7 @@ const Home = () => {
             ))}
           </div>
         </div>
+      </div>
       </div>
 
       {/* ── 5. STICKY PHILOSOPHY BANNER ───────────────────────────────────── */}
@@ -500,10 +504,13 @@ const Home = () => {
       </div>
 
       {/* ── CINEMATIC 3D BUILDING EXPERIENCE ──────────────────────────────── */}
-      <BuildingExperience />
+      <div className="bg-[#0d1117] relative z-30 w-full">
+        <BuildingExperience />
+      </div>
 
       {/* ── 7. WHY CHOOSE US (GSAP Horizontal Scroll) ─────────────────────── */}
-      <div ref={whyUsRef} className="py-0 h-screen flex flex-col justify-center bg-[#0a0f1e] relative z-20 overflow-hidden">
+      <div className="bg-[#0a0f1e] relative z-20 w-full">
+        <div ref={whyUsRef} className="py-0 h-screen flex flex-col justify-center relative overflow-hidden">
         {/* subtle dot grid */}
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(rgba(245,158,11,1) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         
@@ -532,6 +539,7 @@ const Home = () => {
             })}
           </div>
         </div>
+      </div>
       </div>
 
       {/* ── 8. HOW WE WORK TIMELINE ───────────────────────────────────────── */}
