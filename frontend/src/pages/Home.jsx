@@ -261,9 +261,13 @@ const StickyImageSection = ({ imageSrc, children }) => {
 // ─── Main Home Component ─────────────────────────────────────────────────────
 const Home = () => {
   const [featuredProjects, setFeaturedProjects] = useState([]);
+  const mainRef = useRef(null);
   const whyUsRef = useRef(null);
+  const servicesRef = useRef(null);
+  const cardsWrapperRef = useRef(null);
 
   useGSAP(() => {
+    // 1. Why Choose Us Animation
     gsap.from(".why-card", {
       y: 50,
       opacity: 0,
@@ -276,7 +280,25 @@ const Home = () => {
         toggleActions: "play none none reverse"
       }
     });
-  }, { scope: whyUsRef });
+
+    // 2. Horizontal Scroll for Services
+    if (cardsWrapperRef.current && servicesRef.current) {
+      const scrollWidth = cardsWrapperRef.current.scrollWidth - window.innerWidth + 40; // 40px padding buffer
+      
+      gsap.to(cardsWrapperRef.current, {
+        x: -scrollWidth,
+        ease: "none",
+        scrollTrigger: {
+          trigger: servicesRef.current,
+          pin: true,
+          scrub: 1,
+          start: "center center", // Pin when section is centered
+          end: () => `+=${scrollWidth}`,
+          invalidateOnRefresh: true
+        }
+      });
+    }
+  }, { scope: mainRef });
 
   const getImageUrl = (imagePath) => {
     if (!imagePath) return img1;
@@ -303,7 +325,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="bg-white dark:bg-[#0a0a0a] transition-colors duration-300">
+    <div ref={mainRef} className="bg-white dark:bg-[#0a0a0a] transition-colors duration-300 overflow-x-hidden">
       <SEO
         title="Home"
         description="Elite Engineers is a premier engineering firm in Lahore delivering cutting-edge architectural, structural, and construction solutions across Pakistan."
@@ -356,10 +378,10 @@ const Home = () => {
         </div>
       </div>
 
-      {/* ── 4. SERVICES PREVIEW STRIP ─────────────────────────────────────── */}
-      <div className="py-28 bg-white dark:bg-[#0a0a0a] relative z-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16">
+      {/* ── 4. SERVICES PREVIEW STRIP (HORIZONTAL SCROLL) ─────────────────── */}
+      <div ref={servicesRef} className="py-0 h-screen flex flex-col justify-center bg-white dark:bg-[#0a0a0a] relative z-20 overflow-hidden">
+        <div className="w-full px-4 sm:px-6 lg:px-8 max-w-[100vw]">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -367,7 +389,7 @@ const Home = () => {
               transition={{ duration: 0.7 }}
             >
               <p className="text-amber-500 text-xs tracking-[0.3em] uppercase mb-3">What We Do</p>
-              <h2 className="text-3xl md:text-4xl font-display tracking-widest uppercase text-gray-900 dark:text-white">Our Expertise</h2>
+              <h2 className="text-3xl md:text-5xl font-display tracking-widest uppercase text-gray-900 dark:text-white">Our Expertise</h2>
               <div className="w-12 h-[1px] bg-amber-500 mt-5" />
             </motion.div>
             <motion.div
@@ -376,34 +398,30 @@ const Home = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.7, delay: 0.3 }}
             >
-              <Link to="/services" className="flex items-center gap-2 text-xs tracking-widest uppercase text-gray-500 hover:text-amber-500 transition-colors mt-6 md:mt-0 border-b border-gray-300 hover:border-amber-500 pb-1">
+              <Link to="/services" className="flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-gray-900 dark:text-gray-300 hover:text-amber-500 transition-colors mt-6 md:mt-0 border-b border-black dark:border-gray-500 hover:border-amber-500 pb-1">
                 View All Services <FaArrowRight className="text-[10px]" />
               </Link>
             </motion.div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-0">
+          <div ref={cardsWrapperRef} className="flex flex-nowrap w-max gap-6 pl-4 md:pl-20 py-10">
             {servicesPreview.map((svc, i) => (
-              <motion.div
+              <div
                 key={svc.title}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.7, delay: i * 0.12 }}
-                className="group relative h-80 overflow-hidden cursor-pointer"
+                className="service-card w-[85vw] sm:w-[350px] md:w-[450px] flex-shrink-0 group relative h-[450px] md:h-[550px] overflow-hidden cursor-pointer"
               >
                 <img src={svc.img} alt={svc.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20 group-hover:from-black/95 transition-all duration-500" />
-                <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                  <div className="w-8 h-[1px] bg-amber-400 mb-4 group-hover:w-16 transition-all duration-500" />
-                  <h3 className="text-white font-display text-lg uppercase tracking-wide mb-2">{svc.title}</h3>
-                  <p className="text-gray-300 text-sm font-light leading-relaxed opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-20 transition-all duration-500 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent group-hover:from-black transition-all duration-500" />
+                <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">
+                  <div className="w-10 h-[2px] bg-amber-400 mb-6 group-hover:w-20 transition-all duration-500" />
+                  <h3 className="text-white font-display text-xl md:text-2xl uppercase tracking-wide mb-4 leading-snug">{svc.title}</h3>
+                  <p className="text-gray-300 text-sm md:text-base font-light leading-relaxed opacity-0 group-hover:opacity-100 max-h-0 group-hover:max-h-32 transition-all duration-700 overflow-hidden delay-100">
                     {svc.desc}
                   </p>
                 </div>
                 {/* Corner accent */}
-                <div className="absolute top-5 right-5 w-8 h-8 border border-amber-400/0 group-hover:border-amber-400/60 transition-all duration-500 transform rotate-45" />
-              </motion.div>
+                <div className="absolute top-6 right-6 w-10 h-10 border border-amber-400/0 group-hover:border-amber-400 transition-all duration-500 transform rotate-45 scale-50 group-hover:scale-100" />
+              </div>
             ))}
           </div>
         </div>
