@@ -311,17 +311,18 @@ const Home = () => {
     }
   }, { scope: whyUsRef });
 
-  const getImageUrl = (imagePath) => {
+  const getImageUrl = (imagePath, isDummy) => {
     if (!imagePath) return img1;
-    if (imagePath.startsWith('http')) return imagePath;
-    return `${API_BASE_URL}/${imagePath.replace(/\\/g, '/')}`;
+    if (isDummy || (typeof imagePath === 'string' && (imagePath.startsWith('http') || imagePath.startsWith('data:') || imagePath.startsWith('/src/') || imagePath.startsWith('/assets/')))) return imagePath;
+    const cleanPath = typeof imagePath === 'string' && imagePath.startsWith('/') ? imagePath.slice(1) : imagePath;
+    return `${API_BASE_URL}/${cleanPath.replace(/\\/g, '/')}`;
   };
 
   useEffect(() => {
     const dummyProjects = [
-      { _id: '1', title: 'The Skyline Tower', category: 'Commercial', images: [img1] },
-      { _id: '2', title: 'Aura Residences', category: 'Residential', images: [img2] },
-      { _id: '3', title: 'Tech Hub Interior', category: 'Interior Fit-out', images: [img8] },
+      { _id: '1', title: 'The Skyline Tower', category: 'Commercial', images: [img1], isDummy: true },
+      { _id: '2', title: 'Aura Residences', category: 'Residential', images: [img2], isDummy: true },
+      { _id: '3', title: 'Tech Hub Interior', category: 'Interior Fit-out', images: [img8], isDummy: true },
     ];
     const fetchProjects = async () => {
       try {
@@ -576,7 +577,7 @@ const Home = () => {
                 onClick={() => { if (p._id) window.location.href = `/projects/${p._id}`; }}
               >
                 <div className="w-full h-[460px] bg-gray-100 overflow-hidden mb-5 relative">
-                  <img src={getImageUrl(p.images?.[0])} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
+                  <img src={getImageUrl(p.images?.[0], p.isDummy)} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700" />
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
                   {/* Category pill */}
                   <div className="absolute top-5 left-5">
