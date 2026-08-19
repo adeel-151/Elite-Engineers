@@ -23,6 +23,12 @@ import img10 from '../assets/img10.jpg';
 import img11 from '../assets/img11.jpg';
 import img38 from '../assets/img38.jpeg';
 import elite2 from '../assets/elite2.png';
+import ThreeDArchitecture from '../components/ui/ThreeDArchitecture';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // ─── Hero Slideshow Data ─────────────────────────────────────────────────────
 const heroSlides = [
@@ -255,6 +261,22 @@ const StickyImageSection = ({ imageSrc, children }) => {
 // ─── Main Home Component ─────────────────────────────────────────────────────
 const Home = () => {
   const [featuredProjects, setFeaturedProjects] = useState([]);
+  const whyUsRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(".why-card", {
+      y: 50,
+      opacity: 0,
+      duration: 0.8,
+      stagger: 0.15,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: whyUsRef.current,
+        start: "top 75%",
+        toggleActions: "play none none reverse"
+      }
+    });
+  }, { scope: whyUsRef });
 
   const getImageUrl = (imagePath) => {
     if (!imagePath) return img1;
@@ -450,41 +472,34 @@ const Home = () => {
         </div>
       </div>
 
-      {/* ── 7. WHY CHOOSE US ──────────────────────────────────────────────── */}
-      <div className="py-28 bg-[#0a0f1e] relative z-20">
+      {/* ── NEW 3D ARCHITECTURE SECTION ───────────────────────────────────── */}
+      <ThreeDArchitecture />
+
+      {/* ── 7. WHY CHOOSE US (GSAP Animated) ──────────────────────────────── */}
+      <div ref={whyUsRef} className="py-28 bg-[#0a0f1e] relative z-20 overflow-hidden">
         {/* subtle dot grid */}
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(rgba(245,158,11,1) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16 why-card">
             <p className="text-amber-400 text-xs tracking-[0.3em] uppercase mb-3">Our Differentiators</p>
             <h2 className="text-white text-3xl md:text-4xl font-display tracking-widest uppercase">Why Choose Elite Engineers</h2>
             <div className="w-16 h-[1px] bg-amber-400 mx-auto mt-6" />
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {whyFeatures.map((feat, i) => {
               const Icon = feat.icon;
               return (
-                <motion.div
+                <div
                   key={feat.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="group border border-white/10 hover:border-amber-400/50 p-8 transition-all duration-500 hover:bg-white/5"
+                  className="why-card group border border-white/10 hover:border-amber-400/50 p-8 transition-all duration-500 hover:bg-white/5"
                 >
                   <div className="w-14 h-14 bg-amber-400/10 group-hover:bg-amber-400/20 flex items-center justify-center mb-6 transition-colors duration-300">
                     <Icon className="text-amber-400 text-2xl" />
                   </div>
                   <h3 className="text-white font-display text-lg uppercase tracking-wide mb-4">{feat.title}</h3>
                   <p className="text-gray-400 font-light text-sm leading-relaxed">{feat.desc}</p>
-                </motion.div>
+                </div>
               );
             })}
           </div>
