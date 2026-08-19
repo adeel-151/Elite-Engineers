@@ -69,7 +69,7 @@ export default function BuildingExperience() {
     <section
       ref={sectionRef}
       id="building-experience"
-      className="w-full h-screen relative overflow-hidden"
+      className="w-full h-[100dvh] relative overflow-hidden"
       style={{ background: '#0d1117' }}
       aria-label="Interactive 3D building construction experience"
     >

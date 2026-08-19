@@ -166,7 +166,7 @@ const HeroSlideshow = () => {
   const slide = heroSlides[current];
 
   return (
-    <div className="h-screen w-full relative overflow-hidden bg-black">
+    <div className="h-[100dvh] w-full relative overflow-hidden bg-black">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -247,7 +247,7 @@ const StickyImageSection = ({ imageSrc, children }) => {
   const opacity = useTransform(scrollYProgress, [0, 0.8, 1], [1, 1, 0]);
 
   return (
-    <div ref={containerRef} className="h-screen w-full relative overflow-hidden bg-black">
+    <div ref={containerRef} className="h-[100dvh] w-full relative overflow-hidden bg-black">
       <motion.div style={{ y, opacity }} className="absolute inset-0 w-full h-full">
         <img src={imageSrc} alt="Background" className="w-full h-full object-cover opacity-70" />
       </motion.div>
@@ -392,7 +392,7 @@ const Home = () => {
 
       {/* ── 4. SERVICES PREVIEW STRIP (HORIZONTAL SCROLL) ─────────────────── */}
       <div className="bg-white dark:bg-[#0a0a0a] relative z-20 w-full">
-        <div ref={servicesRef} className="py-0 h-screen flex flex-col justify-center relative overflow-hidden">
+        <div ref={servicesRef} className="py-0 h-[100dvh] flex flex-col justify-center relative overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8 max-w-[100vw]">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 max-w-7xl mx-auto">
             <motion.div
@@ -511,7 +511,7 @@ const Home = () => {
 
       {/* ── 7. WHY CHOOSE US (GSAP Horizontal Scroll) ─────────────────────── */}
       <div className="bg-[#0a0f1e] relative z-20 w-full">
-        <div ref={whyUsRef} className="py-0 h-screen flex flex-col justify-center relative overflow-hidden">
+        <div ref={whyUsRef} className="py-0 h-[100dvh] flex flex-col justify-center relative overflow-hidden">
         {/* subtle dot grid */}
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(rgba(245,158,11,1) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         

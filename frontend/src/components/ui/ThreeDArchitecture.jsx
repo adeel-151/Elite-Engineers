@@ -95,7 +95,7 @@ function ArchitecturalGrid() {
 
 export default function ThreeDArchitecture() {
   return (
-    <section id="architecture-section" className="w-full h-[80vh] bg-black relative flex items-center justify-center overflow-hidden border-y border-white/5">
+    <section id="architecture-section" className="w-full h-[80dvh] bg-black relative flex items-center justify-center overflow-hidden border-y border-white/5">
       {/* Text Overlay pinned on top of the 3D canvas */}
       <div className="absolute z-10 pointer-events-none flex flex-col items-center justify-center w-full h-full text-center px-4">
         <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-[0.15em] uppercase font-display drop-shadow-2xl">
