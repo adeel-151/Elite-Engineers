@@ -265,21 +265,26 @@ const Home = () => {
   const whyUsRef = useRef(null);
   const servicesRef = useRef(null);
   const cardsWrapperRef = useRef(null);
+  const whyCardsWrapperRef = useRef(null);
 
   useGSAP(() => {
-    // 1. Why Choose Us Animation
-    gsap.from(".why-card", {
-      y: 50,
-      opacity: 0,
-      duration: 0.8,
-      stagger: 0.15,
-      ease: "power2.out",
-      scrollTrigger: {
-        trigger: whyUsRef.current,
-        start: "top 75%",
-        toggleActions: "play none none reverse"
-      }
-    });
+    // 1. Horizontal Scroll for Why Choose Us
+    if (whyCardsWrapperRef.current && whyUsRef.current) {
+      const whyScrollWidth = whyCardsWrapperRef.current.scrollWidth - window.innerWidth + 40;
+      
+      gsap.to(whyCardsWrapperRef.current, {
+        x: -whyScrollWidth,
+        ease: "none",
+        scrollTrigger: {
+          trigger: whyUsRef.current,
+          pin: true,
+          scrub: 1,
+          start: "center center",
+          end: () => `+=${whyScrollWidth}`,
+          invalidateOnRefresh: true
+        }
+      });
+    }
 
     // 2. Horizontal Scroll for Services
     if (cardsWrapperRef.current && servicesRef.current) {
@@ -493,30 +498,31 @@ const Home = () => {
       {/* ── NEW 3D ARCHITECTURE SECTION ───────────────────────────────────── */}
       <ThreeDArchitecture />
 
-      {/* ── 7. WHY CHOOSE US (GSAP Animated) ──────────────────────────────── */}
-      <div ref={whyUsRef} className="py-28 bg-[#0a0f1e] relative z-20 overflow-hidden">
+      {/* ── 7. WHY CHOOSE US (GSAP Horizontal Scroll) ─────────────────────── */}
+      <div ref={whyUsRef} className="py-0 h-screen flex flex-col justify-center bg-[#0a0f1e] relative z-20 overflow-hidden">
         {/* subtle dot grid */}
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(rgba(245,158,11,1) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 why-card">
+        
+        <div className="w-full px-4 sm:px-6 lg:px-8 max-w-[100vw]">
+          <div className="text-center mb-10 max-w-7xl mx-auto">
             <p className="text-amber-400 text-xs tracking-[0.3em] uppercase mb-3">Our Differentiators</p>
-            <h2 className="text-white text-3xl md:text-4xl font-display tracking-widest uppercase">Why Choose Elite Engineers</h2>
+            <h2 className="text-white text-3xl md:text-5xl font-display tracking-widest uppercase">Why Choose Elite Engineers</h2>
             <div className="w-16 h-[1px] bg-amber-400 mx-auto mt-6" />
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div ref={whyCardsWrapperRef} className="flex flex-nowrap w-max gap-8 pl-4 md:pl-20 py-10">
             {whyFeatures.map((feat, i) => {
               const Icon = feat.icon;
               return (
                 <div
                   key={feat.title}
-                  className="why-card group border border-white/10 hover:border-amber-400/50 p-8 transition-all duration-500 hover:bg-white/5"
+                  className="why-card w-[80vw] sm:w-[350px] md:w-[400px] flex-shrink-0 group border border-white/10 hover:border-amber-400/50 p-10 transition-all duration-500 hover:bg-white/5 bg-black/20 backdrop-blur-sm"
                 >
-                  <div className="w-14 h-14 bg-amber-400/10 group-hover:bg-amber-400/20 flex items-center justify-center mb-6 transition-colors duration-300">
-                    <Icon className="text-amber-400 text-2xl" />
+                  <div className="w-16 h-16 bg-amber-400/10 group-hover:bg-amber-400/20 flex items-center justify-center mb-8 transition-colors duration-300 rounded-full">
+                    <Icon className="text-amber-400 text-3xl" />
                   </div>
-                  <h3 className="text-white font-display text-lg uppercase tracking-wide mb-4">{feat.title}</h3>
-                  <p className="text-gray-400 font-light text-sm leading-relaxed">{feat.desc}</p>
+                  <h3 className="text-white font-display text-xl uppercase tracking-wide mb-4">{feat.title}</h3>
+                  <p className="text-gray-400 font-light text-base leading-relaxed">{feat.desc}</p>
                 </div>
               );
             })}
