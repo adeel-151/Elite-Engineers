@@ -18,7 +18,18 @@ const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./src/config/swagger');
 
 // 1. Set security HTTP headers
-app.use(helmet());
+app.use(helmet({
+  contentSecurityPolicy: {
+    directives: {
+      defaultSrc: ["'self'"],
+      scriptSrc: ["'self'"],
+      styleSrc: ["'self'", 'https:', "'unsafe-inline'"],
+      imgSrc: ["'self'", 'data:', 'https://res.cloudinary.com'],
+      connectSrc: ["'self'", process.env.FRONTEND_URL || 'https://elite-engineers-9rt9.onrender.com'],
+    },
+  },
+  crossOriginEmbedderPolicy: false,
+}));
 
 // 2. Limit requests from same API
 const limiter = rateLimit({
@@ -29,7 +40,12 @@ const limiter = rateLimit({
 app.use('/api', limiter);
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? [process.env.FRONTEND_URL || 'https://elite-engineers-9rt9.onrender.com'] 
+    : 'http://localhost:5173',
+  credentials: true
+}));
 app.use(express.json({ limit: '10kb' }));
 app.use(express.urlencoded({ extended: true, limit: '10kb' }));
 

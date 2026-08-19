@@ -42,14 +42,20 @@ exports.login = catchAsync(async (req, res, next) => {
 
 // Utility to create first admin (can be removed in production after usage)
 exports.createInitialAdmin = catchAsync(async (req, res, next) => {
+  const { setupSecret, email, password } = req.body;
+  
+  if (process.env.NODE_ENV === 'production' && setupSecret !== process.env.ADMIN_SETUP_SECRET) {
+    return next(new AppError('Unauthorized to create admin', 403));
+  }
+
   const adminsCount = await Admin.countDocuments();
   if (adminsCount > 0) {
      return next(new AppError('Admin already exists', 400));
   }
   
   const newAdmin = await Admin.create({
-    email: req.body.email,
-    password: req.body.password,
+    email,
+    password,
   });
 
   createSendToken(newAdmin, 201, res);

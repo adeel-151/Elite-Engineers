@@ -1,8 +1,9 @@
 const express = require('express');
 const projectController = require('../controllers/project.controller');
 const authMiddleware = require('../middlewares/auth');
-
 const upload = require('../middlewares/upload');
+const { validate, validateObjectId } = require('../middlewares/validate');
+const { projectSchema } = require('../utils/schemas');
 
 const router = express.Router();
 
@@ -26,12 +27,12 @@ const router = express.Router();
 router
   .route('/')
   .get(projectController.getAllProjects)
-  .post(authMiddleware.protect, upload.array('images', 10), projectController.createProject);
+  .post(authMiddleware.protect, upload.array('images', 10), validate(projectSchema), projectController.createProject);
 
 router
   .route('/:id')
-  .get(projectController.getProject)
-  .put(authMiddleware.protect, upload.array('images', 10), projectController.updateProject)
-  .delete(authMiddleware.protect, projectController.deleteProject);
+  .get(validateObjectId, projectController.getProject)
+  .put(authMiddleware.protect, validateObjectId, upload.array('images', 10), validate(projectSchema), projectController.updateProject)
+  .delete(authMiddleware.protect, validateObjectId, projectController.deleteProject);
 
 module.exports = router;

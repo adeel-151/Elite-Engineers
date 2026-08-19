@@ -3,10 +3,13 @@ const { storage } = require('../config/cloudinary');
 const AppError = require('../utils/AppError');
 
 const multerFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith('image')) {
+  // Check exact mime types
+  const allowedMimeTypes = ['image/jpeg', 'image/png', 'image/webp'];
+  
+  if (allowedMimeTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(new AppError('Not an image! Please upload only images.', 400), false);
+    cb(new AppError('Invalid file type! Please upload only JPEG, PNG, or WEBP images.', 400), false);
   }
 };
 
