@@ -267,8 +267,29 @@ const Home = () => {
   const cardsWrapperRef = useRef(null);
   const whyCardsWrapperRef = useRef(null);
 
+  // Services horizontal scroll — independent context
   useGSAP(() => {
-    // 1. Horizontal Scroll for Why Choose Us
+    if (cardsWrapperRef.current && servicesRef.current) {
+      const scrollWidth = cardsWrapperRef.current.scrollWidth - window.innerWidth + 40;
+      
+      gsap.to(cardsWrapperRef.current, {
+        x: -scrollWidth,
+        ease: "none",
+        scrollTrigger: {
+          trigger: servicesRef.current,
+          pin: true,
+          scrub: 0.8,
+          start: "top top",
+          end: () => `+=${scrollWidth}`,
+          invalidateOnRefresh: true,
+          anticipatePin: 1
+        }
+      });
+    }
+  }, { scope: servicesRef });
+
+  // Why Choose Us horizontal scroll — independent context
+  useGSAP(() => {
     if (whyCardsWrapperRef.current && whyUsRef.current) {
       const whyScrollWidth = whyCardsWrapperRef.current.scrollWidth - window.innerWidth + 40;
       
@@ -278,32 +299,15 @@ const Home = () => {
         scrollTrigger: {
           trigger: whyUsRef.current,
           pin: true,
-          scrub: 1,
-          start: "center center",
+          scrub: 0.8,
+          start: "top top",
           end: () => `+=${whyScrollWidth}`,
-          invalidateOnRefresh: true
+          invalidateOnRefresh: true,
+          anticipatePin: 1
         }
       });
     }
-
-    // 2. Horizontal Scroll for Services
-    if (cardsWrapperRef.current && servicesRef.current) {
-      const scrollWidth = cardsWrapperRef.current.scrollWidth - window.innerWidth + 40; // 40px padding buffer
-      
-      gsap.to(cardsWrapperRef.current, {
-        x: -scrollWidth,
-        ease: "none",
-        scrollTrigger: {
-          trigger: servicesRef.current,
-          pin: true,
-          scrub: 1,
-          start: "center center", // Pin when section is centered
-          end: () => `+=${scrollWidth}`,
-          invalidateOnRefresh: true
-        }
-      });
-    }
-  }, { scope: mainRef });
+  }, { scope: whyUsRef });
 
   const getImageUrl = (imagePath) => {
     if (!imagePath) return img1;

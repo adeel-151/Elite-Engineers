@@ -45,9 +45,10 @@ export default function BuildingExperience() {
     ScrollTrigger.create({
       trigger: sectionRef.current,
       start: 'top top',
-      end: '+=5000',
+      end: '+=3000',
       pin: true,
-      scrub: 1.5,
+      scrub: 1,
+      anticipatePin: 1,
       onUpdate: (self) => {
         progressRef.current = self.progress;
         setCurrentStage(getStageIndex(self.progress));
