@@ -108,7 +108,7 @@ export default function ThreeDArchitecture() {
       
       {/* The 3D Canvas */}
       <div className="absolute inset-0 z-0 opacity-90 cursor-default">
-        <Canvas camera={{ position: [0, 5, 12], fov: 45 }}>
+        <Canvas camera={{ position: [0, 5, 12], fov: 45 }} dpr={[1, 1.5]} gl={{ powerPreference: 'high-performance' }}>
           <ambientLight intensity={0.4} />
           <directionalLight position={[10, 20, 10]} intensity={1.5} color="#f59e0b" />
           <directionalLight position={[-10, -20, -10]} intensity={0.5} color="#ffffff" />

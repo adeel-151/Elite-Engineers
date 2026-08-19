@@ -6,6 +6,12 @@ import SkeletonLoader from './components/ui/SkeletonLoader';
 import InitialLoader from './components/ui/InitialLoader';
 import CustomCursor from './components/ui/CustomCursor';
 import ScrollToTop from './components/ui/ScrollToTop';
+import Lenis from 'lenis';
+import gsap from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useEffect } from 'react';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Lazy loaded pages
 const Home = lazy(() => import('./pages/Home'));
@@ -20,6 +26,29 @@ const Admin = lazy(() => import('./pages/Admin'));
 
 function App() {
   const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      smoothWheel: true,
+      syncTouch: true,
+      duration: 1.2,
+    });
+
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    return () => {
+      gsap.ticker.remove((time) => {
+        lenis.raf(time * 1000);
+      });
+      lenis.destroy();
+    };
+  }, []);
 
   return (
     <>

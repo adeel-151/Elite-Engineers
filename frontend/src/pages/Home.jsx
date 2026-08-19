@@ -278,9 +278,9 @@ const Home = () => {
         scrollTrigger: {
           trigger: servicesRef.current,
           pin: true,
-          scrub: 0.8,
+          scrub: 1.5,
           start: "top top",
-          end: () => `+=${scrollWidth}`,
+          end: () => `+=${cardsWrapperRef.current.scrollWidth}`,
           invalidateOnRefresh: true,
           anticipatePin: 1
         }
@@ -299,9 +299,9 @@ const Home = () => {
         scrollTrigger: {
           trigger: whyUsRef.current,
           pin: true,
-          scrub: 0.8,
+          scrub: 1.5,
           start: "top top",
-          end: () => `+=${whyScrollWidth}`,
+          end: () => `+=${whyCardsWrapperRef.current.scrollWidth}`,
           invalidateOnRefresh: true,
           anticipatePin: 1
         }

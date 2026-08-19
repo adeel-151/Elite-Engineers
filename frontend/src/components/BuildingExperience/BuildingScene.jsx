@@ -94,8 +94,8 @@ export default function BuildingScene({ progressRef }) {
         intensity={1.8}
         color="#fff5e6"
         castShadow
-        shadow-mapSize-width={2048}
-        shadow-mapSize-height={2048}
+        shadow-mapSize-width={1024}
+        shadow-mapSize-height={1024}
         shadow-camera-near={0.5}
         shadow-camera-far={80}
         shadow-camera-left={-22}
