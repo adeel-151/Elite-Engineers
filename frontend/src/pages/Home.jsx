@@ -23,7 +23,7 @@ import img10 from '../assets/img10.jpg';
 import img11 from '../assets/img11.jpg';
 import img38 from '../assets/img38.jpeg';
 import elite2 from '../assets/elite2.png';
-import ThreeDArchitecture from '../components/ui/ThreeDArchitecture';
+import BuildingExperience from '../components/BuildingExperience/BuildingExperience';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -495,8 +495,8 @@ const Home = () => {
         </div>
       </div>
 
-      {/* ── NEW 3D ARCHITECTURE SECTION ───────────────────────────────────── */}
-      <ThreeDArchitecture />
+      {/* ── CINEMATIC 3D BUILDING EXPERIENCE ──────────────────────────────── */}
+      <BuildingExperience />
 
       {/* ── 7. WHY CHOOSE US (GSAP Horizontal Scroll) ─────────────────────── */}
       <div ref={whyUsRef} className="py-0 h-screen flex flex-col justify-center bg-[#0a0f1e] relative z-20 overflow-hidden">
