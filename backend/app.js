@@ -41,9 +41,12 @@ app.use('/api', limiter);
 
 // Middlewares
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? [process.env.FRONTEND_URL || 'https://elite-engineers-9rt9.onrender.com'] 
-    : 'http://localhost:5173',
+  origin: [
+    'http://localhost:5173',
+    'https://elite-engineers-phi.vercel.app',
+    'https://elite-engineers-9rt9.onrender.com',
+    process.env.FRONTEND_URL
+  ].filter(Boolean),
   credentials: true
 }));
 app.use(express.json({ limit: '10kb' }));
