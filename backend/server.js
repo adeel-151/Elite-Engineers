@@ -18,6 +18,18 @@ const server = app.listen(port, () => {
   console.log(`App running on port ${port}...`);
 });
 
+// Prevent Render free tier from sleeping by pinging every 10 minutes
+const https = require('https');
+const backendUrl = 'https://elite-engineers-9rt9.onrender.com/api/health';
+
+setInterval(() => {
+  https.get(backendUrl, (res) => {
+    console.log(`[Keep-Alive] Pinged ${backendUrl} - Status: ${res.statusCode}`);
+  }).on('error', (err) => {
+    console.error('[Keep-Alive] Ping failed:', err.message);
+  });
+}, 10 * 60 * 1000); // 10 minutes (600,000 ms)
+
 process.on('unhandledRejection', err => {
   console.log('UNHANDLED REJECTION! 💥 Shutting down...');
   console.log(err.name, err.message);
