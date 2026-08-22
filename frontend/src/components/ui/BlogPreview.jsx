@@ -47,11 +47,14 @@ const BlogPreview = () => {
   useEffect(() => {
     if (selectedArticle) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
     }
     return () => {
       document.body.style.overflow = 'unset';
+      document.documentElement.style.overflow = 'unset';
     };
   }, [selectedArticle]);
 
@@ -176,7 +179,7 @@ const BlogPreview = () => {
                   <FaTimes />
                 </button>
 
-                <div className="overflow-y-auto w-full flex-grow flex flex-col">
+                <div className="overflow-y-auto w-full flex-1 min-h-0 flex flex-col">
                   <div className="h-64 md:h-80 relative overflow-hidden shrink-0">
                     <img src={selectedArticle.img} alt={selectedArticle.title} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
