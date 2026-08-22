@@ -269,46 +269,54 @@ const Home = () => {
 
   // Services horizontal scroll — independent context
   useGSAP(() => {
-    if (cardsWrapperRef.current && servicesRef.current) {
-      const scrollWidth = cardsWrapperRef.current.scrollWidth - window.innerWidth + 40;
-      
-      gsap.to(cardsWrapperRef.current, {
-        x: -scrollWidth,
-        ease: "none",
-        scrollTrigger: {
-          trigger: servicesRef.current,
-          pin: true,
-          scrub: 1.5,
-          start: "top top",
-          end: () => `+=${cardsWrapperRef.current.scrollWidth}`,
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-          refreshPriority: 3
-        }
-      });
-    }
+    let mm = gsap.matchMedia();
+    mm.add("(min-width: 768px)", () => {
+      if (cardsWrapperRef.current && servicesRef.current) {
+        const scrollWidth = cardsWrapperRef.current.scrollWidth - window.innerWidth + 40;
+        
+        gsap.to(cardsWrapperRef.current, {
+          x: -scrollWidth,
+          ease: "none",
+          scrollTrigger: {
+            trigger: servicesRef.current,
+            pin: true,
+            scrub: 1.5,
+            start: "top top",
+            end: () => `+=${cardsWrapperRef.current.scrollWidth}`,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+            refreshPriority: 3
+          }
+        });
+      }
+    });
+    return () => mm.revert();
   }, { scope: servicesRef });
 
   // Why Choose Us horizontal scroll — independent context
   useGSAP(() => {
-    if (whyCardsWrapperRef.current && whyUsRef.current) {
-      const whyScrollWidth = whyCardsWrapperRef.current.scrollWidth - window.innerWidth + 40;
-      
-      gsap.to(whyCardsWrapperRef.current, {
-        x: -whyScrollWidth,
-        ease: "none",
-        scrollTrigger: {
-          trigger: whyUsRef.current,
-          pin: true,
-          scrub: 1.5,
-          start: "top top",
-          end: () => `+=${whyCardsWrapperRef.current.scrollWidth}`,
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-          refreshPriority: 1
-        }
-      });
-    }
+    let mm = gsap.matchMedia();
+    mm.add("(min-width: 768px)", () => {
+      if (whyCardsWrapperRef.current && whyUsRef.current) {
+        const whyScrollWidth = whyCardsWrapperRef.current.scrollWidth - window.innerWidth + 40;
+        
+        gsap.to(whyCardsWrapperRef.current, {
+          x: -whyScrollWidth,
+          ease: "none",
+          scrollTrigger: {
+            trigger: whyUsRef.current,
+            pin: true,
+            scrub: 1.5,
+            start: "top top",
+            end: () => `+=${whyCardsWrapperRef.current.scrollWidth}`,
+            invalidateOnRefresh: true,
+            anticipatePin: 1,
+            refreshPriority: 1
+          }
+        });
+      }
+    });
+    return () => mm.revert();
   }, { scope: whyUsRef });
 
   const getImageUrl = (imagePath, isDummy) => {
@@ -392,7 +400,7 @@ const Home = () => {
 
       {/* ── 4. SERVICES PREVIEW STRIP (HORIZONTAL SCROLL) ─────────────────── */}
       <div className="bg-white dark:bg-[#0a0a0a] relative z-20 w-full">
-        <div ref={servicesRef} className="py-0 h-[100dvh] flex flex-col justify-center relative overflow-hidden">
+        <div ref={servicesRef} className="py-20 md:py-0 min-h-screen md:h-[100dvh] flex flex-col justify-center relative overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8 max-w-[100vw]">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 max-w-7xl mx-auto">
             <motion.div
@@ -417,11 +425,11 @@ const Home = () => {
             </motion.div>
           </div>
 
-          <div ref={cardsWrapperRef} className="flex flex-nowrap w-max gap-6 pl-4 md:pl-20 py-10">
+          <div ref={cardsWrapperRef} className="flex flex-col md:flex-row md:flex-nowrap w-full md:w-max gap-6 pl-0 md:pl-20 py-10 md:py-10">
             {servicesPreview.map((svc, i) => (
               <div
                 key={svc.title}
-                className="service-card w-[85vw] sm:w-[350px] md:w-[450px] flex-shrink-0 group relative h-[450px] md:h-[550px] overflow-hidden cursor-pointer"
+                className="service-card w-full sm:w-[350px] md:w-[450px] flex-shrink-0 group relative h-[400px] md:h-[550px] overflow-hidden cursor-pointer mx-auto md:mx-0"
               >
                 <img src={svc.img} alt={svc.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent group-hover:from-black transition-all duration-500" />
@@ -513,7 +521,7 @@ const Home = () => {
 
       {/* ── 7. WHY CHOOSE US (GSAP Horizontal Scroll) ─────────────────────── */}
       <div className="bg-[#0a0f1e] relative z-20 w-full">
-        <div ref={whyUsRef} className="py-0 h-[100dvh] flex flex-col justify-center relative overflow-hidden">
+        <div ref={whyUsRef} className="py-20 md:py-0 min-h-screen md:h-[100dvh] flex flex-col justify-center relative overflow-hidden">
         {/* subtle dot grid */}
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(rgba(245,158,11,1) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
         
@@ -524,13 +532,13 @@ const Home = () => {
             <div className="w-16 h-[1px] bg-amber-400 mx-auto mt-6" />
           </div>
 
-          <div ref={whyCardsWrapperRef} className="flex flex-nowrap w-max gap-8 pl-4 md:pl-20 py-10">
+          <div ref={whyCardsWrapperRef} className="flex flex-col md:flex-row md:flex-nowrap w-full md:w-max gap-8 pl-0 md:pl-20 py-10 relative z-10">
             {whyFeatures.map((feat, i) => {
               const Icon = feat.icon;
               return (
                 <div
                   key={feat.title}
-                  className="why-card w-[80vw] sm:w-[350px] md:w-[400px] flex-shrink-0 group border border-white/10 hover:border-amber-400/50 p-10 transition-all duration-500 hover:bg-white/5 bg-black/20 backdrop-blur-sm"
+                  className="why-card w-full sm:w-[350px] md:w-[400px] flex-shrink-0 group border border-white/10 hover:border-amber-400/50 p-8 md:p-10 transition-all duration-500 hover:bg-white/5 bg-black/20 backdrop-blur-sm mx-auto md:mx-0"
                 >
                   <div className="w-16 h-16 bg-amber-400/10 group-hover:bg-amber-400/20 flex items-center justify-center mb-8 transition-colors duration-300 rounded-full">
                     <Icon className="text-amber-400 text-3xl" />
