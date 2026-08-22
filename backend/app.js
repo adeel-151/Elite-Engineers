@@ -45,6 +45,8 @@ app.use(cors({
     'http://localhost:5173',
     'https://elite-engineers-phi.vercel.app',
     'https://elite-engineers-9rt9.onrender.com',
+    'https://eliteengineerspk.com',
+    'https://www.eliteengineerspk.com',
     process.env.FRONTEND_URL
   ].filter(Boolean),
   credentials: true
