@@ -23,7 +23,7 @@ import img10 from '../assets/img10.jpg';
 import img11 from '../assets/img11.jpg';
 import img38 from '../assets/img38.jpeg';
 import elite2 from '../assets/elite2.png';
-import BuildingExperience from '../components/BuildingExperience/BuildingExperience';
+// import BuildingExperience from '../components/BuildingExperience/BuildingExperience';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -505,9 +505,11 @@ const Home = () => {
       </div>
 
       {/* ── CINEMATIC 3D BUILDING EXPERIENCE ──────────────────────────────── */}
+      {/* 
       <div className="bg-[#0d1117] relative z-30 w-full">
         <BuildingExperience />
       </div>
+      */}
 
       {/* ── 7. WHY CHOOSE US (GSAP Horizontal Scroll) ─────────────────────── */}
       <div className="bg-[#0a0f1e] relative z-20 w-full">
