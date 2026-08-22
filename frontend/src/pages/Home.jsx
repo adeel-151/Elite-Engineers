@@ -648,7 +648,7 @@ const Home = () => {
             <div className="w-16 h-[1px] bg-amber-500 mx-auto mt-5" />
           </motion.div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 grid-rows-2 gap-3 h-[600px] md:h-[700px]">
+          <div className="grid grid-cols-2 md:grid-cols-3 grid-rows-3 gap-3 h-[800px] md:h-[900px]">
             {galleryImages.map((img, i) => (
               <motion.div
                 key={i}
