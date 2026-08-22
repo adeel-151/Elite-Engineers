@@ -65,6 +65,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 const serviceRoutes = require('./src/routes/service.routes');
 const faqRoutes = require('./src/routes/faq.routes');
 const teamRoutes = require('./src/routes/team.routes');
+const dashboardRoutes = require('./src/routes/dashboard.routes');
 
 // Routes
 app.use('/api/projects', projectRoutes);
@@ -75,6 +76,7 @@ app.use('/api/gallery', galleryRoutes);
 app.use('/api/services', serviceRoutes);
 app.use('/api/faqs', faqRoutes);
 app.use('/api/team', teamRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'success', message: 'API is running' });

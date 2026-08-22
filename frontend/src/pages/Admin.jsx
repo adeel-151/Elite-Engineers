@@ -11,6 +11,7 @@ import ServicesManager from '../components/admin/ServicesManager';
 import TeamManager from '../components/admin/TeamManager';
 import ClientsManager from '../components/admin/ClientsManager';
 import FaqManager from '../components/admin/FaqManager';
+import DashboardViewer from '../components/admin/DashboardViewer';
 import API_BASE_URL from '../config/api';
 
 const Admin = () => {
@@ -18,7 +19,7 @@ const Admin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   
-  const [activeTab, setActiveTab] = useState('manage'); // 'manage' | 'form' | 'gallery'
+  const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard' | 'manage' | 'form' | 'gallery'
   const [editingProject, setEditingProject] = useState(null);
 
   const handleLogin = async (e) => {
@@ -78,6 +79,7 @@ const Admin = () => {
   }
 
   const tabs = [
+    { id: 'dashboard', label: 'Dashboard Overview' },
     { id: 'manage', label: 'Projects' },
     { id: 'gallery', label: 'Gallery' },
     { id: 'services', label: 'Services' },
@@ -127,7 +129,9 @@ const Admin = () => {
             key={activeTab}
             className="bg-white dark:bg-secondary p-6 md:p-10 border border-gray-200 dark:border-gray-800 shadow-sm min-h-[600px]"
           >
-            {activeTab === 'manage' ? (
+            {activeTab === 'dashboard' ? (
+              <DashboardViewer token={token} onNavigate={setActiveTab} />
+            ) : activeTab === 'manage' ? (
               <ProjectGrid token={token} onEdit={handleEdit} />
             ) : activeTab === 'form' ? (
               <>
