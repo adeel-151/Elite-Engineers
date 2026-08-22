@@ -90,3 +90,17 @@ exports.subscribeNewsletter = catchAsync(async (req, res, next) => {
     message: 'Subscribed successfully'
   });
 });
+
+exports.deleteInquiry = catchAsync(async (req, res, next) => {
+  const inquiry = await Inquiry.findByIdAndDelete(req.params.id);
+
+  if (!inquiry) {
+    return next(new AppError('No inquiry found with that ID', 404));
+  }
+
+  res.status(204).json({
+    status: 'success',
+    data: null
+  });
+});
+
