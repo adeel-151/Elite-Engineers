@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaArrowRight, FaCalendarAlt, FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 
 import img6 from '../../assets/img6.jpg';
 import img7 from '../../assets/img7.jpg';
@@ -43,14 +44,23 @@ const articles = [
 const BlogPreview = () => {
   const [selectedArticle, setSelectedArticle] = useState(null);
 
+  useEffect(() => {
+    if (selectedArticle) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [selectedArticle]);
+
   const openModal = (article) => {
     setSelectedArticle(article);
-    document.body.style.overflow = 'hidden';
   };
 
   const closeModal = () => {
     setSelectedArticle(null);
-    document.body.style.overflow = 'unset';
   };
 
   return (
@@ -141,66 +151,71 @@ const BlogPreview = () => {
       </div>
 
       {/* Modal Overlay */}
-      <AnimatePresence>
-        {selectedArticle && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-            onClick={closeModal}
-          >
+      {createPortal(
+        <AnimatePresence>
+          {selectedArticle && (
             <motion.div
-              initial={{ opacity: 0, y: 50, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.95 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              onClick={(e) => e.stopPropagation()}
-              className="bg-white w-full max-w-3xl max-h-[90vh] overflow-y-auto shadow-2xl relative"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+              onClick={closeModal}
             >
-              <button 
-                onClick={closeModal}
-                className="absolute top-4 right-4 z-10 w-10 h-10 bg-black/50 hover:bg-amber-500 text-white rounded-full flex items-center justify-center transition-colors backdrop-blur-md"
+              <motion.div
+                initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 20, scale: 0.95 }}
+                transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                onClick={(e) => e.stopPropagation()}
+                className="bg-white w-full max-w-3xl max-h-[90vh] shadow-2xl relative overflow-hidden flex flex-col"
               >
-                <FaTimes />
-              </button>
+                <button 
+                  onClick={closeModal}
+                  className="absolute top-4 right-4 z-50 w-10 h-10 bg-black/50 hover:bg-amber-500 text-white rounded-full flex items-center justify-center transition-colors backdrop-blur-md"
+                >
+                  <FaTimes />
+                </button>
 
-              <div className="h-64 md:h-80 relative overflow-hidden">
-                <img src={selectedArticle.img} alt={selectedArticle.title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-8">
-                  <span className="bg-amber-400 text-black text-[10px] tracking-widest uppercase px-3 py-1 font-semibold mb-4 inline-block">
-                    {selectedArticle.category}
-                  </span>
-                  <h2 className="text-white text-2xl md:text-3xl font-display font-semibold leading-tight">
-                    {selectedArticle.title}
-                  </h2>
-                </div>
-              </div>
+                <div className="overflow-y-auto w-full flex-grow flex flex-col">
+                  <div className="h-64 md:h-80 relative overflow-hidden shrink-0">
+                    <img src={selectedArticle.img} alt={selectedArticle.title} className="w-full h-full object-cover" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                    <div className="absolute bottom-0 left-0 p-8">
+                      <span className="bg-amber-400 text-black text-[10px] tracking-widest uppercase px-3 py-1 font-semibold mb-4 inline-block">
+                        {selectedArticle.category}
+                      </span>
+                      <h2 className="text-white text-2xl md:text-3xl font-display font-semibold leading-tight">
+                        {selectedArticle.title}
+                      </h2>
+                    </div>
+                  </div>
 
-              <div className="p-8 md:p-12">
-                <div className="flex items-center gap-3 text-gray-500 text-xs mb-8 pb-8 border-b border-gray-100">
-                  <FaCalendarAlt className="text-amber-500" />
-                  <span>{selectedArticle.date}</span>
-                  <span className="text-gray-300">·</span>
-                  <span>{selectedArticle.readTime}</span>
-                </div>
+                  <div className="p-8 md:p-12 bg-white">
+                    <div className="flex items-center gap-3 text-gray-500 text-xs mb-8 pb-8 border-b border-gray-100">
+                      <FaCalendarAlt className="text-amber-500" />
+                      <span>{selectedArticle.date}</span>
+                      <span className="text-gray-300">·</span>
+                      <span>{selectedArticle.readTime}</span>
+                    </div>
 
-                <div className="prose prose-sm md:prose-base prose-gray max-w-none font-light leading-loose whitespace-pre-wrap">
-                  {selectedArticle.fullContent}
+                    <div className="prose prose-sm md:prose-base prose-gray max-w-none font-light leading-loose whitespace-pre-wrap">
+                      {selectedArticle.fullContent}
+                    </div>
+                    
+                    <div className="mt-12 pt-8 border-t border-gray-100 flex justify-between items-center">
+                      <p className="text-xs text-gray-400 uppercase tracking-widest">Share this article</p>
+                      <button onClick={closeModal} className="px-8 py-3 bg-black text-white text-xs tracking-widest uppercase hover:bg-amber-500 hover:text-black transition-colors font-semibold">
+                        Close
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                
-                <div className="mt-12 pt-8 border-t border-gray-100 flex justify-between items-center">
-                  <p className="text-xs text-gray-400 uppercase tracking-widest">Share this article</p>
-                  <button onClick={closeModal} className="px-8 py-3 bg-black text-white text-xs tracking-widest uppercase hover:bg-amber-500 hover:text-black transition-colors font-semibold">
-                    Close
-                  </button>
-                </div>
-              </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
     </div>
   );
 };
